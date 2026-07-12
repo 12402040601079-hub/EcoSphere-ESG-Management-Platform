@@ -418,10 +418,10 @@
                     <span class="material-symbols-outlined text-base">add</span>
                     <span class="sidebar-text">Generate Report</span>
                 </button>
-                <a href="#help"
+                <a href="#about" data-tab="about"
                     class="sidebar-menu-item flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-[#1E293B] hover:text-white transition-colors">
-                    <span class="material-symbols-outlined">help</span>
-                    <span class="sidebar-text">Help Center</span>
+                    <span class="material-symbols-outlined">info</span>
+                    <span class="sidebar-text text-sm">About Us</span>
                 </a>
                 <button id="logout-btn"
                     class="sidebar-menu-item w-full flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-[#1E293B] hover:text-white transition-colors text-left">
@@ -528,8 +528,8 @@
                                 <button class="w-full text-left px-4 py-2.5 text-xs font-semibold text-on-surface hover:bg-surface-container-low flex items-center gap-2" onclick="document.querySelector('[data-tab=settings]').click()">
                                     <span class="material-symbols-outlined text-sm">settings</span> Account Settings
                                 </button>
-                                <button class="w-full text-left px-4 py-2.5 text-xs font-semibold text-on-surface hover:bg-surface-container-low flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-sm">help</span> Help &amp; Support
+                                <button class="w-full text-left px-4 py-2.5 text-xs font-semibold text-on-surface hover:bg-surface-container-low flex items-center gap-2" onclick="document.querySelector('[data-tab=about]').click(); document.getElementById('profile-dropdown').classList.add('hidden');">
+                                    <span class="material-symbols-outlined text-sm">info</span> About &amp; Contact
                                 </button>
                             </div>
                             <div class="border-t border-outline-variant/40 py-1">
@@ -2334,6 +2334,415 @@
                             </div>
                         </form>
                     </div>
+                </section>
+
+                <!-- ==========================================
+                     TAB ABOUT: ABOUT US
+                     ========================================== -->
+                <section id="about-view" class="tab-content space-y-8 hidden">
+
+                    <!-- Page Header -->
+                    <div class="flex flex-col items-center text-center">
+                        <span class="text-xs text-primary font-bold uppercase tracking-widest mb-1">Company</span>
+                        <h2 class="text-headline-lg font-headline-lg text-on-surface font-bold">About EcoSphere</h2>
+                        <p class="text-body-lg text-on-surface-variant mt-1 max-w-2xl">Pioneering corporate sustainability through data-driven ESG intelligence since 2012.</p>
+                    </div>
+
+                    <!-- Hero Banner -->
+                    <div class="relative rounded-2xl overflow-hidden h-52 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&q=80&auto=format&fit=crop"
+                            alt="EcoSphere modern office headquarters"
+                            class="w-full h-full object-cover" />
+                        <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent flex items-center px-10">
+                            <div class="text-white">
+                                <p class="text-xs font-bold uppercase tracking-widest text-primary-container mb-2">Est. 2012 · San Francisco, CA</p>
+                                <h3 class="text-2xl font-bold leading-tight">Advancing Corporate Transparency<br>Through ESG Excellence</h3>
+                                <p class="text-white/70 text-sm mt-2">A Verified Enterprise & Industry Leader</p>
+                            </div>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <span class="px-3 py-1.5 bg-primary text-white text-xs font-bold rounded-full flex items-center gap-1.5 shadow-lg">
+                                <span class="material-symbols-outlined text-sm">verified</span>Verified Enterprise
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Two Column: Company Info + Verification Score -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <!-- Company Profile Card -->
+                        <div class="lg:col-span-2 bg-white rounded-xl shadow-sm border border-outline-variant p-6">
+                            <div class="flex items-start justify-between border-b border-outline-variant/40 pb-4 mb-5">
+                                <div class="flex items-center gap-4">
+                                    <!-- Logo -->
+                                    <div class="w-16 h-16 rounded-xl bg-primary/10 border border-outline-variant flex items-center justify-center shadow-sm">
+                                        <span class="material-symbols-outlined text-primary text-3xl">eco</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-bold text-on-surface">EcoSphere</h3>
+                                        <span class="inline-flex items-center gap-1 text-[10px] px-2 py-0.5 bg-green-100 text-green-700 font-bold rounded-full mt-1">
+                                            <span class="material-symbols-outlined text-[10px]">verified</span>Verified Enterprise
+                                        </span>
+                                    </div>
+                                </div>
+                                <button class="px-3 py-1.5 border border-outline-variant rounded-lg text-xs font-semibold text-primary flex items-center gap-1 hover:bg-surface-container-low transition-all">
+                                    <span class="material-symbols-outlined text-sm">edit</span> Edit Profile
+                                </button>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y divide-outline-variant/30">
+                                <div class="py-3.5 pr-6 flex justify-between">
+                                    <span class="text-xs text-on-surface-variant font-semibold">Industry</span>
+                                    <span class="text-xs font-bold text-on-surface">Environmental Services / SaaS</span>
+                                </div>
+                                <div class="py-3.5 pl-6 flex justify-between md:border-l md:border-outline-variant/30">
+                                    <span class="text-xs text-on-surface-variant font-semibold">Employees</span>
+                                    <span class="text-xs font-bold text-on-surface">12,482 (FTE)</span>
+                                </div>
+                                <div class="py-3.5 pr-6 flex justify-between">
+                                    <span class="text-xs text-on-surface-variant font-semibold">Founded</span>
+                                    <span class="text-xs font-bold text-on-surface">2012</span>
+                                </div>
+                                <div class="py-3.5 pl-6 flex justify-between md:border-l md:border-outline-variant/30">
+                                    <span class="text-xs text-on-surface-variant font-semibold">Global Offices</span>
+                                    <span class="text-xs font-bold text-on-surface">18 Countries</span>
+                                </div>
+                                <div class="py-3.5 pr-6 flex justify-between">
+                                    <span class="text-xs text-on-surface-variant font-semibold">Headquarters</span>
+                                    <span class="text-xs font-bold text-on-surface text-right">101 Sustainability Way,<br>San Francisco, CA 94105</span>
+                                </div>
+                                <div class="py-3.5 pl-6 flex justify-between md:border-l md:border-outline-variant/30">
+                                    <span class="text-xs text-on-surface-variant font-semibold">Revenue (2023)</span>
+                                    <span class="text-xs font-bold text-on-surface">$2.4B USD</span>
+                                </div>
+                                <div class="py-3.5 pr-6 flex justify-between">
+                                    <span class="text-xs text-on-surface-variant font-semibold">Stock Symbol</span>
+                                    <span class="text-xs font-bold text-primary">ECSP (NASDAQ)</span>
+                                </div>
+                                <div class="py-3.5 pl-6 flex justify-between md:border-l md:border-outline-variant/30">
+                                    <span class="text-xs text-on-surface-variant font-semibold">Website</span>
+                                    <a href="#" class="text-xs font-bold text-primary hover:underline flex items-center gap-0.5">www.ecosphere.io <span class="material-symbols-outlined text-[10px]">open_in_new</span></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Verification Score + Sustainability Status -->
+                        <div class="flex flex-col gap-4">
+                            <!-- Verification Card -->
+                            <div class="bg-white rounded-xl shadow-sm border border-outline-variant p-6 flex flex-col items-center text-center">
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-3">Verification Score</span>
+                                <!-- Score ring -->
+                                <div class="relative w-28 h-28 flex items-center justify-center mb-3">
+                                    <svg class="w-full h-full transform -rotate-90">
+                                        <circle cx="56" cy="56" r="46" fill="transparent" stroke="#e3eadf" stroke-width="8"></circle>
+                                        <circle cx="56" cy="56" r="46" fill="transparent" stroke="#047857"
+                                            stroke-dasharray="289.02" stroke-dashoffset="28.9"
+                                            stroke-linecap="round" stroke-width="8"></circle>
+                                    </svg>
+                                    <div class="absolute flex flex-col items-center">
+                                        <span class="text-2xl font-bold text-primary leading-none">98%</span>
+                                        <span class="text-[8px] text-on-surface-variant uppercase mt-0.5">Score</span>
+                                    </div>
+                                </div>
+                                <p class="text-[10px] text-on-surface-variant">Last audited: October 2023</p>
+                                <div class="w-full mt-3 pt-3 border-t border-outline-variant/40 space-y-2">
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                                        <span class="text-on-surface-variant">GRI Standards</span>
+                                        <span class="ml-auto font-bold text-green-600">Certified</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                                        <span class="text-on-surface-variant">TCFD Aligned</span>
+                                        <span class="ml-auto font-bold text-green-600">Active</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                                        <span class="text-on-surface-variant">SOC2 Type II</span>
+                                        <span class="ml-auto font-bold text-blue-600">Verified</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Sustainability Status -->
+                            <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl p-5 text-white shadow-lg">
+                                <h4 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">Sustainability Status</h4>
+                                <div class="space-y-3">
+                                    <div class="flex items-center gap-3 bg-white/10 rounded-lg px-3 py-2">
+                                        <div class="w-7 h-7 rounded-full bg-green-500/20 flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-green-400 text-sm">public</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs font-bold">GLOBAL</p>
+                                            <p class="text-[10px] text-slate-400">Net Zero Enrolled</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3 bg-white/10 rounded-lg px-3 py-2">
+                                        <div class="w-7 h-7 rounded-full bg-blue-500/20 flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-blue-400 text-sm">gavel</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs font-bold">COMPLIANCE</p>
+                                            <p class="text-[10px] text-slate-400">GDPR / ESRS</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mission Statement -->
+                    <div class="bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 rounded-2xl p-8 border border-primary/20 text-center">
+                        <span class="material-symbols-outlined text-primary text-3xl mb-3 block">format_quote</span>
+                        <p class="text-lg font-semibold text-on-surface max-w-3xl mx-auto leading-relaxed italic">
+                            "Our mission is to empower organizations worldwide to measure, manage, and improve their environmental, social, and governance performance — making sustainability the foundation of every business decision."
+                        </p>
+                        <p class="text-xs text-on-surface-variant mt-4 font-bold">— EcoSphere Leadership Team</p>
+                    </div>
+
+                    <!-- Sustainability Goals -->
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold text-on-surface">Sustainability Goals</h3>
+                            <button class="text-primary font-semibold text-sm hover:underline flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">add_circle</span> Add Milestone
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                            <!-- Net Zero 2030 -->
+                            <div class="bg-white rounded-xl p-6 shadow-sm border border-outline-variant hover:shadow-md transition-shadow">
+                                <div class="flex items-start justify-between mb-4">
+                                    <div class="w-10 h-10 rounded-xl bg-green-100 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-green-600">eco</span>
+                                    </div>
+                                    <span class="px-2.5 py-1 bg-green-600 text-white text-[10px] font-bold rounded-full">2030</span>
+                                </div>
+                                <h4 class="font-bold text-on-surface mb-1">Net Zero Emissions</h4>
+                                <p class="text-xs text-on-surface-variant leading-relaxed mb-4">Aggressive reduction of Scope 1, 2, and 3 emissions through operational efficiency and renewable energy partnerships.</p>
+                                <div class="flex items-center gap-1.5 text-[10px] font-bold text-green-600">
+                                    <span class="material-symbols-outlined text-sm">check_circle</span> On Track
+                                </div>
+                                <div class="mt-3 h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-green-500 rounded-full" style="width:68%"></div>
+                                </div>
+                                <p class="text-[10px] text-on-surface-variant mt-1">68% Progress</p>
+                            </div>
+                            <!-- 100% Renewable 2025 -->
+                            <div class="bg-white rounded-xl p-6 shadow-sm border border-outline-variant hover:shadow-md transition-shadow">
+                                <div class="flex items-start justify-between mb-4">
+                                    <div class="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-amber-600">bolt</span>
+                                    </div>
+                                    <span class="px-2.5 py-1 bg-amber-500 text-white text-[10px] font-bold rounded-full">2025</span>
+                                </div>
+                                <h4 class="font-bold text-on-surface mb-1">100% Renewable Energy</h4>
+                                <p class="text-xs text-on-surface-variant leading-relaxed mb-4">Powering all global offices and data centers with solar and wind PPA agreements across 18 countries.</p>
+                                <div class="flex items-center gap-1.5 text-[10px] font-bold text-amber-600">
+                                    <span class="material-symbols-outlined text-sm">trending_up</span> Accelerating
+                                </div>
+                                <div class="mt-3 h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-amber-500 rounded-full" style="width:84%"></div>
+                                </div>
+                                <p class="text-[10px] text-on-surface-variant mt-1">84% Progress</p>
+                            </div>
+                            <!-- Zero Waste 2028 -->
+                            <div class="bg-white rounded-xl p-6 shadow-sm border border-outline-variant hover:shadow-md transition-shadow">
+                                <div class="flex items-start justify-between mb-4">
+                                    <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-blue-600">recycling</span>
+                                    </div>
+                                    <span class="px-2.5 py-1 bg-blue-500 text-white text-[10px] font-bold rounded-full">2028</span>
+                                </div>
+                                <h4 class="font-bold text-on-surface mb-1">Zero Waste Operations</h4>
+                                <p class="text-xs text-on-surface-variant leading-relaxed mb-4">Eliminating landfill waste by redesigning supply chain logistics, packaging systems, and circular economy integration.</p>
+                                <div class="flex items-center gap-1.5 text-[10px] font-bold text-blue-600">
+                                    <span class="material-symbols-outlined text-sm">schedule</span> Planned
+                                </div>
+                                <div class="mt-3 h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-blue-500 rounded-full" style="width:31%"></div>
+                                </div>
+                                <p class="text-[10px] text-on-surface-variant mt-1">31% Progress</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Leadership Team -->
+                    <div>
+                        <h3 class="text-xl font-bold text-on-surface mb-4">Leadership Team</h3>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div class="bg-white rounded-xl p-5 shadow-sm border border-outline-variant text-center hover:shadow-md transition-shadow">
+                                <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xl font-bold mx-auto mb-3">SR</div>
+                                <p class="font-bold text-on-surface text-sm">Sarah Reynolds</p>
+                                <p class="text-[10px] text-on-surface-variant mt-0.5">Chief Executive Officer</p>
+                                <p class="text-[10px] text-primary mt-1 font-semibold">s.reynolds@ecosphere.io</p>
+                            </div>
+                            <div class="bg-white rounded-xl p-5 shadow-sm border border-outline-variant text-center hover:shadow-md transition-shadow">
+                                <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-xl font-bold mx-auto mb-3">MK</div>
+                                <p class="font-bold text-on-surface text-sm">Marcus Kim</p>
+                                <p class="text-[10px] text-on-surface-variant mt-0.5">Chief Sustainability Officer</p>
+                                <p class="text-[10px] text-primary mt-1 font-semibold">m.kim@ecosphere.io</p>
+                            </div>
+                            <div class="bg-white rounded-xl p-5 shadow-sm border border-outline-variant text-center hover:shadow-md transition-shadow">
+                                <div class="w-14 h-14 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 text-xl font-bold mx-auto mb-3">AR</div>
+                                <p class="font-bold text-on-surface text-sm">Alex River</p>
+                                <p class="text-[10px] text-on-surface-variant mt-0.5">Chief Risk & Compliance</p>
+                                <p class="text-[10px] text-primary mt-1 font-semibold">alex.river@ecosphere.io</p>
+                            </div>
+                            <div class="bg-white rounded-xl p-5 shadow-sm border border-outline-variant text-center hover:shadow-md transition-shadow">
+                                <div class="w-14 h-14 rounded-full bg-teal-100 flex items-center justify-center text-teal-600 text-xl font-bold mx-auto mb-3">PD</div>
+                                <p class="font-bold text-on-surface text-sm">Priya Desai</p>
+                                <p class="text-[10px] text-on-surface-variant mt-0.5">Chief Technology Officer</p>
+                                <p class="text-[10px] text-primary mt-1 font-semibold">p.desai@ecosphere.io</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Awards & Recognition -->
+                    <div class="bg-white rounded-xl shadow-sm border border-outline-variant p-6">
+                        <h3 class="font-bold text-on-surface mb-4">Awards &amp; Recognition</h3>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div class="flex items-center gap-3 p-3 rounded-lg bg-amber-50 border border-amber-100">
+                                <span class="material-symbols-outlined text-amber-500 text-2xl">emoji_events</span>
+                                <div><p class="text-xs font-bold text-on-surface">Forbes Green 50</p><p class="text-[10px] text-on-surface-variant">2023</p></div>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 rounded-lg bg-green-50 border border-green-100">
+                                <span class="material-symbols-outlined text-green-600 text-2xl">verified</span>
+                                <div><p class="text-xs font-bold text-on-surface">B-Corp Certified</p><p class="text-[10px] text-on-surface-variant">2021–Present</p></div>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 rounded-lg bg-blue-50 border border-blue-100">
+                                <span class="material-symbols-outlined text-blue-600 text-2xl">star</span>
+                                <div><p class="text-xs font-bold text-on-surface">CDP A-List</p><p class="text-[10px] text-on-surface-variant">Climate Leader 2023</p></div>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 rounded-lg bg-purple-50 border border-purple-100">
+                                <span class="material-symbols-outlined text-purple-600 text-2xl">workspace_premium</span>
+                                <div><p class="text-xs font-bold text-on-surface">ISO 14001</p><p class="text-[10px] text-on-surface-variant">Environmental Mgmt.</p></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Us Section -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6" id="contact-section">
+                        <!-- Contact Card -->
+                        <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 text-white shadow-xl">
+                            <div class="flex items-center gap-3 mb-6">
+                                <div class="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-primary">contact_support</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg">Contact &amp; Support</h3>
+                                    <p class="text-slate-400 text-xs mt-0.5">We're here to help. Reach us anytime.</p>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <!-- Phone -->
+                                <div class="flex items-start gap-4 bg-white/5 hover:bg-white/10 transition-colors rounded-xl p-4 cursor-pointer group">
+                                    <div class="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center shrink-0 group-hover:bg-green-500/30 transition-colors">
+                                        <span class="material-symbols-outlined text-green-400 text-xl">call</span>
+                                    </div>
+                                    <div>
+                                        <p class="text-[10px] text-slate-400 font-semibold uppercase tracking-widest">Phone Support</p>
+                                        <a href="tel:+18005234567" class="text-white font-bold text-base hover:text-primary transition-colors">+1 (800) 523-4567</a>
+                                        <p class="text-slate-400 text-[10px] mt-0.5">Mon–Fri, 9AM–6PM PST</p>
+                                    </div>
+                                </div>
+                                <!-- Email - General -->
+                                <div class="flex items-start gap-4 bg-white/5 hover:bg-white/10 transition-colors rounded-xl p-4 cursor-pointer group">
+                                    <div class="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center shrink-0 group-hover:bg-blue-500/30 transition-colors">
+                                        <span class="material-symbols-outlined text-blue-400 text-xl">mail</span>
+                                    </div>
+                                    <div>
+                                        <p class="text-[10px] text-slate-400 font-semibold uppercase tracking-widest">General Inquiries</p>
+                                        <a href="mailto:hello@ecosphere.io" class="text-white font-bold text-base hover:text-primary transition-colors">hello@ecosphere.io</a>
+                                        <p class="text-slate-400 text-[10px] mt-0.5">Response within 24 hours</p>
+                                    </div>
+                                </div>
+                                <!-- Email - Support -->
+                                <div class="flex items-start gap-4 bg-white/5 hover:bg-white/10 transition-colors rounded-xl p-4 cursor-pointer group">
+                                    <div class="w-10 h-10 rounded-lg bg-amber-500/20 flex items-center justify-center shrink-0 group-hover:bg-amber-500/30 transition-colors">
+                                        <span class="material-symbols-outlined text-amber-400 text-xl">support_agent</span>
+                                    </div>
+                                    <div>
+                                        <p class="text-[10px] text-slate-400 font-semibold uppercase tracking-widest">Technical Support</p>
+                                        <a href="mailto:support@ecosphere.io" class="text-white font-bold text-base hover:text-primary transition-colors">support@ecosphere.io</a>
+                                        <p class="text-slate-400 text-[10px] mt-0.5">Priority SLA: 4-hour response</p>
+                                    </div>
+                                </div>
+                                <!-- Address -->
+                                <div class="flex items-start gap-4 bg-white/5 rounded-xl p-4">
+                                    <div class="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center shrink-0">
+                                        <span class="material-symbols-outlined text-purple-400 text-xl">location_on</span>
+                                    </div>
+                                    <div>
+                                        <p class="text-[10px] text-slate-400 font-semibold uppercase tracking-widest">Headquarters</p>
+                                        <p class="text-white font-bold text-sm">101 Sustainability Way</p>
+                                        <p class="text-slate-400 text-[10px] mt-0.5">San Francisco, CA 94105, USA</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Send Message Form -->
+                        <div class="bg-white rounded-2xl shadow-sm border border-outline-variant p-8">
+                            <h3 class="font-bold text-on-surface text-lg mb-1">Send Us a Message</h3>
+                            <p class="text-xs text-on-surface-variant mb-6">Fill in the form and our team will get back to you within 24 hours.</p>
+                            <form id="contact-form" class="space-y-4">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-label-sm text-on-surface-variant mb-1.5 font-semibold text-xs">First Name</label>
+                                        <input type="text" id="contact-fname" class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-primary focus:outline-none" placeholder="Alex" />
+                                    </div>
+                                    <div>
+                                        <label class="block text-label-sm text-on-surface-variant mb-1.5 font-semibold text-xs">Last Name</label>
+                                        <input type="text" id="contact-lname" class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-primary focus:outline-none" placeholder="River" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-label-sm text-on-surface-variant mb-1.5 font-semibold text-xs">Email Address</label>
+                                    <input type="email" id="contact-email" class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-primary focus:outline-none" placeholder="alex.river@company.com" />
+                                </div>
+                                <div>
+                                    <label class="block text-label-sm text-on-surface-variant mb-1.5 font-semibold text-xs">Subject</label>
+                                    <select id="contact-subject" class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-primary focus:outline-none">
+                                        <option value="">Select a topic...</option>
+                                        <option>Technical Support</option>
+                                        <option>Billing & Account</option>
+                                        <option>ESG Data Query</option>
+                                        <option>Partnership Inquiry</option>
+                                        <option>General Question</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-label-sm text-on-surface-variant mb-1.5 font-semibold text-xs">Message</label>
+                                    <textarea id="contact-message" rows="4" class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-primary focus:outline-none resize-none" placeholder="Describe your query or issue in detail..."></textarea>
+                                </div>
+                                <button type="submit" class="w-full bg-primary text-white font-semibold py-3 rounded-xl shadow-md hover:brightness-110 transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+                                    <span class="material-symbols-outlined text-base">send</span>
+                                    Send Message
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Social Media / Quick Links -->
+                    <div class="bg-white rounded-xl shadow-sm border border-outline-variant p-6">
+                        <h3 class="font-bold text-on-surface mb-4">Follow Us &amp; Stay Connected</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="#" class="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-outline-variant hover:bg-blue-50 hover:border-blue-300 transition-colors text-xs font-semibold text-on-surface">
+                                <span class="material-symbols-outlined text-blue-600 text-sm">language</span>www.ecosphere.io
+                            </a>
+                            <a href="#" class="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-outline-variant hover:bg-blue-50 hover:border-blue-300 transition-colors text-xs font-semibold text-on-surface">
+                                <span class="material-symbols-outlined text-sky-500 text-sm">alternate_email</span>@EcoSphereESG
+                            </a>
+                            <a href="#" class="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-outline-variant hover:bg-blue-50 hover:border-blue-300 transition-colors text-xs font-semibold text-on-surface">
+                                <span class="material-symbols-outlined text-blue-700 text-sm">work</span>LinkedIn
+                            </a>
+                            <a href="#" class="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-outline-variant hover:bg-green-50 hover:border-green-300 transition-colors text-xs font-semibold text-on-surface">
+                                <span class="material-symbols-outlined text-green-600 text-sm">article</span>ESG Blog
+                            </a>
+                            <a href="#" class="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-outline-variant hover:bg-purple-50 hover:border-purple-300 transition-colors text-xs font-semibold text-on-surface">
+                                <span class="material-symbols-outlined text-purple-600 text-sm">podcasts</span>Sustainability Podcast
+                            </a>
+                        </div>
+                        <p class="text-[10px] text-on-surface-variant mt-4">© 2024 EcoSphere Inc. All rights reserved. · <a href="#" class="hover:underline text-primary">Privacy Policy</a> · <a href="#" class="hover:underline text-primary">Terms of Service</a></p>
+                    </div>
+
                 </section>
 
             </div>

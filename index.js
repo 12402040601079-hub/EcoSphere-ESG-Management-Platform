@@ -223,7 +223,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 governance: 'Governance Module',
                 compliance: 'Compliance Reports',
                 scoring: 'ESG Scoring Breakdown',
-                settings: 'Platform Settings'
+                settings: 'Platform Settings',
+                about: 'About EcoSphere'
             };
             breadcrumbActive.textContent = nameMapping[tabId] || tabId;
         }
@@ -1247,6 +1248,8 @@ document.addEventListener('DOMContentLoaded', () => {
         { label: 'Compliance Reports', icon: 'assignment', tab: 'compliance', type: 'Page' },
         { label: 'ESG Scoring', icon: 'analytics', tab: 'scoring', type: 'Page' },
         { label: 'Platform Settings', icon: 'settings', tab: 'settings', type: 'Page' },
+        { label: 'About EcoSphere', icon: 'info', tab: 'about', type: 'Page' },
+        { label: 'Contact & Support', icon: 'contact_support', tab: 'about', type: 'Page' },
         ...appState.facilityData.map(f => ({ label: f.name, icon: 'factory', tab: 'sustainability', type: 'Facility', sub: f.region }))
     ];
 
