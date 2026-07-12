@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const appShell = document.getElementById('app-shell');
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.getElementById('main-content');
+    const viewsWrapper = document.getElementById('views-wrapper');
     const sidebarToggleBtn = document.getElementById('sidebar-toggle-btn');
     const logoutBtn = document.getElementById('logout-btn');
     const breadcrumbActive = document.getElementById('breadcrumb-active');
@@ -198,7 +199,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Auto-scroll content back to top smoothly
-        mainContent.scrollTo({ top: 0, behavior: 'smooth' });
+        if (viewsWrapper) {
+            viewsWrapper.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     }
 
     tabTriggers.forEach(trigger => {
@@ -215,6 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function openModal() {
         if (!addDataModal) return;
         addDataModal.classList.remove('pointer-events-none', 'opacity-0');
+        addDataModal.classList.add('pointer-events-auto');
         const contentPanel = document.getElementById('modal-content-panel');
         if (contentPanel) {
             contentPanel.classList.remove('scale-95');
@@ -225,6 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function closeModal() {
         if (!addDataModal) return;
         addDataModal.classList.add('pointer-events-none', 'opacity-0');
+        addDataModal.classList.remove('pointer-events-auto');
         const contentPanel = document.getElementById('modal-content-panel');
         if (contentPanel) {
             contentPanel.classList.remove('scale-100');
@@ -623,6 +628,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card.addEventListener('mouseleave', () => {
             card.style.transform = 'translateY(0px)';
         });
+    });
     // Render initial states on load
     renderFacilityTable();
     updateSustainabilityStats();
