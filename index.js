@@ -12,7 +12,14 @@ document.addEventListener('DOMContentLoaded', () => {
         sidebarCollapsed: false,
         tableDensityCompact: false,
         facilityData: [],
-        reportsCount: 0
+        reportsCount: 0,
+        envLogs: [
+            { id: 'env_1', date: '2023-10-24', category: 'Electricity', value: 1450.00, unit: 'kWh', status: 'Verified' },
+            { id: 'env_2', date: '2023-10-22', category: 'Water', value: 4200.00, unit: 'Liters', status: 'Verified' },
+            { id: 'env_3', date: '2023-10-20', category: 'Fuel', value: 310.50, unit: 'Units', status: 'Pending' },
+            { id: 'env_4', date: '2023-10-18', category: 'Renewable', value: 22.40, unit: '% Mix', status: 'Verified' }
+        ],
+        envFilter: 'ALL'
     };
 
     // --- 2. DOM Elements Selection ---
@@ -191,6 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const nameMapping = {
                 dashboard: 'Dashboard',
                 sustainability: 'Sustainability Monitoring',
+                environment: 'Environmental Metrics',
                 compliance: 'Compliance Reports',
                 scoring: 'ESG Scoring Breakdown',
                 settings: 'Platform Settings'
@@ -629,7 +637,250 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.transform = 'translateY(0px)';
         });
     });
+    // --- 13. Environmental Module Logic ---
+    const envForm = document.getElementById('env-data-form');
+    const envInputElec = document.getElementById('env-input-elec');
+    const envInputWater = document.getElementById('env-input-water');
+    const envInputFuel = document.getElementById('env-input-fuel');
+    const envInputRenew = document.getElementById('env-input-renew');
+    const envInputCarbon = document.getElementById('env-input-carbon');
+    const envInputDate = document.getElementById('env-input-date');
+
+    const pillAll = document.getElementById('env-pill-all');
+    const pillVerified = document.getElementById('env-pill-verified');
+    const pillPending = document.getElementById('env-pill-pending');
+
+    function calculateEnvCarbon() {
+        if (!envInputCarbon) return;
+        const elec = parseFloat(envInputElec.value) || 0;
+        const water = parseFloat(envInputWater.value) || 0;
+        const fuel = parseFloat(envInputFuel.value) || 0;
+        // Carbon estimation formula: Electricity (kWh) * 0.0004 + Water (Liters) * 0.0001 + Fuel (Units) * 0.0025
+        const calcVal = (elec * 0.0004) + (water * 0.0001) + (fuel * 0.0025);
+        if (calcVal === 0) {
+            envInputCarbon.value = 'Calculated automatically';
+        } else {
+            envInputCarbon.value = `${calcVal.toFixed(3)} tCO2e`;
+        }
+    }
+
+    if (envInputElec) envInputElec.addEventListener('input', calculateEnvCarbon);
+    if (envInputWater) envInputWater.addEventListener('input', calculateEnvCarbon);
+    if (envInputFuel) envInputFuel.addEventListener('input', calculateEnvCarbon);
+
+    if (envForm) {
+        envForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const dateVal = envInputDate.value;
+            const elecVal = parseFloat(envInputElec.value) || 0;
+            const waterVal = parseFloat(envInputWater.value) || 0;
+            const fuelVal = parseFloat(envInputFuel.value) || 0;
+            const renewVal = parseFloat(envInputRenew.value) || 0;
+            
+            const newLogs = [];
+            if (elecVal > 0) {
+                newLogs.push({
+                    id: 'env_' + Date.now() + '_e',
+                    date: dateVal,
+                    category: 'Electricity',
+                    value: elecVal,
+                    unit: 'kWh',
+                    status: 'Verified'
+                });
+            }
+            if (waterVal > 0) {
+                newLogs.push({
+                    id: 'env_' + Date.now() + '_w',
+                    date: dateVal,
+                    category: 'Water',
+                    value: waterVal,
+                    unit: 'Liters',
+                    status: 'Verified'
+                });
+            }
+            if (fuelVal > 0) {
+                newLogs.push({
+                    id: 'env_' + Date.now() + '_f',
+                    date: dateVal,
+                    category: 'Fuel',
+                    value: fuelVal,
+                    unit: 'Units',
+                    status: 'Pending'
+                });
+            }
+            if (renewVal > 0) {
+                newLogs.push({
+                    id: 'env_' + Date.now() + '_r',
+                    date: dateVal,
+                    category: 'Renewable',
+                    value: renewVal,
+                    unit: '% Mix',
+                    status: 'Verified'
+                });
+            }
+
+            if (newLogs.length === 0) {
+                showToast('Please enter a value for at least one environmental metrics field.', 'warning');
+                return;
+            }
+
+            appState.envLogs.unshift(...newLogs);
+            updateEnvMetricCards();
+            renderEnvLogsTable();
+            showToast('Environmental metrics logged successfully!', 'success');
+            logActivity(`Logged environmental resource telemetry metrics for date ${dateVal}`);
+            
+            envForm.reset();
+            envInputCarbon.value = 'Calculated automatically';
+        });
+    }
+
+    function updateEnvMetricCards() {
+        let totalElec = 42850;
+        let totalWater = 128400;
+        let totalFuel = 1240;
+        let totalCarbon = 452.1;
+        let renewSum = 34.2;
+        let renewCount = 1;
+
+        appState.envLogs.forEach(log => {
+            if (log.id === 'env_1' || log.id === 'env_2' || log.id === 'env_3' || log.id === 'env_4') {
+                return;
+            }
+            if (log.category === 'Electricity') totalElec += log.value;
+            if (log.category === 'Water') totalWater += log.value;
+            if (log.category === 'Fuel') totalFuel += log.value;
+            if (log.category === 'Renewable') {
+                renewSum += log.value;
+                renewCount++;
+            }
+            if (log.category === 'Electricity') totalCarbon += (log.value * 0.0004);
+            if (log.category === 'Water') totalCarbon += (log.value * 0.0001);
+            if (log.category === 'Fuel') totalCarbon += (log.value * 0.0025);
+        });
+
+        const cardElec = document.getElementById('env-card-elec-val');
+        if (cardElec) cardElec.textContent = Math.round(totalElec).toLocaleString();
+
+        const cardWater = document.getElementById('env-card-water-val');
+        if (cardWater) cardWater.textContent = Math.round(totalWater).toLocaleString();
+
+        const cardFuel = document.getElementById('env-card-fuel-val');
+        if (cardFuel) cardFuel.textContent = Math.round(totalFuel).toLocaleString();
+
+        const cardRenew = document.getElementById('env-card-renew-val');
+        if (cardRenew) cardRenew.textContent = `${(renewSum / renewCount).toFixed(1)}%`;
+
+        const cardCarbon = document.getElementById('env-card-carbon-val');
+        if (cardCarbon) cardCarbon.textContent = totalCarbon.toFixed(1);
+
+        const donutVal = document.getElementById('env-donut-center-val');
+        if (donutVal) donutVal.textContent = Math.round(totalCarbon);
+    }
+
+    function renderEnvLogsTable() {
+        const tbody = document.getElementById('env-logs-tbody');
+        if (!tbody) return;
+
+        const filtered = appState.envLogs.filter(log => {
+            if (appState.envFilter === 'ALL') return true;
+            return log.status.toUpperCase() === appState.envFilter;
+        });
+
+        tbody.innerHTML = '';
+
+        if (filtered.length === 0) {
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="6" class="p-8 text-center text-on-surface-variant font-semibold text-body-md">
+                        No environmental logs matching filter.
+                    </td>
+                </tr>
+            `;
+            const countText = document.getElementById('env-logs-count-text');
+            if (countText) countText.textContent = `Showing 0 of ${appState.envLogs.length} records`;
+            return;
+        }
+
+        filtered.forEach(log => {
+            const tr = document.createElement('tr');
+            tr.className = 'hover:bg-surface-container-low/50 transition-colors border-b border-outline-variant/30';
+            
+            const isPending = log.status === 'Pending';
+            const badgeClass = isPending ? 'bg-amber-100 text-amber-800' : 'bg-green-100 text-green-800';
+            
+            let catIcon = 'electric_bolt';
+            let catColor = 'text-yellow-600 bg-yellow-50';
+            if (log.category === 'Water') {
+                catIcon = 'water_drop';
+                catColor = 'text-blue-600 bg-blue-50';
+            } else if (log.category === 'Fuel') {
+                catIcon = 'local_gas_station';
+                catColor = 'text-gray-600 bg-gray-50';
+            } else if (log.category === 'Renewable') {
+                catIcon = 'solar_power';
+                catColor = 'text-emerald-600 bg-emerald-50';
+            }
+
+            tr.innerHTML = `
+                <td class="px-6 py-4 font-medium">${formatDisplayDate(log.date)}</td>
+                <td class="px-6 py-4">
+                    <div class="flex items-center gap-2">
+                        <div class="w-6 h-6 rounded flex items-center justify-center ${catColor}">
+                            <span class="material-symbols-outlined text-sm">${catIcon}</span>
+                        </div>
+                        <span class="font-bold text-on-surface">${log.category}</span>
+                    </div>
+                </td>
+                <td class="px-6 py-4 font-semibold">${log.value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                <td class="px-6 py-4 text-on-surface-variant">${log.unit}</td>
+                <td class="px-6 py-4">
+                    <span class="px-2.5 py-0.5 rounded-full text-label-sm font-bold ${badgeClass}">${log.status}</span>
+                </td>
+                <td class="px-6 py-4 text-right pr-6">
+                    <button class="text-primary hover:underline font-bold text-sm">Details</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+        const countText = document.getElementById('env-logs-count-text');
+        if (countText) countText.textContent = `Showing ${filtered.length} of ${appState.envLogs.length} records`;
+    }
+
+    function formatDisplayDate(dateStr) {
+        if (!dateStr) return '';
+        const parts = dateStr.split('-');
+        if (parts.length !== 3) return dateStr;
+        const year = parts[0];
+        const monthNum = parseInt(parts[1], 10);
+        const day = parts[2];
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        return `${months[monthNum - 1]} ${parseInt(day, 10)}, ${year}`;
+    }
+
+    function selectEnvPill(activePill, filterName) {
+        [pillAll, pillVerified, pillPending].forEach(pill => {
+            if (pill) {
+                pill.classList.remove('bg-primary', 'text-white', 'shadow-sm');
+                pill.classList.add('text-on-surface-variant', 'hover:text-on-surface');
+            }
+        });
+        if (activePill) {
+            activePill.classList.add('bg-primary', 'text-white', 'shadow-sm');
+            activePill.classList.remove('text-on-surface-variant', 'hover:text-on-surface');
+        }
+        appState.envFilter = filterName;
+        renderEnvLogsTable();
+    }
+
+    if (pillAll) pillAll.addEventListener('click', () => selectEnvPill(pillAll, 'ALL'));
+    if (pillVerified) pillVerified.addEventListener('click', () => selectEnvPill(pillVerified, 'VERIFIED'));
+    if (pillPending) pillPending.addEventListener('click', () => selectEnvPill(pillPending, 'PENDING'));
+
     // Render initial states on load
     renderFacilityTable();
     updateSustainabilityStats();
+    renderEnvLogsTable();
 });
