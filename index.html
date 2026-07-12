@@ -332,6 +332,11 @@
                         <span class="material-symbols-outlined text-slate-400 group-hover:text-white">diversity_3</span>
                         <span class="sidebar-text text-sm">Social Module</span>
                     </a>
+                    <a href="#governance" data-tab="governance"
+                        class="sidebar-menu-item flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-[#1E293B] hover:text-white transition-colors cursor-pointer group">
+                        <span class="material-symbols-outlined text-slate-400 group-hover:text-white">gavel</span>
+                        <span class="sidebar-text text-sm">Governance Module</span>
+                    </a>
                     <a href="#compliance" data-tab="compliance"
                         class="sidebar-menu-item flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-[#1E293B] hover:text-white transition-colors cursor-pointer group">
                         <span class="material-symbols-outlined text-slate-400 group-hover:text-white">assignment</span>
@@ -1656,6 +1661,284 @@
                                         <span class="material-symbols-outlined text-sm">chevron_right</span>
                                     </button>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- ==========================================
+                     TAB GOVERNANCE: GOVERNANCE MODULE
+                     ========================================== -->
+                <section id="governance-view" class="tab-content space-y-8 hidden">
+
+                    <!-- Page Header (Centered) -->
+                    <div class="flex flex-col items-center text-center">
+                        <span class="text-xs text-primary font-bold uppercase tracking-widest mb-1">Modules &gt; Governance</span>
+                        <h2 class="text-headline-lg font-headline-lg text-on-surface font-bold">Governance Module</h2>
+                        <p class="text-body-lg text-on-surface-variant mt-1">Monitor corporate compliance, audit readiness, and risk management across the enterprise.</p>
+                    </div>
+
+                    <!-- Metric Cards (6 columns) -->
+                    <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4">
+                        <!-- Compliance Score -->
+                        <div class="bg-white rounded-xl p-4 shadow-sm border border-outline-variant flex flex-col justify-between group hover:scale-[1.02] transition-transform duration-200">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center text-green-600">
+                                    <span class="material-symbols-outlined text-lg">verified</span>
+                                </div>
+                                <span class="px-1.5 py-0.5 rounded bg-green-100 text-green-700 text-[10px] font-bold flex items-center gap-0.5">
+                                    <span class="material-symbols-outlined text-[10px]">trending_up</span>+1.2% trend
+                                </span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider block">Compliance Score</span>
+                                <span class="text-xl font-bold text-on-surface block mt-1">98%</span>
+                                <span class="text-[10px] text-primary font-bold block mt-0.5">↑ +1.2% trend</span>
+                            </div>
+                        </div>
+                        <!-- Internal Audits -->
+                        <div class="bg-white rounded-xl p-4 shadow-sm border border-outline-variant flex flex-col justify-between group hover:scale-[1.02] transition-transform duration-200">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
+                                    <span class="material-symbols-outlined text-lg">find_in_page</span>
+                                </div>
+                                <span class="px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">3 Pending</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider block">Internal Audits</span>
+                                <span class="text-xl font-bold text-on-surface block mt-1">24</span>
+                                <span class="text-[10px] text-amber-600 font-bold block mt-0.5">3 Pending</span>
+                            </div>
+                        </div>
+                        <!-- Active Policies -->
+                        <div class="bg-white rounded-xl p-4 shadow-sm border border-outline-variant flex flex-col justify-between group hover:scale-[1.02] transition-transform duration-200">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="w-8 h-8 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600">
+                                    <span class="material-symbols-outlined text-lg">policy</span>
+                                </div>
+                                <span class="px-1.5 py-0.5 rounded bg-green-100 text-green-700 text-[10px] font-bold">100% Attested</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider block">Active Policies</span>
+                                <span class="text-xl font-bold text-on-surface block mt-1">45</span>
+                                <span class="text-[10px] text-green-600 font-bold block mt-0.5">100% Attested</span>
+                            </div>
+                        </div>
+                        <!-- Risk Assessment -->
+                        <div class="bg-white rounded-xl p-4 shadow-sm border border-outline-variant flex flex-col justify-between group hover:scale-[1.02] transition-transform duration-200">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="w-8 h-8 rounded-lg bg-red-100 flex items-center justify-center text-red-600">
+                                    <span class="material-symbols-outlined text-lg">warning</span>
+                                </div>
+                                <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 text-[10px] font-bold">Total Risks</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider block">Risk Assessment</span>
+                                <span class="text-base font-bold text-on-surface block mt-1"><span class="text-red-500">12H</span> <span class="text-amber-500">45M</span> <span class="text-green-600">120L</span></span>
+                                <span class="text-[10px] text-on-surface-variant font-bold block mt-0.5">Total Risks</span>
+                            </div>
+                        </div>
+                        <!-- Security Score -->
+                        <div class="bg-white rounded-xl p-4 shadow-sm border border-outline-variant flex flex-col justify-between group hover:scale-[1.02] transition-transform duration-200">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="w-8 h-8 rounded-lg bg-teal-100 flex items-center justify-center text-teal-600">
+                                    <span class="material-symbols-outlined text-lg">security</span>
+                                </div>
+                                <span class="px-1.5 py-0.5 rounded bg-teal-100 text-teal-700 text-[10px] font-bold">SOC2 Compliant</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider block">Security Score</span>
+                                <span class="text-xl font-bold text-on-surface block mt-1">A+</span>
+                                <span class="text-[10px] text-teal-600 font-bold block mt-0.5">SOC2 Compliant</span>
+                            </div>
+                        </div>
+                        <!-- Ethics Score -->
+                        <div class="bg-white rounded-xl p-4 shadow-sm border border-outline-variant flex flex-col justify-between group hover:scale-[1.02] transition-transform duration-200">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="w-8 h-8 rounded-lg bg-indigo-100 flex items-center justify-center text-indigo-600">
+                                    <span class="material-symbols-outlined text-lg">balance</span>
+                                </div>
+                                <span class="px-1.5 py-0.5 rounded bg-indigo-100 text-indigo-700 text-[10px] font-bold">Industry Lead</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider block">Ethics Score</span>
+                                <span class="text-xl font-bold text-on-surface block mt-1">95/100</span>
+                                <span class="text-[10px] text-indigo-600 font-bold block mt-0.5">Industry Lead</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Three analytics panels: Audit Trend + Risk Distribution + Framework Readiness -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Audit Trend Line Chart -->
+                        <div class="bg-white rounded-xl p-6 shadow-sm border border-outline-variant flex flex-col">
+                            <div class="flex justify-between items-center border-b border-outline-variant/30 pb-3 mb-4">
+                                <h4 class="font-bold text-on-surface text-sm">Audit Trend</h4>
+                                <span class="text-[10px] text-on-surface-variant font-semibold border border-outline-variant/60 px-2 py-0.5 rounded-full">Last 12 Months</span>
+                            </div>
+                            <!-- Simple SVG line chart -->
+                            <div class="flex-1 flex flex-col">
+                                <svg viewBox="0 0 260 100" class="w-full flex-1" preserveAspectRatio="none">
+                                    <!-- Grid lines -->
+                                    <line x1="0" y1="25" x2="260" y2="25" stroke="#e2e8f0" stroke-width="1"/>
+                                    <line x1="0" y1="50" x2="260" y2="50" stroke="#e2e8f0" stroke-width="1"/>
+                                    <line x1="0" y1="75" x2="260" y2="75" stroke="#e2e8f0" stroke-width="1"/>
+                                    <!-- Area fill -->
+                                    <path d="M0,80 C30,70 50,60 70,50 S110,30 130,35 S170,20 200,15 S240,20 260,18 L260,100 L0,100 Z"
+                                        fill="url(#govGrad)" opacity="0.3"/>
+                                    <!-- Line -->
+                                    <path d="M0,80 C30,70 50,60 70,50 S110,30 130,35 S170,20 200,15 S240,20 260,18"
+                                        fill="none" stroke="#047857" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <!-- Data points -->
+                                    <circle cx="0" cy="80" r="3" fill="#047857"/>
+                                    <circle cx="65" cy="50" r="3" fill="#047857"/>
+                                    <circle cx="130" cy="35" r="3" fill="#047857"/>
+                                    <circle cx="195" cy="15" r="3" fill="#047857"/>
+                                    <circle cx="260" cy="18" r="3" fill="#047857"/>
+                                    <defs>
+                                        <linearGradient id="govGrad" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stop-color="#047857"/>
+                                            <stop offset="100%" stop-color="#ffffff"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                <div class="flex justify-between mt-2 px-1">
+                                    <span class="text-[9px] text-on-surface-variant font-bold">JAN</span>
+                                    <span class="text-[9px] text-on-surface-variant font-bold">MAR</span>
+                                    <span class="text-[9px] text-on-surface-variant font-bold">JUN</span>
+                                    <span class="text-[9px] text-on-surface-variant font-bold">SEP</span>
+                                    <span class="text-[9px] text-on-surface-variant font-bold">DEC</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Risk Distribution Donut -->
+                        <div class="bg-white rounded-xl p-6 shadow-sm border border-outline-variant flex flex-col">
+                            <div class="border-b border-outline-variant/30 pb-3 mb-4">
+                                <h4 class="font-bold text-on-surface text-sm">Risk Distribution</h4>
+                            </div>
+                            <div class="flex-1 flex flex-col items-center justify-center gap-3">
+                                <div class="relative w-36 h-36 flex items-center justify-center">
+                                    <svg class="w-full h-full transform -rotate-90">
+                                        <!-- Base circle (Low risks 120 / 177 = 67.8%) -->
+                                        <circle cx="72" cy="72" fill="transparent" r="54" stroke="#dcfce7" stroke-width="14"></circle>
+                                        <!-- Medium (45 / 177 = 25.4%) amber -->
+                                        <circle cx="72" cy="72" fill="transparent" r="54" stroke="#f59e0b"
+                                            stroke-dasharray="339.29"
+                                            stroke-dashoffset="252.71"
+                                            stroke-width="14"></circle>
+                                        <!-- High (12 / 177 = 6.8%) red -->
+                                        <circle cx="72" cy="72" fill="transparent" r="54" stroke="#ef4444"
+                                            stroke-dasharray="339.29"
+                                            stroke-dashoffset="315.27"
+                                            stroke-width="14"></circle>
+                                    </svg>
+                                    <div class="absolute flex flex-col items-center text-center">
+                                        <span class="text-xl font-bold text-on-surface leading-none">177</span>
+                                        <span class="text-[9px] text-on-surface-variant uppercase tracking-wider mt-0.5">Total Risks</span>
+                                    </div>
+                                </div>
+                                <!-- Legend -->
+                                <div class="grid grid-cols-1 gap-1.5 text-[10px] w-full">
+                                    <div class="flex justify-between items-center">
+                                        <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-red-500"></span><span class="text-on-surface-variant">High Priority</span></div>
+                                        <span class="font-bold text-on-surface">12</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span><span class="text-on-surface-variant">Medium</span></div>
+                                        <span class="font-bold text-on-surface">45</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-green-200"></span><span class="text-on-surface-variant">Low Priority</span></div>
+                                        <span class="font-bold text-on-surface">120</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Framework Readiness -->
+                        <div class="bg-white rounded-xl p-6 shadow-sm border border-outline-variant flex flex-col">
+                            <div class="border-b border-outline-variant/30 pb-3 mb-4">
+                                <h4 class="font-bold text-on-surface text-sm">Framework Readiness</h4>
+                            </div>
+                            <div class="flex-1 flex flex-col justify-around gap-4">
+                                <div>
+                                    <div class="flex justify-between text-xs font-semibold mb-1.5">
+                                        <span class="text-on-surface-variant">GRI Standard</span>
+                                        <span class="text-primary font-bold">92%</span>
+                                    </div>
+                                    <div class="h-2 bg-slate-100 rounded-full overflow-hidden">
+                                        <div class="h-full bg-primary rounded-full" style="width:92%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-xs font-semibold mb-1.5">
+                                        <span class="text-on-surface-variant">TCFD Framework</span>
+                                        <span class="text-primary font-bold">78%</span>
+                                    </div>
+                                    <div class="h-2 bg-slate-100 rounded-full overflow-hidden">
+                                        <div class="h-full bg-primary rounded-full" style="width:78%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-xs font-semibold mb-1.5">
+                                        <span class="text-on-surface-variant">SASB Sector</span>
+                                        <span class="text-primary font-bold">85%</span>
+                                    </div>
+                                    <div class="h-2 bg-slate-100 rounded-full overflow-hidden">
+                                        <div class="h-full bg-primary rounded-full" style="width:85%"></div>
+                                    </div>
+                                </div>
+                                <button class="mt-2 w-full bg-primary text-white font-semibold py-2.5 rounded-lg shadow-md hover:brightness-110 transition-all active:scale-[0.98] text-xs flex items-center justify-center gap-1.5">
+                                    <span class="material-symbols-outlined text-sm">task_alt</span>
+                                    Generate Readiness Report
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Audit History & Compliance Table -->
+                    <div class="bg-white rounded-xl shadow-sm border border-outline-variant overflow-hidden">
+                        <div class="p-6 flex flex-col md:flex-row justify-between items-center gap-4 border-b border-outline-variant">
+                            <div>
+                                <h3 class="font-title-lg text-base text-on-surface font-bold">Audit History &amp; Compliance</h3>
+                                <p class="text-xs text-on-surface-variant mt-0.5">Real-time status tracking for internal and external verification.</p>
+                            </div>
+                            <div class="flex gap-2">
+                                <button class="px-3 py-1.5 border border-outline-variant rounded-lg text-xs font-semibold text-on-surface flex items-center gap-1 hover:bg-surface-container-low transition-all">
+                                    <span class="material-symbols-outlined text-base">filter_alt</span> Filter
+                                </button>
+                                <button id="gov-new-audit-btn" class="px-4 py-1.5 bg-primary text-white rounded-lg text-xs font-bold flex items-center gap-1.5 hover:brightness-110 transition-all shadow-md">
+                                    <span class="material-symbols-outlined text-base">add</span> New Audit
+                                </button>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-sm">
+                                <thead>
+                                    <tr class="bg-surface-container/40 text-[10px] font-bold uppercase text-on-surface-variant border-b border-outline-variant/60">
+                                        <th class="px-6 py-3">Date</th>
+                                        <th class="px-6 py-3">Audit Name</th>
+                                        <th class="px-6 py-3">Auditor</th>
+                                        <th class="px-6 py-3">Status</th>
+                                        <th class="px-6 py-3 text-right">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-outline-variant/40" id="gov-audits-tbody">
+                                    <!-- Populated by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="px-6 py-4 border-t border-outline-variant/40 flex justify-between items-center bg-surface-container-low/20">
+                            <span class="text-xs text-on-surface-variant" id="gov-audit-count-text">Showing 4 of 24 records</span>
+                            <div class="flex gap-1 items-center">
+                                <button class="w-7 h-7 rounded border border-outline-variant/60 flex items-center justify-center text-on-surface-variant hover:bg-white text-xs font-bold bg-primary text-white">1</button>
+                                <button class="w-7 h-7 rounded border border-outline-variant/60 flex items-center justify-center text-on-surface-variant hover:bg-white text-xs font-bold">2</button>
+                                <button class="w-7 h-7 rounded border border-outline-variant/60 flex items-center justify-center text-on-surface-variant hover:bg-white text-xs font-bold">3</button>
+                                <button class="w-7 h-7 rounded border border-outline-variant/60 flex items-center justify-center text-on-surface-variant hover:bg-white transition-colors">
+                                    <span class="material-symbols-outlined text-sm">chevron_right</span>
+                                </button>
                             </div>
                         </div>
                     </div>

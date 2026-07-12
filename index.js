@@ -26,6 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 'soc_3', date: '2023-10-18', category: 'Safety Audit', value: 0, unit: 'Incidents', status: 'Pending' },
             { id: 'soc_4', date: '2023-10-15', category: 'Volunteer Program', value: 540, unit: 'Hours', status: 'Verified' },
             { id: 'soc_5', date: '2023-10-12', category: 'Community Outreach', value: 8, unit: 'Events', status: 'Verified' }
+        ],
+        govAudits: [
+            { id: 'gov_1', date: '2023-10-12', name: 'Q3 Security Access Review', category: 'Internal Compliance', auditor: 'Jane Doe', auditorInitials: 'JD', auditorColor: 'bg-blue-500', status: 'Compliant' },
+            { id: 'gov_2', date: '2023-09-28', name: 'GHG Protocol Emission Audit', category: 'Environmental Verification', auditor: 'EcoRisk Ltd.', auditorInitials: 'ER', auditorColor: 'bg-teal-500', status: 'In Progress' },
+            { id: 'gov_3', date: '2023-08-15', name: 'Supplier Ethics Assessment', category: 'Supply Chain Governance', auditor: 'Marcus Knight', auditorInitials: 'MK', auditorColor: 'bg-purple-500', status: 'Non-Compliant' },
+            { id: 'gov_4', date: '2023-07-22', name: 'Data Privacy & GDPR Review', category: 'Regulatory Affairs', auditor: 'Sarah Lee', auditorInitials: 'SL', auditorColor: 'bg-green-500', status: 'Compliant' }
         ]
     };
 
@@ -207,6 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 sustainability: 'Sustainability Monitoring',
                 environment: 'Environmental Metrics',
                 social: 'Social Module',
+                governance: 'Governance Module',
                 compliance: 'Compliance Reports',
                 scoring: 'ESG Scoring Breakdown',
                 settings: 'Platform Settings'
@@ -1005,4 +1012,100 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSustainabilityStats();
     renderEnvLogsTable();
     renderSocialLogsTable();
+    renderGovAuditsTable();
+
+    // --- 15. Governance Module Logic ---
+
+    function renderGovAuditsTable() {
+        const tbody = document.getElementById('gov-audits-tbody');
+        if (!tbody) return;
+
+        tbody.innerHTML = '';
+        const audits = appState.govAudits;
+
+        if (audits.length === 0) {
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="5" class="p-8 text-center text-on-surface-variant font-semibold text-sm">
+                        No audit records found. Click "New Audit" to add one.
+                    </td>
+                </tr>
+            `;
+            return;
+        }
+
+        audits.forEach(audit => {
+            const tr = document.createElement('tr');
+            tr.className = 'hover:bg-surface-container-low/50 transition-colors';
+
+            let statusClass = 'bg-green-100 text-green-800';
+            let statusIcon = 'check_circle';
+            if (audit.status === 'In Progress') {
+                statusClass = 'bg-blue-100 text-blue-800';
+                statusIcon = 'pending';
+            } else if (audit.status === 'Non-Compliant') {
+                statusClass = 'bg-red-100 text-red-800';
+                statusIcon = 'cancel';
+            }
+
+            tr.innerHTML = `
+                <td class="px-6 py-4 text-xs font-medium text-on-surface-variant whitespace-nowrap">${formatDisplayDate(audit.date)}</td>
+                <td class="px-6 py-4">
+                    <div class="font-bold text-on-surface text-sm">${audit.name}</div>
+                    <div class="text-[10px] text-on-surface-variant mt-0.5">${audit.category}</div>
+                </td>
+                <td class="px-6 py-4">
+                    <div class="flex items-center gap-2">
+                        <div class="w-7 h-7 rounded-full ${audit.auditorColor} flex items-center justify-center text-white text-[10px] font-bold shrink-0">${audit.auditorInitials}</div>
+                        <span class="text-sm font-medium text-on-surface">${audit.auditor}</span>
+                    </div>
+                </td>
+                <td class="px-6 py-4">
+                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold ${statusClass}">
+                        <span class="material-symbols-outlined text-[12px]">${statusIcon}</span>
+                        ${audit.status}
+                    </span>
+                </td>
+                <td class="px-6 py-4 text-right">
+                    <div class="flex justify-end gap-2">
+                        <button class="text-primary hover:underline font-bold text-xs">Review</button>
+                        <button class="text-on-surface-variant hover:text-primary font-bold text-xs">Edit</button>
+                    </div>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+        const countEl = document.getElementById('gov-audit-count-text');
+        if (countEl) countEl.textContent = `Showing ${audits.length} of 24 records`;
+    }
+
+    const govNewAuditBtn = document.getElementById('gov-new-audit-btn');
+    if (govNewAuditBtn) {
+        govNewAuditBtn.addEventListener('click', () => {
+            const name = prompt('Audit Name:');
+            if (!name) return;
+            const auditor = prompt('Auditor Name:') || 'Unknown';
+            const category = prompt('Category (e.g., Internal Compliance):') || 'General';
+            const initials = auditor.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+            const colors = ['bg-blue-500', 'bg-teal-500', 'bg-purple-500', 'bg-green-500', 'bg-rose-500', 'bg-amber-500'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const today = new Date().toISOString().split('T')[0];
+
+            appState.govAudits.unshift({
+                id: 'gov_' + Date.now(),
+                date: today,
+                name,
+                category,
+                auditor,
+                auditorInitials: initials,
+                auditorColor: color,
+                status: 'In Progress'
+            });
+
+            renderGovAuditsTable();
+            showToast(`New audit "${name}" created successfully!`, 'success');
+            logActivity(`Created governance audit: ${name}`);
+        });
+    }
 });
