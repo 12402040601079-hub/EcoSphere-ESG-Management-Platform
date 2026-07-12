@@ -1,0 +1,332 @@
+/* ==========================================================================
+   EcoSphere ESG Management Platform - Core Design System & Styling
+   ========================================================================== */
+
+/* 1. Design System Tokens (CSS Variables) */
+:root {
+  /* Color Tokens */
+  --surface: #f4fcf0;
+  --surface-dim: #d5dcd1;
+  --surface-bright: #f4fcf0;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #eff6ea;
+  --surface-container: #e9f0e5;
+  --surface-container-high: #e3eadf;
+  --surface-container-highest: #dde5d9;
+  --on-surface: #171d16;
+  --on-surface-variant: #3e4a3d;
+  --inverse-surface: #2b322b;
+  --inverse-on-surface: #ecf3e7;
+  --outline: #6e7b6c;
+  --outline-variant: #bdcaba;
+  
+  --primary: #006b2c;
+  --on-primary: #ffffff;
+  --primary-container: #00873a;
+  --on-primary-container: #f7fff2;
+  --inverse-primary: #62df7d;
+  
+  --secondary: #006b5f;
+  --on-secondary: #ffffff;
+  --secondary-container: #6df5e1;
+  --on-secondary-container: #006f64;
+  
+  --tertiary: #a72d51;
+  --on-tertiary: #ffffff;
+  --tertiary-container: #c74668;
+  --on-tertiary-container: #fffbff;
+  
+  --error: #ba1a1a;
+  --on-error: #ffffff;
+  --error-container: #ffdad6;
+  --on-error-container: #93000a;
+
+  --primary-fixed: #7ffc97;
+  --primary-fixed-dim: #62df7d;
+  --on-primary-fixed: #002109;
+  
+  /* Additional Custom Color Tints (e.g. Slate, Gray etc. for deep surfaces) */
+  --deep-sidebar: #0f172a;
+  --deep-sidebar-hover: #1e293b;
+  --deep-sidebar-border: #16a34a;
+
+  /* Typography Scale */
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* Spacing Grid (8px Base Grid) */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-gutter: 24px;
+
+  /* Corner Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+  
+  /* Shadows & Elevation */
+  --shadow-1: 0px 1px 3px rgba(0, 0, 0, 0.05), 0px 4px 6px rgba(0, 0, 0, 0.02);
+  --shadow-2: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-3: 0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* 2. Global Resets & Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--surface);
+  color: var(--on-surface);
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Material Symbols Custom configuration */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+}
+
+.material-symbols-outlined.fill-1 {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* 3. Layout & Navigation Wrappers */
+.main-wrapper {
+  display: flex;
+  min-h: 100vh;
+  position: relative;
+}
+
+/* Collapsible Navigation Sidebar support */
+aside.sidebar-transition {
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-collapsed {
+  width: 80px !important;
+}
+
+.sidebar-collapsed .sidebar-text,
+.sidebar-collapsed .sidebar-header-text,
+.sidebar-collapsed .sidebar-badge {
+  display: none !important;
+}
+
+.sidebar-collapsed .sidebar-menu-item {
+  justify-content: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.sidebar-collapsed .sidebar-logo-container {
+  justify-content: center;
+  padding: 0;
+}
+
+main.content-transition {
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.main-content-expanded {
+  margin-left: 80px !important;
+}
+
+/* Custom Scrollbar Styles */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--outline-variant);
+  border-radius: var(--radius-full);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--outline);
+}
+
+/* 4. Core UI Component Customizations */
+
+/* Glassmorphism Cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-1);
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease-out;
+}
+
+.glass-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-2);
+  border-color: rgba(0, 107, 44, 0.2); /* Tint with primary */
+}
+
+/* Custom shadow */
+.custom-shadow {
+  box-shadow: var(--shadow-1);
+}
+
+/* Progress Ring Component */
+.progress-ring-circle {
+  transition: stroke-dashoffset 0.8s ease-in-out;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+/* Skeleton Loading Screens */
+.skeleton {
+  background: linear-gradient(90deg, var(--surface-container) 25%, var(--outline-variant) 50%, var(--surface-container) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite linear;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Form Styling Details */
+.form-input-focus:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(0, 107, 44, 0.15);
+}
+
+/* Toast Notification Styling */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.toast-alert {
+  pointer-events: auto;
+  min-width: 320px;
+  background: #ffffff;
+  color: var(--on-surface);
+  border-left: 4px solid var(--primary);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-3);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: toast-in 0.3s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.toast-alert.error-toast {
+  border-left-color: var(--error);
+}
+
+.toast-alert.warning-toast {
+  border-left-color: #f59e0b; /* Amber */
+}
+
+.toast-alert.info-toast {
+  border-left-color: #3b82f6; /* Blue */
+}
+
+@keyframes toast-in {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Compact Table Density Mode */
+.compact-table td,
+.compact-table th {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+
+/* 5. Custom Animations & Interactions */
+.scale-on-hover {
+  transition: transform 0.2s ease-in-out;
+}
+
+.scale-on-hover:hover {
+  transform: scale(1.02);
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pulse animation for active generators */
+.animate-custom-pulse {
+  animation: custom-pulse 2s infinite ease-in-out;
+}
+
+@keyframes custom-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* SVG Line Chart Hover Guide */
+.chart-dot {
+  transition: r 0.2s ease, fill-opacity 0.2s ease;
+}
+.chart-dot:hover {
+  r: 8;
+  fill-opacity: 1;
+  cursor: pointer;
+}
+
+/* 6. Utility styling overrides */
+.border-outline-active {
+  border-color: var(--primary) !important;
+}

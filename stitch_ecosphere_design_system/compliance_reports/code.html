@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Compliance Reports | EcoSphere</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#e3eadf",
+                    "surface-tint": "#006e2d",
+                    "surface-bright": "#f4fcf0",
+                    "secondary-container": "#6df5e1",
+                    "on-secondary-container": "#006f64",
+                    "inverse-primary": "#62df7d",
+                    "background": "#f4fcf0",
+                    "on-tertiary-fixed": "#3f0016",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#00873a",
+                    "inverse-surface": "#2b322b",
+                    "on-tertiary-container": "#fffbff",
+                    "on-primary-fixed-variant": "#005320",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#171d16",
+                    "surface-container-low": "#eff6ea",
+                    "secondary-fixed": "#71f8e4",
+                    "on-primary-fixed": "#002109",
+                    "on-tertiary-fixed-variant": "#8a143c",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#ecf3e7",
+                    "tertiary-fixed-dim": "#ffb2bf",
+                    "secondary": "#006b5f",
+                    "on-secondary-fixed": "#00201c",
+                    "surface-container": "#e9f0e5",
+                    "surface-dim": "#d5dcd1",
+                    "on-surface": "#171d16",
+                    "primary-fixed": "#7ffc97",
+                    "tertiary-container": "#c74668",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#62df7d",
+                    "error": "#ba1a1a",
+                    "on-primary-container": "#f7fff2",
+                    "primary": "#006b2c",
+                    "on-surface-variant": "#3e4a3d",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#ffd9de",
+                    "on-secondary": "#ffffff",
+                    "outline": "#6e7b6c",
+                    "surface-container-highest": "#dde5d9",
+                    "surface": "#f4fcf0",
+                    "error-container": "#ffdad6",
+                    "outline-variant": "#bdcaba",
+                    "tertiary": "#a72d51",
+                    "on-secondary-fixed-variant": "#005048",
+                    "surface-variant": "#dde5d9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "margin-mobile": "16px",
+                    "base": "8px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "gutter": "24px",
+                    "lg": "24px",
+                    "xl": "32px",
+                    "margin-desktop": "32px",
+                    "2xl": "48px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "title-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "title-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f4fcf0; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid #e2e8f0;
+        }
+        .skeleton {
+            background: linear-gradient(90deg, #F1F5F9 25%, #E2E8F0 50%, #F1F5F9 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+        }
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+</head>
+<body class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-[280px] bg-[#0F172A] shadow-md flex flex-col py-6 z-50">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<div>
+<h1 class="text-white text-title-lg font-bold font-title-lg">EcoSphere</h1>
+<p class="text-on-surface-variant text-label-md opacity-70">Enterprise ESG</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-[#1E293B] hover:text-white transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-[#1E293B] hover:text-white transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="eco">eco</span>
+                Sustainability Monitoring
+            </a>
+<!-- Active State -->
+<a class="flex items-center gap-3 px-6 py-3 border-l-4 border-primary bg-[#1E293B] text-primary font-title-md text-title-md" href="#">
+<span class="material-symbols-outlined" data-icon="assignment" style="font-variation-settings: 'FILL' 1;">assignment</span>
+                Compliance Reports
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-[#1E293B] hover:text-white transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+                ESG Scoring
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-[#1E293B] hover:text-white transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="px-4 mt-auto">
+<button class="w-full bg-primary py-3 px-4 rounded-xl text-white font-title-md flex items-center justify-center gap-2 hover:bg-primary-container transition-all">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                Add ESG Data
+            </button>
+<div class="mt-6 border-t border-slate-700 pt-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-white transition-colors text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+                    Help Center
+                </a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-white transition-colors text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+                    Account
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<div class="flex-1 ml-[280px] flex flex-col">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-40 bg-surface-container-lowest shadow-sm h-16 flex justify-between items-center px-8">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2 pl-10 text-body-md focus:ring-2 focus:ring-primary" placeholder="Search reports, frameworks, or audits..." type="text"/>
+</div>
+<nav class="hidden md:flex gap-6 ml-8">
+<a class="text-on-surface-variant font-body-md hover:text-on-surface transition-colors" href="#">Overview</a>
+<a class="text-on-surface-variant font-body-md hover:text-on-surface transition-colors" href="#">Analytics</a>
+<a class="text-primary font-title-md border-b-2 border-primary pb-1" href="#">Reports</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="text-right">
+<p class="text-label-md font-bold text-on-surface">Alex Thompson</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Compliance Officer</p>
+</div>
+<img class="w-10 h-10 rounded-full object-cover ring-2 ring-primary/20 group-hover:ring-primary transition-all" data-alt="A professional headshot of a corporate officer in a minimalist, bright office environment. Soft natural lighting, shallow depth of field, high-end photography style consistent with enterprise software aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_Sl2Qz1FZfIjnDPcj0wR5P8HsSxzEYNfVxkXDP2B6f8yOpz3tzRX8UdY_MNbo4SF2UZmX-WTmXCmS7ijQYa2hgH-Bku3fn1782DkTtaZaICrQ7fp1AYbeimwacfzT7kyRp8DzM_SNtNEO1jLU_G4eKIlp7atXqGu6BeFORV5LG8ajhiWlJVYmNwLjYSrCUj6aaQECFOVUeONZ0PtkuMD5Bc1T3p9IzB8IxyTL_c71WMLj-4OCb0-3"/>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<main class="p-8 space-y-8">
+<!-- Header Section -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="text-headline-lg font-headline-lg text-on-surface">Compliance Reports</h2>
+<p class="text-body-lg text-on-surface-variant mt-1">Manage and track ESG regulatory disclosures and framework compliance.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-5 py-2.5 border border-outline-variant rounded-lg bg-white text-on-surface font-title-md flex items-center gap-2 hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-[20px]">file_upload</span>
+                        Bulk Upload
+                    </button>
+<button class="px-5 py-2.5 bg-primary rounded-lg text-white font-title-md flex items-center gap-2 shadow-md shadow-primary/20 hover:bg-primary-container transition-all">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+                        Generate New Report
+                    </button>
+</div>
+</div>
+<!-- Bento Grid - Framework Progress -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- BRSR Progress -->
+<div class="glass-card p-6 rounded-xl flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div>
+<span class="px-2 py-1 bg-primary/10 text-primary text-label-sm rounded uppercase">Framework</span>
+<h3 class="text-title-lg font-title-lg mt-3">BRSR Disclosure</h3>
+</div>
+<div class="p-2 bg-surface-container rounded-lg">
+<span class="material-symbols-outlined text-primary">analytics</span>
+</div>
+</div>
+<div class="mt-8">
+<div class="flex justify-between items-end mb-2">
+<span class="text-headline-md font-headline-md">84%</span>
+<span class="text-label-md text-on-surface-variant">Ready for Audit</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 84%"></div>
+</div>
+</div>
+</div>
+<!-- GRI Progress -->
+<div class="glass-card p-6 rounded-xl flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div>
+<span class="px-2 py-1 bg-secondary-container text-on-secondary-container text-label-sm rounded uppercase">Standard</span>
+<h3 class="text-title-lg font-title-lg mt-3">GRI Standards 2023</h3>
+</div>
+<div class="p-2 bg-surface-container rounded-lg">
+<span class="material-symbols-outlined text-secondary">verified_user</span>
+</div>
+</div>
+<div class="mt-8">
+<div class="flex justify-between items-end mb-2">
+<span class="text-headline-md font-headline-md">62%</span>
+<span class="text-label-md text-on-surface-variant">Data Pending</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 62%"></div>
+</div>
+</div>
+</div>
+<!-- TCFD Progress -->
+<div class="glass-card p-6 rounded-xl flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div>
+<span class="px-2 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant text-label-sm rounded uppercase">Global</span>
+<h3 class="text-title-lg font-title-lg mt-3">TCFD Climate Report</h3>
+</div>
+<div class="p-2 bg-surface-container rounded-lg">
+<span class="material-symbols-outlined text-tertiary">cloud_done</span>
+</div>
+</div>
+<div class="mt-8">
+<div class="flex justify-between items-end mb-2">
+<span class="text-headline-md font-headline-md">98%</span>
+<span class="text-label-md text-on-surface-variant">Almost Complete</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 98%"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex gap-8">
+<!-- Left Content: Reports List & Skeleton -->
+<div class="flex-1 space-y-6">
+<div class="glass-card rounded-xl overflow-hidden">
+<div class="px-6 py-4 border-b border-outline-variant flex justify-between items-center bg-white/50">
+<h3 class="text-title-md font-title-md">Generated Reports</h3>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-surface-container rounded-lg transition-colors"><span class="material-symbols-outlined">filter_list</span></button>
+<button class="p-2 hover:bg-surface-container rounded-lg transition-colors"><span class="material-symbols-outlined">sort</span></button>
+</div>
+</div>
+<div class="divide-y divide-outline-variant">
+<!-- Report Item 1 -->
+<div class="p-6 flex items-center hover:bg-surface-bright transition-colors group">
+<div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">description</span>
+</div>
+<div class="ml-4 flex-1">
+<div class="flex items-center gap-2">
+<h4 class="font-title-md text-on-surface">Annual Sustainability Report 2023</h4>
+<span class="px-2 py-0.5 bg-green-100 text-green-700 text-[10px] font-bold rounded uppercase">Final</span>
+</div>
+<p class="text-body-md text-on-surface-variant">Framework: GRI &amp; TCFD • Generated on Oct 12, 2023</p>
+</div>
+<div class="flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors" title="Download PDF">
+<span class="material-symbols-outlined">download</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors" title="Share">
+<span class="material-symbols-outlined">share</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-error transition-colors" title="Archive">
+<span class="material-symbols-outlined">archive</span>
+</button>
+</div>
+</div>
+<!-- Skeleton Loading Item (Active Generation) -->
+<div class="p-6 flex items-center bg-surface-container-low/30">
+<div class="w-12 h-12 skeleton rounded-xl"></div>
+<div class="ml-4 flex-1 space-y-2">
+<div class="flex items-center gap-3">
+<div class="h-5 w-64 skeleton rounded"></div>
+<div class="h-4 w-16 skeleton rounded"></div>
+</div>
+<div class="h-4 w-48 skeleton rounded"></div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="text-label-md text-primary animate-pulse flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">sync</span>
+                                        Processing Data...
+                                    </span>
+<div class="w-32 bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" id="simulated-progress" style="width: 45%"></div>
+</div>
+</div>
+</div>
+<!-- Report Item 2 -->
+<div class="p-6 flex items-center hover:bg-surface-bright transition-colors group">
+<div class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">table_chart</span>
+</div>
+<div class="ml-4 flex-1">
+<div class="flex items-center gap-2">
+<h4 class="font-title-md text-on-surface">Q3 Carbon Footprint Analysis</h4>
+<span class="px-2 py-0.5 bg-blue-100 text-blue-700 text-[10px] font-bold rounded uppercase">Draft</span>
+</div>
+<p class="text-body-md text-on-surface-variant">Scope 1, 2, 3 • Last modified 2 days ago</p>
+</div>
+<div class="flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">download</span></button>
+</div>
+</div>
+</div>
+<div class="p-4 bg-surface-container-lowest text-center">
+<button class="text-primary font-title-md hover:underline">View All 24 Reports</button>
+</div>
+</div>
+<!-- Empty State Example (Conditional Appearance Logic) -->
+<div class="hidden glass-card rounded-xl p-16 flex flex-col items-center text-center" id="empty-state">
+<div class="w-48 h-48 mb-6 opacity-60">
+<div class="w-full h-full bg-contain bg-center bg-no-repeat" data-alt="A minimalist, stylized digital illustration of a document folder floating in a clean, brightly lit abstract workspace. The style is 3D isometric with soft shadows, using a palette of sage green, slate blue, and pure white to convey a sense of calm organization and digital efficiency." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCtOv_ngfkwsoYIfB6uXth0FGjyDM_guB6Teb79Q_Bm2Hns21t5YXK7S2kPUMKuSyXNl_nhRDo5tf9poPP8ahmMTi6NuhpRSYgfscioVEA3U3CV0TFe-oAABaFzNP4xKWKyCOMog1w4Eedtz4CMRop9PHoDLdyKQaiZlHxLlGEgg3IwAwo-atFDgG0ZVwUuT94130k4Sq05_pNfrUN_FjLTyly5HJke6YsiSQCcvfuAWKxipYPLN4lK')"></div>
+</div>
+<h3 class="text-headline-md font-headline-md text-on-surface">No Draft Reports Found</h3>
+<p class="text-body-lg text-on-surface-variant mt-2 max-w-sm">You don't have any reports currently in draft. Start by generating a new report from your collected ESG data.</p>
+<button class="mt-8 px-6 py-3 bg-primary rounded-lg text-white font-title-md hover:bg-primary-container transition-all">Create Draft</button>
+</div>
+</div>
+<!-- Right Sidebar: Filters & Stats -->
+<aside class="w-80 space-y-6">
+<!-- Reporting Period Filter -->
+<div class="glass-card rounded-xl p-6">
+<h4 class="text-title-md font-title-md mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+                            Reporting Period
+                        </h4>
+<div class="space-y-2">
+<label class="flex items-center gap-3 p-3 rounded-lg border border-transparent hover:bg-surface-container transition-colors cursor-pointer">
+<input checked="" class="text-primary focus:ring-primary h-4 w-4" name="period" type="radio"/>
+<span class="text-body-md">FY 2023-24</span>
+</label>
+<label class="flex items-center gap-3 p-3 rounded-lg border border-transparent hover:bg-surface-container transition-colors cursor-pointer">
+<input class="text-primary focus:ring-primary h-4 w-4" name="period" type="radio"/>
+<span class="text-body-md">FY 2022-23</span>
+</label>
+<label class="flex items-center gap-3 p-3 rounded-lg border border-transparent hover:bg-surface-container transition-colors cursor-pointer">
+<input class="text-primary focus:ring-primary h-4 w-4" name="period" type="radio"/>
+<span class="text-body-md">Custom Range</span>
+</label>
+</div>
+</div>
+<!-- Standards Checklist -->
+<div class="glass-card rounded-xl p-6">
+<h4 class="text-title-md font-title-md mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+                            Standards
+                        </h4>
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<label class="flex items-center gap-3 cursor-pointer">
+<input checked="" class="rounded text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="text-body-md">GRI Standards</span>
+</label>
+<span class="text-label-sm px-2 bg-surface-container rounded-full">12</span>
+</div>
+<div class="flex items-center justify-between">
+<label class="flex items-center gap-3 cursor-pointer">
+<input checked="" class="rounded text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="text-body-md">TCFD Disclosures</span>
+</label>
+<span class="text-label-sm px-2 bg-surface-container rounded-full">8</span>
+</div>
+<div class="flex items-center justify-between">
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="rounded text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="text-body-md">BRSR Core</span>
+</label>
+<span class="text-label-sm px-2 bg-surface-container rounded-full">5</span>
+</div>
+<div class="flex items-center justify-between">
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="rounded text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="text-body-md">SASB</span>
+</label>
+<span class="text-label-sm px-2 bg-surface-container rounded-full">3</span>
+</div>
+</div>
+</div>
+<!-- Compliance Health Widget -->
+<div class="bg-[#0F172A] rounded-xl p-6 text-white overflow-hidden relative">
+<div class="relative z-10">
+<h4 class="text-title-md font-title-md">Quick Summary</h4>
+<div class="mt-4 flex items-end gap-2">
+<span class="text-display-lg font-display-lg leading-none">12</span>
+<span class="text-body-md opacity-70 mb-2">Reports Audit-Ready</span>
+</div>
+<p class="text-label-md mt-4 opacity-60">You have 3 reports requiring immediate attention before the next filing deadline.</p>
+<button class="mt-6 w-full py-2 bg-white/10 hover:bg-white/20 rounded-lg text-white font-title-md transition-colors">Review Issues</button>
+</div>
+<!-- Abstract glow effect -->
+<div class="absolute -right-8 -bottom-8 w-32 h-32 bg-primary/30 blur-[40px] rounded-full"></div>
+</div>
+</aside>
+</div>
+</main>
+</div>
+<script>
+        // Simulated progress update for the skeleton loading state
+        let progress = 45;
+        const progressBar = document.getElementById('simulated-progress');
+        
+        setInterval(() => {
+            if (progress < 98) {
+                progress += Math.random() * 2;
+                progressBar.style.width = `${progress}%`;
+            }
+        }, 3000);
+
+        // Simple tab switching mock logic
+        const navLinks = document.querySelectorAll('header nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                navLinks.forEach(l => {
+                    l.classList.remove('text-primary', 'font-title-md', 'border-b-2', 'border-primary', 'pb-1');
+                    l.classList.add('text-on-surface-variant', 'font-body-md');
+                });
+                link.classList.add('text-primary', 'font-title-md', 'border-b-2', 'border-primary', 'pb-1');
+                link.classList.remove('text-on-surface-variant', 'font-body-md');
+            });
+        });
+    </script>
+</body></html>
