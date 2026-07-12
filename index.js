@@ -1318,7 +1318,166 @@ document.addEventListener('DOMContentLoaded', () => {
             profileDropdown && profileDropdown.classList.add('hidden');
             searchPanel && searchPanel.classList.add('hidden');
             closeHistoricalModal();
+            closeReportPreviewModal();
+            closeCustomReportModal();
         }
     });
+
+    // --- 17. Reports Hub Interactivity ---
+
+    // Helper: open/close Report Preview Modal
+    const reportPreviewModal = document.getElementById('report-preview-modal');
+    const reportPreviewPanel = document.getElementById('report-preview-panel');
+    const reportPreviewTitle = document.getElementById('report-preview-title');
+    const previewTypeEl = document.getElementById('preview-type');
+
+    function openReportPreviewModal(reportName) {
+        if (!reportPreviewModal) return;
+        if (reportPreviewTitle) reportPreviewTitle.textContent = reportName + ' — Preview';
+        if (previewTypeEl) previewTypeEl.textContent = reportName;
+        reportPreviewModal.classList.remove('pointer-events-none', 'opacity-0');
+        reportPreviewModal.classList.add('pointer-events-auto', 'opacity-100');
+        if (reportPreviewPanel) {
+            reportPreviewPanel.classList.remove('scale-95');
+            reportPreviewPanel.classList.add('scale-100');
+        }
+    }
+
+    function closeReportPreviewModal() {
+        if (!reportPreviewModal) return;
+        reportPreviewModal.classList.add('pointer-events-none', 'opacity-0');
+        reportPreviewModal.classList.remove('pointer-events-auto', 'opacity-100');
+        if (reportPreviewPanel) {
+            reportPreviewPanel.classList.remove('scale-100');
+            reportPreviewPanel.classList.add('scale-95');
+        }
+    }
+
+    document.getElementById('close-report-preview-btn')?.addEventListener('click', closeReportPreviewModal);
+    document.getElementById('close-report-preview-footer-btn')?.addEventListener('click', closeReportPreviewModal);
+    document.getElementById('report-preview-backdrop')?.addEventListener('click', closeReportPreviewModal);
+    document.getElementById('preview-download-pdf-btn')?.addEventListener('click', () => {
+        closeReportPreviewModal();
+        showToast('PDF download started — check your downloads folder.', 'success');
+    });
+
+    // Wire Preview buttons
+    document.querySelectorAll('.report-preview-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            openReportPreviewModal(btn.dataset.report || 'ESG Report');
+        });
+    });
+
+    // Wire PDF buttons
+    document.querySelectorAll('.report-pdf-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            showToast(`Generating ${btn.dataset.report} PDF… this may take a moment.`, 'info');
+            setTimeout(() => showToast(`${btn.dataset.report}.pdf is ready for download!`, 'success'), 2200);
+        });
+    });
+
+    // Wire CSV buttons
+    document.querySelectorAll('.report-csv-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            showToast(`Exporting ${btn.dataset.report} as CSV…`, 'info');
+            setTimeout(() => showToast(`${btn.dataset.report}.csv exported successfully!`, 'success'), 1500);
+        });
+    });
+
+    // Wire XLSX buttons (Gov Disclosure)
+    document.querySelectorAll('.report-xlsx-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            showToast(`Generating ${btn.dataset.report} XLSX for regulatory submission…`, 'info');
+            setTimeout(() => showToast(`${btn.dataset.report}.xlsx is ready!`, 'success'), 2000);
+        });
+    });
+
+    // Wire Share buttons
+    document.querySelectorAll('.report-share-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            navigator.clipboard?.writeText(window.location.href).catch(() => {});
+            showToast(`Share link for "${btn.dataset.report}" copied to clipboard!`, 'success');
+        });
+    });
+
+    // Export Log button
+    document.getElementById('export-log-btn')?.addEventListener('click', () => {
+        showToast('Exporting generation history log as CSV…', 'info');
+        setTimeout(() => showToast('report-history-log.csv downloaded!', 'success'), 1800);
+    });
+
+    // Timeline chevron buttons (scroll the track)
+    const timelineTrack = document.getElementById('timeline-track');
+    document.getElementById('timeline-prev-btn')?.addEventListener('click', () => {
+        if (timelineTrack) timelineTrack.scrollBy({ left: -144, behavior: 'smooth' });
+    });
+    document.getElementById('timeline-next-btn')?.addEventListener('click', () => {
+        if (timelineTrack) timelineTrack.scrollBy({ left: 144, behavior: 'smooth' });
+    });
+
+    // Custom Report Modal
+    const customReportModal = document.getElementById('custom-report-modal');
+    const customReportPanel = document.getElementById('custom-report-panel');
+
+    function openCustomReportModal() {
+        if (!customReportModal) return;
+        customReportModal.classList.remove('pointer-events-none', 'opacity-0');
+        customReportModal.classList.add('pointer-events-auto', 'opacity-100');
+        if (customReportPanel) {
+            customReportPanel.classList.remove('scale-95');
+            customReportPanel.classList.add('scale-100');
+        }
+    }
+
+    function closeCustomReportModal() {
+        if (!customReportModal) return;
+        customReportModal.classList.add('pointer-events-none', 'opacity-0');
+        customReportModal.classList.remove('pointer-events-auto', 'opacity-100');
+        if (customReportPanel) {
+            customReportPanel.classList.remove('scale-100');
+            customReportPanel.classList.add('scale-95');
+        }
+    }
+
+    document.getElementById('custom-report-btn')?.addEventListener('click', openCustomReportModal);
+    document.getElementById('close-custom-report-btn')?.addEventListener('click', closeCustomReportModal);
+    document.getElementById('close-custom-report-footer-btn')?.addEventListener('click', closeCustomReportModal);
+    document.getElementById('custom-report-backdrop')?.addEventListener('click', closeCustomReportModal);
+
+    document.getElementById('generate-custom-report-btn')?.addEventListener('click', () => {
+        const name = document.getElementById('custom-report-name')?.value.trim() || 'Custom ESG Report';
+        const type = document.getElementById('custom-report-type')?.value || 'Custom';
+        closeCustomReportModal();
+        showToast(`Generating "${name}" (${type}) — please wait…`, 'info');
+        setTimeout(() => {
+            showToast(`"${name}" is ready for download!`, 'success');
+            logActivity(`Generated custom report: ${name}`);
+        }, 3000);
+    });
+
+    // Row delete buttons in history table
+    document.querySelectorAll('#reports-history-tbody button[title="Delete"]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const row = btn.closest('tr');
+            if (row) {
+                row.style.transition = 'opacity 0.3s';
+                row.style.opacity = '0';
+                setTimeout(() => row.remove(), 320);
+                showToast('Report removed from history.', 'info');
+            }
+        });
+    });
+
+    // Contact form submission
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('contact-email')?.value;
+            if (!email) { showToast('Please enter your email address.', 'error'); return; }
+            showToast('Message sent! Our team will respond within 24 hours.', 'success');
+            contactForm.reset();
+        });
+    }
 
 });
