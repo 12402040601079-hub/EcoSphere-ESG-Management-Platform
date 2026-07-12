@@ -11,8 +11,35 @@ document.addEventListener('DOMContentLoaded', () => {
         activeTab: 'dashboard',
         sidebarCollapsed: false,
         tableDensityCompact: false,
-        facilityData: [],
-        reportsCount: 0
+        facilityData: [
+            { id: 'fac_seed1', name: 'Singapore HQ', region: 'Asia-Pacific', scope1: 320.4, scope2: 185.6, scope3: 490.0, energy: 8450, water: 32000, waste: 82, compliance: 'Compliant' },
+            { id: 'fac_seed2', name: 'Berlin Manufacturing', region: 'Europe', scope1: 540.2, scope2: 310.1, scope3: 720.3, energy: 14200, water: 68500, waste: 74, compliance: 'Compliant' },
+            { id: 'fac_seed3', name: 'Texas Operations', region: 'North America', scope1: 410.8, scope2: 228.4, scope3: 610.5, energy: 11800, water: 54200, waste: 68, compliance: 'Audit Due' },
+            { id: 'fac_seed4', name: 'Mumbai Data Centre', region: 'South Asia', scope1: 195.0, scope2: 142.5, scope3: 380.2, energy: 6900, water: 28100, waste: 91, compliance: 'Compliant' },
+            { id: 'fac_seed5', name: 'Sydney Office', region: 'Oceania', scope1: 88.6, scope2: 64.2, scope3: 198.4, energy: 3200, water: 12400, waste: 88, compliance: 'Compliant' },
+            { id: 'fac_seed6', name: 'Dubai Logistics Hub', region: 'Middle East', scope1: 274.1, scope2: 196.3, scope3: 443.7, energy: 9100, water: 41800, waste: 76, compliance: 'Audit Due' }
+        ],
+        reportsCount: 0,
+        envLogs: [
+            { id: 'env_1', date: '2023-10-24', category: 'Electricity', value: 1450.00, unit: 'kWh', status: 'Verified' },
+            { id: 'env_2', date: '2023-10-22', category: 'Water', value: 4200.00, unit: 'Liters', status: 'Verified' },
+            { id: 'env_3', date: '2023-10-20', category: 'Fuel', value: 310.50, unit: 'Units', status: 'Pending' },
+            { id: 'env_4', date: '2023-10-18', category: 'Renewable', value: 22.40, unit: '% Mix', status: 'Verified' }
+        ],
+        envFilter: 'ALL',
+        socialLogs: [
+            { id: 'soc_1', date: '2023-10-24', category: 'Diversity & Inclusion', value: 48.2, unit: '%', status: 'Verified' },
+            { id: 'soc_2', date: '2023-10-24', category: 'Training & Development', value: 1250, unit: 'Hours', status: 'Verified' },
+            { id: 'soc_3', date: '2023-10-18', category: 'Safety Audit', value: 0, unit: 'Incidents', status: 'Pending' },
+            { id: 'soc_4', date: '2023-10-15', category: 'Volunteer Program', value: 540, unit: 'Hours', status: 'Verified' },
+            { id: 'soc_5', date: '2023-10-12', category: 'Community Outreach', value: 8, unit: 'Events', status: 'Verified' }
+        ],
+        govAudits: [
+            { id: 'gov_1', date: '2023-10-12', name: 'Q3 Security Access Review', category: 'Internal Compliance', auditor: 'Jane Doe', auditorInitials: 'JD', auditorColor: 'bg-blue-500', status: 'Compliant' },
+            { id: 'gov_2', date: '2023-09-28', name: 'GHG Protocol Emission Audit', category: 'Environmental Verification', auditor: 'EcoRisk Ltd.', auditorInitials: 'ER', auditorColor: 'bg-teal-500', status: 'In Progress' },
+            { id: 'gov_3', date: '2023-08-15', name: 'Supplier Ethics Assessment', category: 'Supply Chain Governance', auditor: 'Marcus Knight', auditorInitials: 'MK', auditorColor: 'bg-purple-500', status: 'Non-Compliant' },
+            { id: 'gov_4', date: '2023-07-22', name: 'Data Privacy & GDPR Review', category: 'Regulatory Affairs', auditor: 'Sarah Lee', auditorInitials: 'SL', auditorColor: 'bg-green-500', status: 'Compliant' }
+        ]
     };
 
     // --- 2. DOM Elements Selection ---
@@ -191,9 +218,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const nameMapping = {
                 dashboard: 'Dashboard',
                 sustainability: 'Sustainability Monitoring',
+                environment: 'Environmental Metrics',
+                social: 'Social Module',
+                governance: 'Governance Module',
                 compliance: 'Compliance Reports',
                 scoring: 'ESG Scoring Breakdown',
-                settings: 'Platform Settings'
+                settings: 'Platform Settings',
+                about: 'About EcoSphere'
             };
             breadcrumbActive.textContent = nameMapping[tabId] || tabId;
         }
@@ -377,7 +408,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const dbWater = document.getElementById('dashboard-water-value');
         if (dbWater) {
-            dbWater.innerHTML = `${Math.round(totalWater).toLocaleString()} <span class="text-body-md font-normal text-on-surface-variant">m³</span>`;
+            dbWater.innerHTML = `${Math.round(totalWater).toLocaleString()} <span class="text-body-md font-normal text-on-surface-variant">mÂ³</span>`;
         }
 
         const dbEnergy = document.getElementById('dashboard-energy-value');
@@ -573,7 +604,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h4 class="font-title-md text-on-surface font-bold">GRI Compliance Disclosure Report #${reportId}</h4>
                     <span class="px-2 py-0.5 bg-green-100 text-green-700 text-[10px] font-bold rounded uppercase">Final</span>
                 </div>
-                <p class="text-body-md text-on-surface-variant">Framework: GRI 2023 • Generated Just Now</p>
+                <p class="text-body-md text-on-surface-variant">Framework: GRI 2023 â€¢ Generated Just Now</p>
             </div>
             <div class="flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
                 <button class="p-2 text-on-surface-variant hover:text-primary transition-colors" title="Download PDF">
@@ -629,7 +660,991 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.transform = 'translateY(0px)';
         });
     });
+    // --- 13. Environmental Module Logic ---
+    const envForm = document.getElementById('env-data-form');
+    const envInputElec = document.getElementById('env-input-elec');
+    const envInputWater = document.getElementById('env-input-water');
+    const envInputFuel = document.getElementById('env-input-fuel');
+    const envInputRenew = document.getElementById('env-input-renew');
+    const envInputCarbon = document.getElementById('env-input-carbon');
+    const envInputDate = document.getElementById('env-input-date');
+
+    const pillAll = document.getElementById('env-pill-all');
+    const pillVerified = document.getElementById('env-pill-verified');
+    const pillPending = document.getElementById('env-pill-pending');
+
+    function calculateEnvCarbon() {
+        if (!envInputCarbon) return;
+        const elec = parseFloat(envInputElec.value) || 0;
+        const water = parseFloat(envInputWater.value) || 0;
+        const fuel = parseFloat(envInputFuel.value) || 0;
+        // Carbon estimation formula: Electricity (kWh) * 0.0004 + Water (Liters) * 0.0001 + Fuel (Units) * 0.0025
+        const calcVal = (elec * 0.0004) + (water * 0.0001) + (fuel * 0.0025);
+        if (calcVal === 0) {
+            envInputCarbon.value = 'Calculated automatically';
+        } else {
+            envInputCarbon.value = `${calcVal.toFixed(3)} tCO2e`;
+        }
+    }
+
+    if (envInputElec) envInputElec.addEventListener('input', calculateEnvCarbon);
+    if (envInputWater) envInputWater.addEventListener('input', calculateEnvCarbon);
+    if (envInputFuel) envInputFuel.addEventListener('input', calculateEnvCarbon);
+
+    if (envForm) {
+        envForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const dateVal = envInputDate.value;
+            const elecVal = parseFloat(envInputElec.value) || 0;
+            const waterVal = parseFloat(envInputWater.value) || 0;
+            const fuelVal = parseFloat(envInputFuel.value) || 0;
+            const renewVal = parseFloat(envInputRenew.value) || 0;
+            
+            const newLogs = [];
+            if (elecVal > 0) {
+                newLogs.push({
+                    id: 'env_' + Date.now() + '_e',
+                    date: dateVal,
+                    category: 'Electricity',
+                    value: elecVal,
+                    unit: 'kWh',
+                    status: 'Verified'
+                });
+            }
+            if (waterVal > 0) {
+                newLogs.push({
+                    id: 'env_' + Date.now() + '_w',
+                    date: dateVal,
+                    category: 'Water',
+                    value: waterVal,
+                    unit: 'Liters',
+                    status: 'Verified'
+                });
+            }
+            if (fuelVal > 0) {
+                newLogs.push({
+                    id: 'env_' + Date.now() + '_f',
+                    date: dateVal,
+                    category: 'Fuel',
+                    value: fuelVal,
+                    unit: 'Units',
+                    status: 'Pending'
+                });
+            }
+            if (renewVal > 0) {
+                newLogs.push({
+                    id: 'env_' + Date.now() + '_r',
+                    date: dateVal,
+                    category: 'Renewable',
+                    value: renewVal,
+                    unit: '% Mix',
+                    status: 'Verified'
+                });
+            }
+
+            if (newLogs.length === 0) {
+                showToast('Please enter a value for at least one environmental metrics field.', 'warning');
+                return;
+            }
+
+            appState.envLogs.unshift(...newLogs);
+            updateEnvMetricCards();
+            renderEnvLogsTable();
+            showToast('Environmental metrics logged successfully!', 'success');
+            logActivity(`Logged environmental resource telemetry metrics for date ${dateVal}`);
+            
+            envForm.reset();
+            envInputCarbon.value = 'Calculated automatically';
+        });
+    }
+
+    function updateEnvMetricCards() {
+        let totalElec = 42850;
+        let totalWater = 128400;
+        let totalFuel = 1240;
+        let totalCarbon = 452.1;
+        let renewSum = 34.2;
+        let renewCount = 1;
+
+        appState.envLogs.forEach(log => {
+            if (log.id === 'env_1' || log.id === 'env_2' || log.id === 'env_3' || log.id === 'env_4') {
+                return;
+            }
+            if (log.category === 'Electricity') totalElec += log.value;
+            if (log.category === 'Water') totalWater += log.value;
+            if (log.category === 'Fuel') totalFuel += log.value;
+            if (log.category === 'Renewable') {
+                renewSum += log.value;
+                renewCount++;
+            }
+            if (log.category === 'Electricity') totalCarbon += (log.value * 0.0004);
+            if (log.category === 'Water') totalCarbon += (log.value * 0.0001);
+            if (log.category === 'Fuel') totalCarbon += (log.value * 0.0025);
+        });
+
+        const cardElec = document.getElementById('env-card-elec-val');
+        if (cardElec) cardElec.textContent = Math.round(totalElec).toLocaleString();
+
+        const cardWater = document.getElementById('env-card-water-val');
+        if (cardWater) cardWater.textContent = Math.round(totalWater).toLocaleString();
+
+        const cardFuel = document.getElementById('env-card-fuel-val');
+        if (cardFuel) cardFuel.textContent = Math.round(totalFuel).toLocaleString();
+
+        const cardRenew = document.getElementById('env-card-renew-val');
+        if (cardRenew) cardRenew.textContent = `${(renewSum / renewCount).toFixed(1)}%`;
+
+        const cardCarbon = document.getElementById('env-card-carbon-val');
+        if (cardCarbon) cardCarbon.textContent = totalCarbon.toFixed(1);
+
+        const donutVal = document.getElementById('env-donut-center-val');
+        if (donutVal) donutVal.textContent = Math.round(totalCarbon);
+    }
+
+    function renderEnvLogsTable() {
+        const tbody = document.getElementById('env-logs-tbody');
+        if (!tbody) return;
+
+        const filtered = appState.envLogs.filter(log => {
+            if (appState.envFilter === 'ALL') return true;
+            return log.status.toUpperCase() === appState.envFilter;
+        });
+
+        tbody.innerHTML = '';
+
+        if (filtered.length === 0) {
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="6" class="p-8 text-center text-on-surface-variant font-semibold text-body-md">
+                        No environmental logs matching filter.
+                    </td>
+                </tr>
+            `;
+            const countText = document.getElementById('env-logs-count-text');
+            if (countText) countText.textContent = `Showing 0 of ${appState.envLogs.length} records`;
+            return;
+        }
+
+        filtered.forEach(log => {
+            const tr = document.createElement('tr');
+            tr.className = 'hover:bg-surface-container-low/50 transition-colors border-b border-outline-variant/30';
+            
+            const isPending = log.status === 'Pending';
+            const badgeClass = isPending ? 'bg-amber-100 text-amber-800' : 'bg-green-100 text-green-800';
+            
+            let catIcon = 'electric_bolt';
+            let catColor = 'text-yellow-600 bg-yellow-50';
+            if (log.category === 'Water') {
+                catIcon = 'water_drop';
+                catColor = 'text-blue-600 bg-blue-50';
+            } else if (log.category === 'Fuel') {
+                catIcon = 'local_gas_station';
+                catColor = 'text-gray-600 bg-gray-50';
+            } else if (log.category === 'Renewable') {
+                catIcon = 'solar_power';
+                catColor = 'text-emerald-600 bg-emerald-50';
+            }
+
+            tr.innerHTML = `
+                <td class="px-6 py-4 font-medium">${formatDisplayDate(log.date)}</td>
+                <td class="px-6 py-4">
+                    <div class="flex items-center gap-2">
+                        <div class="w-6 h-6 rounded flex items-center justify-center ${catColor}">
+                            <span class="material-symbols-outlined text-sm">${catIcon}</span>
+                        </div>
+                        <span class="font-bold text-on-surface">${log.category}</span>
+                    </div>
+                </td>
+                <td class="px-6 py-4 font-semibold">${log.value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                <td class="px-6 py-4 text-on-surface-variant">${log.unit}</td>
+                <td class="px-6 py-4">
+                    <span class="px-2.5 py-0.5 rounded-full text-label-sm font-bold ${badgeClass}">${log.status}</span>
+                </td>
+                <td class="px-6 py-4 text-right pr-6">
+                    <button class="text-primary hover:underline font-bold text-sm">Details</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+        const countText = document.getElementById('env-logs-count-text');
+        if (countText) countText.textContent = `Showing ${filtered.length} of ${appState.envLogs.length} records`;
+    }
+
+    function formatDisplayDate(dateStr) {
+        if (!dateStr) return '';
+        const parts = dateStr.split('-');
+        if (parts.length !== 3) return dateStr;
+        const year = parts[0];
+        const monthNum = parseInt(parts[1], 10);
+        const day = parts[2];
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        return `${months[monthNum - 1]} ${parseInt(day, 10)}, ${year}`;
+    }
+
+    function selectEnvPill(activePill, filterName) {
+        [pillAll, pillVerified, pillPending].forEach(pill => {
+            if (pill) {
+                pill.classList.remove('bg-primary', 'text-white', 'shadow-sm');
+                pill.classList.add('text-on-surface-variant', 'hover:text-on-surface');
+            }
+        });
+        if (activePill) {
+            activePill.classList.add('bg-primary', 'text-white', 'shadow-sm');
+            activePill.classList.remove('text-on-surface-variant', 'hover:text-on-surface');
+        }
+        appState.envFilter = filterName;
+        renderEnvLogsTable();
+    }
+
+    if (pillAll) pillAll.addEventListener('click', () => selectEnvPill(pillAll, 'ALL'));
+    if (pillVerified) pillVerified.addEventListener('click', () => selectEnvPill(pillVerified, 'VERIFIED'));
+    if (pillPending) pillPending.addEventListener('click', () => selectEnvPill(pillPending, 'PENDING'));
+
+    // --- 14. Social Module Logic ---
+
+    const socialForm = document.getElementById('social-data-form');
+    const socialInputEmployees = document.getElementById('soc-input-employees');
+    const socialInputTraining = document.getElementById('soc-input-training');
+    const socialInputVolunteer = document.getElementById('soc-input-volunteer');
+    const socialInputSafety = document.getElementById('soc-input-safety');
+    const socialInputNotes = document.getElementById('soc-input-notes');
+
+    if (socialForm) {
+        socialForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const empVal = parseFloat(socialInputEmployees.value) || 0;
+            const trainVal = parseFloat(socialInputTraining.value) || 0;
+            const volVal = parseFloat(socialInputVolunteer.value) || 0;
+            const safeVal = parseFloat(socialInputSafety.value) || 0;
+            const today = new Date().toISOString().split('T')[0];
+
+            const newLogs = [];
+            if (trainVal > 0) {
+                newLogs.push({ id: 'soc_' + Date.now() + '_t', date: today, category: 'Training & Development', value: trainVal, unit: 'Hours', status: 'Verified' });
+            }
+            if (volVal > 0) {
+                newLogs.push({ id: 'soc_' + Date.now() + '_v', date: today, category: 'Volunteer Program', value: volVal, unit: 'Hours', status: 'Verified' });
+            }
+            if (safeVal >= 0 && socialInputSafety.value !== '') {
+                newLogs.push({ id: 'soc_' + Date.now() + '_s', date: today, category: 'Safety Audit', value: safeVal, unit: 'Incidents', status: safeVal > 0 ? 'Pending' : 'Verified' });
+            }
+            if (empVal > 0) {
+                newLogs.push({ id: 'soc_' + Date.now() + '_e', date: today, category: 'Diversity & Inclusion', value: empVal, unit: '%', status: 'Verified' });
+            }
+
+            if (newLogs.length === 0) {
+                showToast('Please fill in at least one social metric field.', 'warning');
+                return;
+            }
+
+            appState.socialLogs.unshift(...newLogs);
+            renderSocialLogsTable();
+            showToast('Social metrics logged successfully!', 'success');
+            logActivity(`Logged social responsibility metrics for ${today}`);
+
+            socialForm.reset();
+        });
+    }
+
+    function renderSocialLogsTable() {
+        const tbody = document.getElementById('social-logs-tbody');
+        if (!tbody) return;
+
+        tbody.innerHTML = '';
+
+        const logs = appState.socialLogs;
+
+        if (logs.length === 0) {
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="6" class="p-8 text-center text-on-surface-variant font-semibold">
+                        No social records yet. Submit a record to begin.
+                    </td>
+                </tr>
+            `;
+            return;
+        }
+
+        logs.forEach(log => {
+            const tr = document.createElement('tr');
+            tr.className = 'hover:bg-surface-container-low/50 transition-colors border-b border-outline-variant/30';
+
+            const isPending = log.status === 'Pending';
+            const badgeClass = isPending ? 'bg-amber-100 text-amber-800' : 'bg-green-100 text-green-800';
+
+            let catIcon = 'diversity_3';
+            let catColor = 'text-purple-600 bg-purple-50';
+            if (log.category === 'Training & Development') { catIcon = 'school'; catColor = 'text-amber-600 bg-amber-50'; }
+            else if (log.category === 'Safety Audit') { catIcon = 'health_and_safety'; catColor = 'text-red-600 bg-red-50'; }
+            else if (log.category === 'Volunteer Program') { catIcon = 'volunteer_activism'; catColor = 'text-green-600 bg-green-50'; }
+            else if (log.category === 'Community Outreach') { catIcon = 'groups'; catColor = 'text-teal-600 bg-teal-50'; }
+
+            tr.innerHTML = `
+                <td class="px-5 py-4 font-medium text-xs">${formatDisplayDate(log.date)}</td>
+                <td class="px-5 py-4">
+                    <div class="flex items-center gap-2">
+                        <div class="w-6 h-6 rounded flex items-center justify-center ${catColor}">
+                            <span class="material-symbols-outlined text-sm">${catIcon}</span>
+                        </div>
+                        <span class="font-bold text-on-surface text-xs">${log.category}</span>
+                    </div>
+                </td>
+                <td class="px-5 py-4 font-semibold text-xs">${log.value.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 1 })}</td>
+                <td class="px-5 py-4 text-on-surface-variant text-xs">${log.unit}</td>
+                <td class="px-5 py-4">
+                    <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${badgeClass}">${log.status}</span>
+                </td>
+                <td class="px-5 py-4 text-right">
+                    <div class="flex justify-end gap-2">
+                        <button class="text-on-surface-variant hover:text-primary transition-colors" title="Edit">
+                            <span class="material-symbols-outlined text-base">edit</span>
+                        </button>
+                        <button class="text-on-surface-variant hover:text-error transition-colors" title="Delete">
+                            <span class="material-symbols-outlined text-base">delete</span>
+                        </button>
+                    </div>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+        const countText = document.getElementById('social-logs-count-text');
+        if (countText) countText.textContent = `Showing ${logs.length} of ${logs.length} records`;
+    }
+
     // Render initial states on load
     renderFacilityTable();
     updateSustainabilityStats();
+    renderEnvLogsTable();
+    renderSocialLogsTable();
+    renderGovAuditsTable();
+
+    // --- 15. Governance Module Logic ---
+
+    function renderGovAuditsTable() {
+        const tbody = document.getElementById('gov-audits-tbody');
+        if (!tbody) return;
+
+        tbody.innerHTML = '';
+        const audits = appState.govAudits;
+
+        if (audits.length === 0) {
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="5" class="p-8 text-center text-on-surface-variant font-semibold text-sm">
+                        No audit records found. Click "New Audit" to add one.
+                    </td>
+                </tr>
+            `;
+            return;
+        }
+
+        audits.forEach(audit => {
+            const tr = document.createElement('tr');
+            tr.className = 'hover:bg-surface-container-low/50 transition-colors';
+
+            let statusClass = 'bg-green-100 text-green-800';
+            let statusIcon = 'check_circle';
+            if (audit.status === 'In Progress') {
+                statusClass = 'bg-blue-100 text-blue-800';
+                statusIcon = 'pending';
+            } else if (audit.status === 'Non-Compliant') {
+                statusClass = 'bg-red-100 text-red-800';
+                statusIcon = 'cancel';
+            }
+
+            tr.innerHTML = `
+                <td class="px-6 py-4 text-xs font-medium text-on-surface-variant whitespace-nowrap">${formatDisplayDate(audit.date)}</td>
+                <td class="px-6 py-4">
+                    <div class="font-bold text-on-surface text-sm">${audit.name}</div>
+                    <div class="text-[10px] text-on-surface-variant mt-0.5">${audit.category}</div>
+                </td>
+                <td class="px-6 py-4">
+                    <div class="flex items-center gap-2">
+                        <div class="w-7 h-7 rounded-full ${audit.auditorColor} flex items-center justify-center text-white text-[10px] font-bold shrink-0">${audit.auditorInitials}</div>
+                        <span class="text-sm font-medium text-on-surface">${audit.auditor}</span>
+                    </div>
+                </td>
+                <td class="px-6 py-4">
+                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold ${statusClass}">
+                        <span class="material-symbols-outlined text-[12px]">${statusIcon}</span>
+                        ${audit.status}
+                    </span>
+                </td>
+                <td class="px-6 py-4 text-right">
+                    <div class="flex justify-end gap-2">
+                        <button class="text-primary hover:underline font-bold text-xs">Review</button>
+                        <button class="text-on-surface-variant hover:text-primary font-bold text-xs">Edit</button>
+                    </div>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+        const countEl = document.getElementById('gov-audit-count-text');
+        if (countEl) countEl.textContent = `Showing ${audits.length} of 24 records`;
+    }
+
+    const govNewAuditBtn = document.getElementById('gov-new-audit-btn');
+    if (govNewAuditBtn) {
+        govNewAuditBtn.addEventListener('click', () => {
+            const name = prompt('Audit Name:');
+            if (!name) return;
+            const auditor = prompt('Auditor Name:') || 'Unknown';
+            const category = prompt('Category (e.g., Internal Compliance):') || 'General';
+            const initials = auditor.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+            const colors = ['bg-blue-500', 'bg-teal-500', 'bg-purple-500', 'bg-green-500', 'bg-rose-500', 'bg-amber-500'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const today = new Date().toISOString().split('T')[0];
+
+            appState.govAudits.unshift({
+                id: 'gov_' + Date.now(),
+                date: today,
+                name,
+                category,
+                auditor,
+                auditorInitials: initials,
+                auditorColor: color,
+                status: 'In Progress'
+            });
+
+            renderGovAuditsTable();
+            showToast(`New audit "${name}" created successfully!`, 'success');
+            logActivity(`Created governance audit: ${name}`);
+        });
+    }
+
+    // --- 16. Dashboard Interactivity ---
+
+    // 16a. "View ESG Breakdown" â†’ navigate to scoring tab
+    const dashViewEsgBtn = document.getElementById('dash-view-esg-btn');
+    if (dashViewEsgBtn) {
+        dashViewEsgBtn.addEventListener('click', () => {
+            switchTab('scoring');
+            showToast('Navigated to ESG Scoring Breakdown', 'info');
+        });
+    }
+
+    // 16b. Historical Records modal
+    const historicalModal = document.getElementById('historical-modal');
+    const historicalModalPanel = document.getElementById('historical-modal-panel');
+    const historicalTableBody = document.getElementById('historical-table-body');
+    const closeHistoricalModalBtn = document.getElementById('close-historical-modal-btn');
+    const closeHistoricalFooterBtn = document.getElementById('close-historical-modal-footer-btn');
+    const historicalModalBackdrop = document.getElementById('historical-modal-backdrop');
+
+    function openHistoricalModal() {
+        if (!historicalModal) return;
+        // Populate table from facilityData
+        if (historicalTableBody) {
+            historicalTableBody.innerHTML = '';
+            appState.facilityData.forEach(item => {
+                const total = item.scope1 + item.scope2 + item.scope3;
+                const isAudit = item.compliance === 'Audit Due';
+                const badge = isAudit
+                    ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800">Audit Due</span>'
+                    : '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-green-100 text-green-800">Compliant</span>';
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-surface-container-low/40 transition-colors';
+                tr.innerHTML = `
+                    <td class="px-6 py-3 font-bold text-on-surface text-xs whitespace-nowrap">${item.name}</td>
+                    <td class="px-6 py-3 text-on-surface-variant text-xs">${item.region}</td>
+                    <td class="px-6 py-3 text-xs font-semibold">${item.scope1.toFixed(1)}</td>
+                    <td class="px-6 py-3 text-xs font-semibold">${item.scope2.toFixed(1)}</td>
+                    <td class="px-6 py-3 text-xs font-semibold">${item.scope3.toFixed(1)}</td>
+                    <td class="px-6 py-3 text-xs font-semibold">${item.energy.toLocaleString()}</td>
+                    <td class="px-6 py-3 text-xs font-semibold">${item.water.toLocaleString()}</td>
+                    <td class="px-6 py-3 text-xs font-semibold">${item.waste}%</td>
+                    <td class="px-6 py-3">${badge}</td>
+                `;
+                historicalTableBody.appendChild(tr);
+            });
+        }
+        historicalModal.classList.remove('pointer-events-none', 'opacity-0');
+        historicalModal.classList.add('pointer-events-auto');
+        if (historicalModalPanel) {
+            historicalModalPanel.classList.remove('scale-95');
+            historicalModalPanel.classList.add('scale-100');
+        }
+    }
+
+    function closeHistoricalModal() {
+        if (!historicalModal) return;
+        historicalModal.classList.add('pointer-events-none', 'opacity-0');
+        historicalModal.classList.remove('pointer-events-auto');
+        if (historicalModalPanel) {
+            historicalModalPanel.classList.remove('scale-100');
+            historicalModalPanel.classList.add('scale-95');
+        }
+    }
+
+    const dashHistoricalBtn = document.getElementById('dash-historical-btn');
+    if (dashHistoricalBtn) dashHistoricalBtn.addEventListener('click', openHistoricalModal);
+    if (closeHistoricalModalBtn) closeHistoricalModalBtn.addEventListener('click', closeHistoricalModal);
+    if (closeHistoricalFooterBtn) closeHistoricalFooterBtn.addEventListener('click', closeHistoricalModal);
+    if (historicalModalBackdrop) historicalModalBackdrop.addEventListener('click', closeHistoricalModal);
+
+    // 16c. Notifications bell toggle
+    const notifBell = document.getElementById('notifications-bell');
+    const notifPanel = document.getElementById('notifications-panel');
+    const notifBadge = document.getElementById('notif-badge');
+    const notifClearAll = document.getElementById('notif-clear-all');
+
+    if (notifBell && notifPanel) {
+        notifBell.addEventListener('click', (e) => {
+            e.stopPropagation();
+            notifPanel.classList.toggle('hidden');
+            // Remove red badge when opened
+            if (!notifPanel.classList.contains('hidden') && notifBadge) {
+                notifBadge.classList.add('hidden');
+            }
+        });
+    }
+    if (notifClearAll) {
+        notifClearAll.addEventListener('click', () => {
+            const notifList = document.getElementById('notif-list');
+            if (notifList) {
+                notifList.innerHTML = `<div class="p-8 text-center text-xs text-on-surface-variant font-semibold">No new notifications</div>`;
+            }
+            showToast('All notifications cleared', 'info');
+        });
+    }
+
+    // 16d. Profile dropdown toggle
+    const profileWidget = document.getElementById('profile-widget');
+    const profileDropdown = document.getElementById('profile-dropdown');
+    const profileLogoutBtn = document.getElementById('profile-logout-btn');
+
+    if (profileWidget && profileDropdown) {
+        profileWidget.addEventListener('click', (e) => {
+            e.stopPropagation();
+            profileDropdown.classList.toggle('hidden');
+        });
+    }
+    if (profileLogoutBtn) {
+        profileLogoutBtn.addEventListener('click', () => {
+            profileDropdown && profileDropdown.classList.add('hidden');
+            logoutBtn && logoutBtn.click();
+        });
+    }
+
+    // 16e. Global search
+    const globalSearch = document.getElementById('global-search');
+    const searchPanel = document.getElementById('search-results-panel');
+    const searchResultsList = document.getElementById('search-results-list');
+    const searchResultsLabel = document.getElementById('search-results-label');
+    const closeSearchBtn = document.getElementById('close-search-btn');
+
+    // Searchable data index â€” tabs + facilities
+    const searchIndex = [
+        { label: 'Executive Dashboard', icon: 'dashboard', tab: 'dashboard', type: 'Page' },
+        { label: 'Sustainability Monitoring', icon: 'eco', tab: 'sustainability', type: 'Page' },
+        { label: 'Environment Module', icon: 'thermostat', tab: 'environment', type: 'Page' },
+        { label: 'Social Module', icon: 'diversity_3', tab: 'social', type: 'Page' },
+        { label: 'Governance Module', icon: 'gavel', tab: 'governance', type: 'Page' },
+        { label: 'Compliance Reports', icon: 'assignment', tab: 'compliance', type: 'Page' },
+        { label: 'ESG Scoring', icon: 'analytics', tab: 'scoring', type: 'Page' },
+        { label: 'Platform Settings', icon: 'settings', tab: 'settings', type: 'Page' },
+        { label: 'About EcoSphere', icon: 'info', tab: 'about', type: 'Page' },
+        { label: 'Contact & Support', icon: 'contact_support', tab: 'about', type: 'Page' },
+        ...appState.facilityData.map(f => ({ label: f.name, icon: 'factory', tab: 'sustainability', type: 'Facility', sub: f.region }))
+    ];
+
+    function renderSearchResults(query) {
+        if (!query || query.length < 2) {
+            searchPanel && searchPanel.classList.add('hidden');
+            return;
+        }
+        const q = query.toLowerCase();
+        const results = searchIndex.filter(item => item.label.toLowerCase().includes(q) || (item.sub || '').toLowerCase().includes(q));
+        if (!searchResultsList || !searchPanel) return;
+
+        searchPanel.classList.remove('hidden');
+        if (searchResultsLabel) searchResultsLabel.textContent = `${results.length} result${results.length !== 1 ? 's' : ''} for "${query}"`;
+
+        if (results.length === 0) {
+            searchResultsList.innerHTML = `<div class="p-6 text-center text-xs text-on-surface-variant font-semibold">No results found</div>`;
+            return;
+        }
+
+        searchResultsList.innerHTML = '';
+        results.slice(0, 8).forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'flex items-center gap-3 px-5 py-3 hover:bg-surface-container-low/60 cursor-pointer transition-colors';
+            div.innerHTML = `
+                <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                    <span class="material-symbols-outlined text-sm">${item.icon}</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm font-bold text-on-surface truncate">${item.label}</p>
+                    <p class="text-[10px] text-on-surface-variant">${item.type}${item.sub ? ' Â· ' + item.sub : ''}</p>
+                </div>
+                <span class="material-symbols-outlined text-outline text-sm">arrow_forward</span>
+            `;
+            div.addEventListener('click', () => {
+                switchTab(item.tab);
+                searchPanel.classList.add('hidden');
+                globalSearch.value = '';
+            });
+            searchResultsList.appendChild(div);
+        });
+    }
+
+    if (globalSearch) {
+        globalSearch.addEventListener('input', (e) => renderSearchResults(e.target.value));
+        globalSearch.addEventListener('focus', (e) => { if (e.target.value.length >= 2) renderSearchResults(e.target.value); });
+    }
+    if (closeSearchBtn) {
+        closeSearchBtn.addEventListener('click', () => {
+            searchPanel && searchPanel.classList.add('hidden');
+            if (globalSearch) globalSearch.value = '';
+        });
+    }
+
+    // 16f. Close dropdowns when clicking outside
+    document.addEventListener('click', (e) => {
+        if (notifPanel && !notifBell?.contains(e.target)) notifPanel.classList.add('hidden');
+        if (profileDropdown && !profileWidget?.contains(e.target)) profileDropdown.classList.add('hidden');
+        if (searchPanel && !globalSearch?.contains(e.target) && !searchPanel.contains(e.target)) searchPanel.classList.add('hidden');
+    });
+
+    // 16g. Escape key closes all panels
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            notifPanel && notifPanel.classList.add('hidden');
+            profileDropdown && profileDropdown.classList.add('hidden');
+            searchPanel && searchPanel.classList.add('hidden');
+            closeHistoricalModal();
+            closeReportPreviewModal();
+            closeCustomReportModal();
+            closeLeaderboardModal();
+        }
+    });
+
+    // --- 17. Reports Hub Interactivity ---
+
+    // Helper: open/close Report Preview Modal
+    const reportPreviewModal = document.getElementById('report-preview-modal');
+    const reportPreviewPanel = document.getElementById('report-preview-panel');
+    const reportPreviewTitle = document.getElementById('report-preview-title');
+    const previewTypeEl = document.getElementById('preview-type');
+
+    function openReportPreviewModal(reportName) {
+        if (!reportPreviewModal) return;
+        if (reportPreviewTitle) reportPreviewTitle.textContent = reportName + ' â€” Preview';
+        if (previewTypeEl) previewTypeEl.textContent = reportName;
+        reportPreviewModal.classList.remove('pointer-events-none', 'opacity-0');
+        reportPreviewModal.classList.add('pointer-events-auto', 'opacity-100');
+        if (reportPreviewPanel) {
+            reportPreviewPanel.classList.remove('scale-95');
+            reportPreviewPanel.classList.add('scale-100');
+        }
+    }
+
+    function closeReportPreviewModal() {
+        if (!reportPreviewModal) return;
+        reportPreviewModal.classList.add('pointer-events-none', 'opacity-0');
+        reportPreviewModal.classList.remove('pointer-events-auto', 'opacity-100');
+        if (reportPreviewPanel) {
+            reportPreviewPanel.classList.remove('scale-100');
+            reportPreviewPanel.classList.add('scale-95');
+        }
+    }
+
+    document.getElementById('close-report-preview-btn')?.addEventListener('click', closeReportPreviewModal);
+    document.getElementById('close-report-preview-footer-btn')?.addEventListener('click', closeReportPreviewModal);
+    document.getElementById('report-preview-backdrop')?.addEventListener('click', closeReportPreviewModal);
+    document.getElementById('preview-download-pdf-btn')?.addEventListener('click', () => {
+        closeReportPreviewModal();
+        showToast('PDF download started â€” check your downloads folder.', 'success');
+    });
+
+    // Wire Preview buttons
+    document.querySelectorAll('.report-preview-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            openReportPreviewModal(btn.dataset.report || 'ESG Report');
+        });
+    });
+
+    // Wire PDF buttons
+    document.querySelectorAll('.report-pdf-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            showToast(`Generating ${btn.dataset.report} PDFâ€¦ this may take a moment.`, 'info');
+            setTimeout(() => showToast(`${btn.dataset.report}.pdf is ready for download!`, 'success'), 2200);
+        });
+    });
+
+    // Wire CSV buttons
+    document.querySelectorAll('.report-csv-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            showToast(`Exporting ${btn.dataset.report} as CSVâ€¦`, 'info');
+            setTimeout(() => showToast(`${btn.dataset.report}.csv exported successfully!`, 'success'), 1500);
+        });
+    });
+
+    // Wire XLSX buttons (Gov Disclosure)
+    document.querySelectorAll('.report-xlsx-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            showToast(`Generating ${btn.dataset.report} XLSX for regulatory submissionâ€¦`, 'info');
+            setTimeout(() => showToast(`${btn.dataset.report}.xlsx is ready!`, 'success'), 2000);
+        });
+    });
+
+    // Wire Share buttons
+    document.querySelectorAll('.report-share-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            navigator.clipboard?.writeText(window.location.href).catch(() => {});
+            showToast(`Share link for "${btn.dataset.report}" copied to clipboard!`, 'success');
+        });
+    });
+
+    // Export Log button
+    document.getElementById('export-log-btn')?.addEventListener('click', () => {
+        showToast('Exporting generation history log as CSVâ€¦', 'info');
+        setTimeout(() => showToast('report-history-log.csv downloaded!', 'success'), 1800);
+    });
+
+    // Timeline chevron buttons (scroll the track)
+    const timelineTrack = document.getElementById('timeline-track');
+    document.getElementById('timeline-prev-btn')?.addEventListener('click', () => {
+        if (timelineTrack) timelineTrack.scrollBy({ left: -144, behavior: 'smooth' });
+    });
+    document.getElementById('timeline-next-btn')?.addEventListener('click', () => {
+        if (timelineTrack) timelineTrack.scrollBy({ left: 144, behavior: 'smooth' });
+    });
+
+    // Custom Report Modal
+    const customReportModal = document.getElementById('custom-report-modal');
+    const customReportPanel = document.getElementById('custom-report-panel');
+
+    function openCustomReportModal() {
+        if (!customReportModal) return;
+        customReportModal.classList.remove('pointer-events-none', 'opacity-0');
+        customReportModal.classList.add('pointer-events-auto', 'opacity-100');
+        if (customReportPanel) {
+            customReportPanel.classList.remove('scale-95');
+            customReportPanel.classList.add('scale-100');
+        }
+    }
+
+    function closeCustomReportModal() {
+        if (!customReportModal) return;
+        customReportModal.classList.add('pointer-events-none', 'opacity-0');
+        customReportModal.classList.remove('pointer-events-auto', 'opacity-100');
+        if (customReportPanel) {
+            customReportPanel.classList.remove('scale-100');
+            customReportPanel.classList.add('scale-95');
+        }
+    }
+
+    document.getElementById('custom-report-btn')?.addEventListener('click', openCustomReportModal);
+    document.getElementById('close-custom-report-btn')?.addEventListener('click', closeCustomReportModal);
+    document.getElementById('close-custom-report-footer-btn')?.addEventListener('click', closeCustomReportModal);
+    document.getElementById('custom-report-backdrop')?.addEventListener('click', closeCustomReportModal);
+
+    document.getElementById('generate-custom-report-btn')?.addEventListener('click', () => {
+        const name = document.getElementById('custom-report-name')?.value.trim() || 'Custom ESG Report';
+        const type = document.getElementById('custom-report-type')?.value || 'Custom';
+        closeCustomReportModal();
+        showToast(`Generating "${name}" (${type}) â€” please waitâ€¦`, 'info');
+        setTimeout(() => {
+            showToast(`"${name}" is ready for download!`, 'success');
+            logActivity(`Generated custom report: ${name}`);
+        }, 3000);
+    });
+
+    // Row delete buttons in history table
+    document.querySelectorAll('#reports-history-tbody button[title="Delete"]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const row = btn.closest('tr');
+            if (row) {
+                row.style.transition = 'opacity 0.3s';
+                row.style.opacity = '0';
+                setTimeout(() => row.remove(), 320);
+                showToast('Report removed from history.', 'info');
+            }
+        });
+    });
+
+    // Contact form submission
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('contact-email')?.value;
+            if (!email) { showToast('Please enter your email address.', 'error'); return; }
+            showToast('Message sent! Our team will respond within 24 hours.', 'success');
+            contactForm.reset();
+        });
+    }
+
+    // --- 18. Gamification & Leaderboard Interactivity ---
+
+    const leaderboardModal = document.getElementById('leaderboard-modal');
+    const leaderboardModalPanel = document.getElementById('leaderboard-modal-panel');
+    const closeLeaderboardBtn = document.getElementById('close-leaderboard-modal-btn');
+    const closeLeaderboardFooterBtn = document.getElementById('close-leaderboard-modal-footer-btn');
+    const leaderboardBackdrop = document.getElementById('leaderboard-modal-backdrop');
+
+    // Sidebar triggers
+    const sidebarOpenLeaderboardBtn = document.getElementById('sidebar-open-leaderboard-btn');
+    const leaderboardIconBtn = document.getElementById('leaderboard-icon-btn');
+
+    // Tab buttons
+    const tabLeaderboardBtn = document.getElementById('modal-tab-leaderboard-btn');
+    const tabBadgesBtn = document.getElementById('modal-tab-badges-btn');
+
+    // Tab contents
+    const tabLeaderboardContent = document.getElementById('leaderboard-tab-content');
+    const tabBadgesContent = document.getElementById('badges-tab-content');
+
+    // Search and filters
+    const leaderboardSearchInput = document.getElementById('leaderboard-search-input');
+    const leaderboardFilterSelect = document.getElementById('leaderboard-filter-select');
+    const leaderboardListRows = document.querySelectorAll('#leaderboard-list-container > div');
+
+    function openLeaderboardModal() {
+        if (!leaderboardModal) return;
+        leaderboardModal.classList.remove('pointer-events-none', 'opacity-0');
+        leaderboardModal.classList.add('pointer-events-auto', 'opacity-100');
+        if (leaderboardModalPanel) {
+            leaderboardModalPanel.classList.remove('scale-95');
+            leaderboardModalPanel.classList.add('scale-100');
+        }
+        showToast('Opened Gamification Hub', 'info');
+    }
+
+    function closeLeaderboardModal() {
+        if (!leaderboardModal) return;
+        leaderboardModal.classList.add('pointer-events-none', 'opacity-0');
+        leaderboardModal.classList.remove('pointer-events-auto', 'opacity-100');
+        if (leaderboardModalPanel) {
+            leaderboardModalPanel.classList.remove('scale-100');
+            leaderboardModalPanel.classList.add('scale-95');
+        }
+    }
+
+    // Bind open/close triggers
+    if (sidebarOpenLeaderboardBtn) sidebarOpenLeaderboardBtn.addEventListener('click', openLeaderboardModal);
+    if (leaderboardIconBtn) leaderboardIconBtn.addEventListener('click', openLeaderboardModal);
+    if (closeLeaderboardBtn) closeLeaderboardBtn.addEventListener('click', closeLeaderboardModal);
+    if (closeLeaderboardFooterBtn) closeLeaderboardFooterBtn.addEventListener('click', closeLeaderboardModal);
+    if (leaderboardBackdrop) leaderboardBackdrop.addEventListener('click', closeLeaderboardModal);
+
+    // Make global for Escape key listener
+    window.closeLeaderboardModal = closeLeaderboardModal;
+
+    // Tab switcher logic
+    if (tabLeaderboardBtn && tabBadgesBtn) {
+        tabLeaderboardBtn.addEventListener('click', () => {
+            // Activate Leaderboard Tab
+            tabLeaderboardBtn.classList.remove('border-transparent', 'text-on-surface-variant');
+            tabLeaderboardBtn.classList.add('border-primary', 'text-primary', 'font-bold');
+            tabBadgesBtn.classList.remove('border-primary', 'text-primary', 'font-bold');
+            tabBadgesBtn.classList.add('border-transparent', 'text-on-surface-variant', 'font-semibold');
+            
+            tabLeaderboardContent?.classList.remove('hidden');
+            tabBadgesContent?.classList.add('hidden');
+        });
+
+        tabBadgesBtn.addEventListener('click', () => {
+            // Activate Badges Tab
+            tabBadgesBtn.classList.remove('border-transparent', 'text-on-surface-variant');
+            tabBadgesBtn.classList.add('border-primary', 'text-primary', 'font-bold');
+            tabLeaderboardBtn.classList.remove('border-primary', 'text-primary', 'font-bold');
+            tabLeaderboardBtn.classList.add('border-transparent', 'text-on-surface-variant', 'font-semibold');
+            
+            tabBadgesContent?.classList.remove('hidden');
+            tabLeaderboardContent?.classList.add('hidden');
+        });
+    }
+
+    // Live search & department filtering
+    function filterLeaderboard() {
+        const query = leaderboardSearchInput ? leaderboardSearchInput.value.toLowerCase().trim() : '';
+        const deptFilter = leaderboardFilterSelect ? leaderboardFilterSelect.value : 'all';
+
+        leaderboardListRows.forEach(row => {
+            const name = row.dataset.name ? row.dataset.name.toLowerCase() : '';
+            const dept = row.dataset.dept ? row.dataset.dept : '';
+
+            const matchesSearch = name.includes(query);
+            const matchesDept = (deptFilter === 'all' || dept === deptFilter);
+
+            if (matchesSearch && matchesDept) {
+                row.classList.remove('hidden');
+                row.style.display = '';
+            } else {
+                row.classList.add('hidden');
+                row.style.display = 'none';
+            }
+        });
+    }
+
+    if (leaderboardSearchInput) {
+        leaderboardSearchInput.addEventListener('input', filterLeaderboard);
+    }
+    if (leaderboardFilterSelect) {
+        leaderboardFilterSelect.addEventListener('change', filterLeaderboard);
+    }
+
+    // --- 19. Settings Hub Sub-nav Switching ---
+
+    const settingsNavBtns = document.querySelectorAll('.settings-nav-btn');
+    const settingsPanels = document.querySelectorAll('.settings-panel');
+
+    function switchSettingsPanel(panelName) {
+        settingsNavBtns.forEach(btn => {
+            const isActive = btn.dataset.settingsPanel === panelName;
+            if (isActive) {
+                btn.classList.add('text-primary', 'bg-primary/5', 'border-primary');
+                btn.classList.remove('text-on-surface-variant', 'border-transparent');
+            } else {
+                btn.classList.remove('text-primary', 'bg-primary/5', 'border-primary');
+                btn.classList.add('text-on-surface-variant', 'border-transparent');
+            }
+        });
+        settingsPanels.forEach(panel => {
+            if (panel.id === `settings-panel-${panelName}`) {
+                panel.classList.remove('hidden');
+            } else {
+                panel.classList.add('hidden');
+            }
+        });
+    }
+
+    settingsNavBtns.forEach(btn => {
+        btn.addEventListener('click', () => switchSettingsPanel(btn.dataset.settingsPanel));
+    });
+
+    document.getElementById('settings-general-form')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        showToast('General settings saved successfully!', 'success');
+    });
+    document.getElementById('save-theme-btn')?.addEventListener('click', () => showToast('Theme preferences saved!', 'success'));
+    document.getElementById('save-notif-btn')?.addEventListener('click', () => showToast('Notification preferences updated!', 'success'));
+    document.getElementById('save-lang-btn')?.addEventListener('click', () => showToast('Language & region settings saved!', 'success'));
+    document.getElementById('save-security-btn')?.addEventListener('click', () => showToast('Security settings updated!', 'success'));
+    document.getElementById('generate-api-key-btn')?.addEventListener('click', () => {
+        const key = 'esg_live_sk_' + Math.random().toString(36).substring(2, 10);
+        showToast(`New API key generated: ${key}`, 'success');
+    });
+    document.querySelectorAll('#settings-panel-apikeys button[title="Copy Key"]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            navigator.clipboard?.writeText('esg_key_value_here').catch(() => {});
+            showToast('API key copied to clipboard!', 'success');
+        });
+    });
+    document.querySelectorAll('#settings-panel-apikeys button[title="Revoke Key"]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const row = btn.closest('.border');
+            if (row) { row.style.transition = 'opacity 0.3s'; row.style.opacity = '0'; setTimeout(() => row.remove(), 320); }
+            showToast('API key revoked.', 'info');
+        });
+    });
+
 });
+

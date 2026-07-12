@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EcoSphere | Environmental Metrics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#006b2c",
+                        "on-background": "#171d16",
+                        "on-surface-variant": "#3e4a3d",
+                        "on-tertiary-container": "#fffbff",
+                        "outline-variant": "#bdcaba",
+                        "surface-container-low": "#eff6ea",
+                        "on-primary-container": "#f7fff2",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#171d16",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#6df5e1",
+                        "tertiary": "#a72d51",
+                        "on-tertiary-fixed-variant": "#8a143c",
+                        "surface-variant": "#dde5d9",
+                        "secondary-fixed": "#71f8e4",
+                        "on-secondary-fixed-variant": "#005048",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#006f64",
+                        "on-primary-fixed-variant": "#005320",
+                        "tertiary-fixed": "#ffd9de",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#c74668",
+                        "surface-container": "#e9f0e5",
+                        "inverse-primary": "#62df7d",
+                        "outline": "#6e7b6c",
+                        "on-tertiary-fixed": "#3f0016",
+                        "primary-container": "#00873a",
+                        "secondary": "#006b5f",
+                        "secondary-fixed-dim": "#4fdbc8",
+                        "tertiary-fixed-dim": "#ffb2bf",
+                        "surface-container-highest": "#dde5d9",
+                        "inverse-surface": "#2b322b",
+                        "primary-fixed": "#7ffc97",
+                        "surface-tint": "#006e2d",
+                        "surface": "#f4fcf0",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#00201c",
+                        "primary-fixed-dim": "#62df7d",
+                        "surface-bright": "#f4fcf0",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#002109",
+                        "surface-dim": "#d5dcd1",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "background": "#f4fcf0",
+                        "inverse-on-surface": "#ecf3e7",
+                        "surface-container-high": "#e3eadf"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "2xl": "48px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "margin-mobile": "16px",
+                        "base": "8px",
+                        "margin-desktop": "32px",
+                        "gutter": "24px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex">
+<!-- SideNavBar (Authority Source: JSON) -->
+<aside class="fixed left-0 top-0 h-screen w-[280px] bg-[#0F172A] flex flex-col py-lg shadow-xl z-50">
+<div class="px-lg mb-2xl">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 bg-[#16A34A] rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-black text-white leading-none">EcoSphere</h1>
+<p class="text-slate-400 font-label-md text-label-md uppercase tracking-wider">Enterprise ESG</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1 overflow-y-auto custom-scrollbar">
+<!-- Dashboard -->
+<div class="group cursor-pointer flex items-center gap-md text-slate-400 px-lg py-md hover:bg-[#1E293B] hover:text-white transition-all">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</div>
+<!-- Impact Tracking (ACTIVE) -->
+<div class="group cursor-pointer flex items-center gap-md bg-[#1E293B] text-white border-l-4 border-primary px-lg py-md transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="font-label-md text-label-md">Impact Tracking</span>
+</div>
+<!-- Compliance -->
+<div class="group cursor-pointer flex items-center gap-md text-slate-400 px-lg py-md hover:bg-[#1E293B] hover:text-white transition-all">
+<span class="material-symbols-outlined">verified_user</span>
+<span class="font-label-md text-label-md">Compliance</span>
+</div>
+<!-- Stakeholders -->
+<div class="group cursor-pointer flex items-center gap-md text-slate-400 px-lg py-md hover:bg-[#1E293B] hover:text-white transition-all">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-md text-label-md">Stakeholders</span>
+</div>
+<!-- Leaderboard -->
+<div class="group cursor-pointer flex items-center gap-md text-slate-400 px-lg py-md hover:bg-[#1E293B] hover:text-white transition-all">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="font-label-md text-label-md">Leaderboard</span>
+</div>
+</nav>
+<div class="px-lg mt-auto space-y-1">
+<div class="p-md bg-[#1E293B] rounded-xl mb-lg">
+<p class="text-white font-title-md text-title-md mb-xs">Upgrade to Pro</p>
+<p class="text-slate-400 text-body-md font-body-md mb-md">Unlock advanced carbon forecasting tools.</p>
+<button class="w-full bg-[#16A34A] text-white py-sm rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity">Upgrade Now</button>
+</div>
+<div class="group cursor-pointer flex items-center gap-md text-slate-400 px-lg py-md hover:bg-[#1E293B] hover:text-white transition-all">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</div>
+<div class="group cursor-pointer flex items-center gap-md text-slate-400 px-lg py-md hover:bg-[#1E293B] hover:text-white transition-all">
+<span class="material-symbols-outlined">contact_support</span>
+<span class="font-label-md text-label-md">Support</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-[280px] min-h-screen flex flex-col">
+<!-- TopNavBar (Authority Source: JSON) -->
+<header class="w-full h-16 bg-surface-container-lowest flex justify-between items-center px-lg sticky top-0 z-40 shadow-sm border-b border-outline-variant">
+<div class="flex items-center gap-lg">
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 text-body-md font-body-md focus:ring-2 focus:ring-primary" placeholder="Search data points..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-sm">
+<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors duration-200 cursor-pointer">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors duration-200 cursor-pointer">
+<span class="material-symbols-outlined text-on-surface-variant">help_outline</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors duration-200 cursor-pointer">
+<span class="material-symbols-outlined text-on-surface-variant">settings</span>
+</button>
+</div>
+<div class="h-8 w-px bg-outline-variant mx-sm"></div>
+<div class="flex items-center gap-md cursor-pointer group">
+<div class="text-right">
+<p class="text-body-md font-semibold text-on-surface">Alex Rivera</p>
+<p class="text-label-md text-on-surface-variant">Sustainability Lead</p>
+</div>
+<img class="w-10 h-10 rounded-full border-2 border-primary-fixed shadow-sm" data-alt="A professional headshot of a corporate sustainability officer in a bright, modern office setting. High-key lighting, minimalist background with a hint of green foliage. Premium enterprise aesthetic with sharp focus and shallow depth of field, reflecting leadership and transparency." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBT8vZ6Yn6BJPv0AOBTnrMeeXLsFY4V3HIVLwhCM_-Ij19X0s8wNgTkMf4cQlsKntw5j8D1qDGU7NxZy2gjTYjze-afafLkGWpCMuBakulUZStntsHR13yDMmsigCA3MHVHiV5v-mTBU3dlBcrHtfepP0H-MiZL0ucpSJKeQSS9Q3TFkfLt5RHL5xSWeotmWrqmtDDE80uSkKoZPwa2xw-2hlB32pRfkkFTl218WvGxoNJYZ4hK1c-z"/>
+</div>
+</div>
+</header>
+<!-- Page Canvas -->
+<section class="p-xl space-y-xl bg-gradient-to-tr from-surface-container-lowest to-surface-bright flex-1">
+<!-- Page Header -->
+<div class="flex justify-between items-end">
+<div>
+<nav class="flex items-center gap-2 text-label-md text-on-surface-variant mb-2">
+<span>Modules</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-medium">Environment</span>
+</nav>
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">Environmental Metrics</h2>
+<p class="text-body-md text-on-surface-variant mt-1">Real-time monitoring of resource consumption and carbon output across all facilities.</p>
+</div>
+<div class="flex gap-md">
+<button class="flex items-center gap-2 px-lg py-md border border-outline-variant rounded-xl text-title-md font-title-md bg-white hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined">filter_list</span>
+                        Filter View
+                    </button>
+<button class="flex items-center gap-2 px-lg py-md bg-primary text-white rounded-xl text-title-md font-title-md hover:bg-primary-container transition-all shadow-sm">
+<span class="material-symbols-outlined">download</span>
+                        Export Report
+                    </button>
+</div>
+</div>
+<!-- KPI Grid (6 Cards) -->
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-lg">
+<!-- Electricity -->
+<div class="bg-white p-lg rounded-2xl shadow-sm border border-outline-variant hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-md">
+<div class="p-sm bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary">bolt</span>
+</div>
+<span class="text-xs font-bold text-error flex items-center bg-error-container/20 px-2 py-0.5 rounded-full">
+                            +2.4% <span class="material-symbols-outlined text-[14px]">trending_up</span>
+</span>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Electricity</p>
+<p class="text-headline-md font-headline-md text-on-surface mt-1">42,850</p>
+<p class="text-label-md text-on-surface-variant">kWh this month</p>
+</div>
+<!-- Water -->
+<div class="bg-white p-lg rounded-2xl shadow-sm border border-outline-variant hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-md">
+<div class="p-sm bg-secondary/10 rounded-lg">
+<span class="material-symbols-outlined text-secondary">water_drop</span>
+</div>
+<span class="text-xs font-bold text-primary flex items-center bg-primary/10 px-2 py-0.5 rounded-full">
+                            -5.1% <span class="material-symbols-outlined text-[14px]">trending_down</span>
+</span>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Water</p>
+<p class="text-headline-md font-headline-md text-on-surface mt-1">128,400</p>
+<p class="text-label-md text-on-surface-variant">Liters usage</p>
+</div>
+<!-- Fuel -->
+<div class="bg-white p-lg rounded-2xl shadow-sm border border-outline-variant hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-md">
+<div class="p-sm bg-tertiary/10 rounded-lg">
+<span class="material-symbols-outlined text-tertiary">local_gas_station</span>
+</div>
+<span class="text-xs font-bold text-on-surface-variant flex items-center bg-surface-variant px-2 py-0.5 rounded-full">
+                            0.0% <span class="material-symbols-outlined text-[14px]">remove</span>
+</span>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Fuel</p>
+<p class="text-headline-md font-headline-md text-on-surface mt-1">1,240</p>
+<p class="text-label-md text-on-surface-variant">Units consumed</p>
+</div>
+<!-- Renewable Energy -->
+<div class="bg-white p-lg rounded-2xl shadow-sm border border-outline-variant hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-md">
+<div class="p-sm bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary">solar_power</span>
+</div>
+<span class="text-xs font-bold text-primary flex items-center bg-primary/10 px-2 py-0.5 rounded-full">
+                            +12% <span class="material-symbols-outlined text-[14px]">trending_up</span>
+</span>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Renewable</p>
+<p class="text-headline-md font-headline-md text-on-surface mt-1">34.2%</p>
+<p class="text-label-md text-on-surface-variant">Energy mix</p>
+</div>
+<!-- Carbon Emissions -->
+<div class="bg-white p-lg rounded-2xl shadow-sm border border-outline-variant hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-md">
+<div class="p-sm bg-inverse-surface/10 rounded-lg">
+<span class="material-symbols-outlined text-inverse-surface">co2</span>
+</div>
+<span class="text-xs font-bold text-primary flex items-center bg-primary/10 px-2 py-0.5 rounded-full">
+                            -2.8% <span class="material-symbols-outlined text-[14px]">trending_down</span>
+</span>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Carbon</p>
+<p class="text-headline-md font-headline-md text-on-surface mt-1">452.1</p>
+<p class="text-label-md text-on-surface-variant">tCO2e generated</p>
+</div>
+<!-- Trees Saved -->
+<div class="bg-white p-lg rounded-2xl shadow-sm border border-outline-variant hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-md">
+<div class="p-sm bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary">park</span>
+</div>
+<span class="text-xs font-bold text-primary flex items-center bg-primary/10 px-2 py-0.5 rounded-full">
+                            +45 <span class="material-symbols-outlined text-[14px]">add</span>
+</span>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Trees Saved</p>
+<p class="text-headline-md font-headline-md text-on-surface mt-1">8,294</p>
+<p class="text-label-md text-on-surface-variant">Lifetime count</p>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-xl">
+<!-- Data Entry Form (1/3 Width) -->
+<div class="lg:col-span-1 bg-white p-xl rounded-2xl shadow-sm border border-outline-variant flex flex-col h-full">
+<div class="flex items-center gap-md mb-lg">
+<div class="p-2 bg-primary/5 rounded-lg">
+<span class="material-symbols-outlined text-primary">edit_note</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface">Log Environmental Data</h3>
+</div>
+<form class="space-y-md flex-1">
+<div>
+<label class="block text-label-md font-label-md text-on-surface-variant mb-xs">Reporting Date</label>
+<input class="w-full rounded-xl border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-md p-md bg-surface-container-lowest" type="date"/>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div>
+<label class="block text-label-md font-label-md text-on-surface-variant mb-xs">Electricity (kWh)</label>
+<input class="w-full rounded-xl border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-md p-md bg-surface-container-lowest" placeholder="0.00" type="number"/>
+</div>
+<div>
+<label class="block text-label-md font-label-md text-on-surface-variant mb-xs">Water (Liters)</label>
+<input class="w-full rounded-xl border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-md p-md bg-surface-container-lowest" placeholder="0.00" type="number"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div>
+<label class="block text-label-md font-label-md text-on-surface-variant mb-xs">Fuel (Units)</label>
+<input class="w-full rounded-xl border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-md p-md bg-surface-container-lowest" placeholder="0.00" type="number"/>
+</div>
+<div>
+<label class="block text-label-md font-label-md text-on-surface-variant mb-xs">Renewable (%)</label>
+<input class="w-full rounded-xl border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-md p-md bg-surface-container-lowest" placeholder="0-100" type="number"/>
+</div>
+</div>
+<div>
+<label class="block text-label-md font-label-md text-on-surface-variant mb-xs">Carbon Emissions (tCO2e)</label>
+<input class="w-full rounded-xl border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-md p-md bg-surface-container-low font-semibold text-primary" placeholder="Calculated automatically..." type="number"/>
+</div>
+<div class="pt-lg">
+<button class="w-full bg-[#16A34A] text-white py-md rounded-xl font-title-md text-title-md hover:bg-primary-container transition-all shadow-sm active:scale-[0.98] flex items-center justify-center gap-2" type="submit">
+<span class="material-symbols-outlined">send</span>
+                                Submit Data Log
+                            </button>
+</div>
+</form>
+</div>
+<!-- Charts Section (2/3 Width) -->
+<div class="lg:col-span-2 space-y-xl">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-xl">
+<!-- Bar Chart Placeholder -->
+<div class="bg-white p-xl rounded-2xl shadow-sm border border-outline-variant flex flex-col h-[380px]">
+<div class="flex justify-between items-center mb-xl">
+<h3 class="font-title-md text-title-md text-on-surface">Monthly Resource Consumption</h3>
+<select class="bg-surface-container-low border-none rounded-lg text-label-md font-label-md focus:ring-1 focus:ring-primary">
+<option>2023 FY</option>
+<option>2024 FY</option>
+</select>
+</div>
+<div class="flex-1 flex items-end justify-between gap-2 pt-lg">
+<div class="w-8 bg-surface-container-low rounded-t-lg relative group transition-all" style="height: 45%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-on-background text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">450</div>
+</div>
+<div class="w-8 bg-primary/60 rounded-t-lg relative group transition-all" style="height: 65%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-on-background text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">650</div>
+</div>
+<div class="w-8 bg-primary/40 rounded-t-lg relative group transition-all" style="height: 35%;"></div>
+<div class="w-8 bg-primary rounded-t-lg relative group transition-all" style="height: 85%;"></div>
+<div class="w-8 bg-primary/20 rounded-t-lg relative group transition-all" style="height: 55%;"></div>
+<div class="w-8 bg-surface-container-low rounded-t-lg relative group transition-all" style="height: 40%;"></div>
+<div class="w-8 bg-primary/70 rounded-t-lg relative group transition-all" style="height: 75%;"></div>
+<div class="w-8 bg-primary/90 rounded-t-lg relative group transition-all" style="height: 95%;"></div>
+</div>
+<div class="flex justify-between mt-4 px-1 text-[10px] text-on-surface-variant font-medium">
+<span>JAN</span><span>FEB</span><span>MAR</span><span>APR</span><span>MAY</span><span>JUN</span><span>JUL</span><span>AUG</span>
+</div>
+</div>
+<!-- Pie Chart Placeholder -->
+<div class="bg-white p-xl rounded-2xl shadow-sm border border-outline-variant flex flex-col h-[380px]">
+<h3 class="font-title-md text-title-md text-on-surface mb-xl">Emission Distribution</h3>
+<div class="flex-1 flex items-center justify-center relative">
+<div class="w-48 h-48 rounded-full border-[24px] border-primary-container relative">
+<div class="absolute -inset-[24px] rounded-full border-[24px] border-t-tertiary-container border-r-transparent border-b-transparent border-l-transparent transform rotate-45"></div>
+<div class="absolute -inset-[24px] rounded-full border-[24px] border-t-transparent border-r-transparent border-b-secondary-container border-l-transparent transform rotate-[160deg]"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<p class="text-headline-md font-bold text-on-surface">452</p>
+<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">Total tCO2e</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-y-2 mt-xl">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary-container"></div>
+<span class="text-label-md text-on-surface-variant">Energy (55%)</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-tertiary-container"></div>
+<span class="text-label-md text-on-surface-variant">Logistics (25%)</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-secondary-container"></div>
+<span class="text-label-md text-on-surface-variant">Waste (15%)</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-outline"></div>
+<span class="text-label-md text-on-surface-variant">Other (5%)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- History Table -->
+<div class="bg-white rounded-2xl shadow-sm border border-outline-variant overflow-hidden">
+<div class="px-xl py-lg border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest">
+<div>
+<h3 class="font-title-lg text-title-lg text-on-surface">Past Logs History</h3>
+<p class="text-label-md text-on-surface-variant">Review and manage historical environmental data submissions.</p>
+</div>
+<div class="flex gap-md">
+<div class="flex border border-outline-variant rounded-lg overflow-hidden">
+<button class="px-3 py-1 bg-surface-container-high text-primary font-bold text-xs">ALL</button>
+<button class="px-3 py-1 text-on-surface-variant font-bold text-xs hover:bg-surface-container-low">VERIFIED</button>
+<button class="px-3 py-1 text-on-surface-variant font-bold text-xs hover:bg-surface-container-low">PENDING</button>
+</div>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/30 text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest border-b border-outline-variant">
+<th class="px-xl py-lg">Date</th>
+<th class="px-xl py-lg">Category</th>
+<th class="px-xl py-lg">Value</th>
+<th class="px-xl py-lg">Unit</th>
+<th class="px-xl py-lg">Status</th>
+<th class="px-xl py-lg text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="text-body-md font-body-md divide-y divide-outline-variant/50">
+<tr class="hover:bg-surface-container-low/20 transition-colors group">
+<td class="px-xl py-lg font-semibold text-on-surface">Oct 24, 2023</td>
+<td class="px-xl py-lg">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-primary">bolt</span>
+                                        Electricity
+                                    </div>
+</td>
+<td class="px-xl py-lg">1,450.00</td>
+<td class="px-xl py-lg text-on-surface-variant">kWh</td>
+<td class="px-xl py-lg">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase bg-primary/10 text-primary">
+                                        Verified
+                                    </span>
+</td>
+<td class="px-xl py-lg text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-error hover:bg-error/10 rounded-lg">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/20 transition-colors group">
+<td class="px-xl py-lg font-semibold text-on-surface">Oct 22, 2023</td>
+<td class="px-xl py-lg">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-secondary">water_drop</span>
+                                        Water
+                                    </div>
+</td>
+<td class="px-xl py-lg">4,200.00</td>
+<td class="px-xl py-lg text-on-surface-variant">Liters</td>
+<td class="px-xl py-lg">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase bg-primary/10 text-primary">
+                                        Verified
+                                    </span>
+</td>
+<td class="px-xl py-lg text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-error hover:bg-error/10 rounded-lg">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/20 transition-colors group">
+<td class="px-xl py-lg font-semibold text-on-surface">Oct 20, 2023</td>
+<td class="px-xl py-lg">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-tertiary">local_gas_station</span>
+                                        Fuel
+                                    </div>
+</td>
+<td class="px-xl py-lg">310.50</td>
+<td class="px-xl py-lg text-on-surface-variant">Units</td>
+<td class="px-xl py-lg">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase bg-secondary-container/20 text-on-secondary-container">
+                                        Pending
+                                    </span>
+</td>
+<td class="px-xl py-lg text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-error hover:bg-error/10 rounded-lg">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/20 transition-colors group">
+<td class="px-xl py-lg font-semibold text-on-surface">Oct 18, 2023</td>
+<td class="px-xl py-lg">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-primary">solar_power</span>
+                                        Renewable
+                                    </div>
+</td>
+<td class="px-xl py-lg">22.40</td>
+<td class="px-xl py-lg text-on-surface-variant">% Mix</td>
+<td class="px-xl py-lg">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase bg-primary/10 text-primary">
+                                        Verified
+                                    </span>
+</td>
+<td class="px-xl py-lg text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-error hover:bg-error/10 rounded-lg">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-xl py-md bg-surface-container-lowest border-t border-outline-variant flex justify-between items-center">
+<p class="text-label-md text-on-surface-variant">Showing 4 of 124 records</p>
+<div class="flex gap-2">
+<button class="p-2 rounded-lg border border-outline-variant hover:bg-surface-container-low disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="p-2 rounded-lg border border-outline-variant hover:bg-surface-container-low">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer Footer (Simple Anchor) -->
+<footer class="px-xl py-lg bg-surface-container-lowest border-t border-outline-variant flex flex-col md:flex-row justify-between items-center text-label-md text-on-surface-variant gap-lg">
+<div class="flex items-center gap-xl">
+<p>© 2024 EcoSphere ESG Solutions. All rights reserved.</p>
+<div class="flex gap-md">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<span>System Status: Optimal</span>
+</div>
+</footer>
+</main>
+<script>
+        // Micro-interactions and subtle effects
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                let ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Simple mock behavior for the carbon calculation
+        const carbonInput = document.querySelector('input[placeholder="Calculated automatically..."]');
+        const numInputs = document.querySelectorAll('input[type="number"]');
+        
+        numInputs.forEach(input => {
+            input.addEventListener('input', () => {
+                let sum = 0;
+                numInputs.forEach(i => {
+                    if(i !== carbonInput && i.value) sum += parseFloat(i.value) * 0.12; // arbitrary factor
+                });
+                carbonInput.value = sum.toFixed(2);
+            });
+        });
+    </script>
+</body></html>
