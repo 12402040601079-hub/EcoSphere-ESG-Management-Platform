@@ -19,7 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 'env_3', date: '2023-10-20', category: 'Fuel', value: 310.50, unit: 'Units', status: 'Pending' },
             { id: 'env_4', date: '2023-10-18', category: 'Renewable', value: 22.40, unit: '% Mix', status: 'Verified' }
         ],
-        envFilter: 'ALL'
+        envFilter: 'ALL',
+        socialLogs: [
+            { id: 'soc_1', date: '2023-10-24', category: 'Diversity & Inclusion', value: 48.2, unit: '%', status: 'Verified' },
+            { id: 'soc_2', date: '2023-10-24', category: 'Training & Development', value: 1250, unit: 'Hours', status: 'Verified' },
+            { id: 'soc_3', date: '2023-10-18', category: 'Safety Audit', value: 0, unit: 'Incidents', status: 'Pending' },
+            { id: 'soc_4', date: '2023-10-15', category: 'Volunteer Program', value: 540, unit: 'Hours', status: 'Verified' },
+            { id: 'soc_5', date: '2023-10-12', category: 'Community Outreach', value: 8, unit: 'Events', status: 'Verified' }
+        ]
     };
 
     // --- 2. DOM Elements Selection ---
@@ -199,6 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 dashboard: 'Dashboard',
                 sustainability: 'Sustainability Monitoring',
                 environment: 'Environmental Metrics',
+                social: 'Social Module',
                 compliance: 'Compliance Reports',
                 scoring: 'ESG Scoring Breakdown',
                 settings: 'Platform Settings'
@@ -879,8 +887,122 @@ document.addEventListener('DOMContentLoaded', () => {
     if (pillVerified) pillVerified.addEventListener('click', () => selectEnvPill(pillVerified, 'VERIFIED'));
     if (pillPending) pillPending.addEventListener('click', () => selectEnvPill(pillPending, 'PENDING'));
 
+    // --- 14. Social Module Logic ---
+
+    const socialForm = document.getElementById('social-data-form');
+    const socialInputEmployees = document.getElementById('soc-input-employees');
+    const socialInputTraining = document.getElementById('soc-input-training');
+    const socialInputVolunteer = document.getElementById('soc-input-volunteer');
+    const socialInputSafety = document.getElementById('soc-input-safety');
+    const socialInputNotes = document.getElementById('soc-input-notes');
+
+    if (socialForm) {
+        socialForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const empVal = parseFloat(socialInputEmployees.value) || 0;
+            const trainVal = parseFloat(socialInputTraining.value) || 0;
+            const volVal = parseFloat(socialInputVolunteer.value) || 0;
+            const safeVal = parseFloat(socialInputSafety.value) || 0;
+            const today = new Date().toISOString().split('T')[0];
+
+            const newLogs = [];
+            if (trainVal > 0) {
+                newLogs.push({ id: 'soc_' + Date.now() + '_t', date: today, category: 'Training & Development', value: trainVal, unit: 'Hours', status: 'Verified' });
+            }
+            if (volVal > 0) {
+                newLogs.push({ id: 'soc_' + Date.now() + '_v', date: today, category: 'Volunteer Program', value: volVal, unit: 'Hours', status: 'Verified' });
+            }
+            if (safeVal >= 0 && socialInputSafety.value !== '') {
+                newLogs.push({ id: 'soc_' + Date.now() + '_s', date: today, category: 'Safety Audit', value: safeVal, unit: 'Incidents', status: safeVal > 0 ? 'Pending' : 'Verified' });
+            }
+            if (empVal > 0) {
+                newLogs.push({ id: 'soc_' + Date.now() + '_e', date: today, category: 'Diversity & Inclusion', value: empVal, unit: '%', status: 'Verified' });
+            }
+
+            if (newLogs.length === 0) {
+                showToast('Please fill in at least one social metric field.', 'warning');
+                return;
+            }
+
+            appState.socialLogs.unshift(...newLogs);
+            renderSocialLogsTable();
+            showToast('Social metrics logged successfully!', 'success');
+            logActivity(`Logged social responsibility metrics for ${today}`);
+
+            socialForm.reset();
+        });
+    }
+
+    function renderSocialLogsTable() {
+        const tbody = document.getElementById('social-logs-tbody');
+        if (!tbody) return;
+
+        tbody.innerHTML = '';
+
+        const logs = appState.socialLogs;
+
+        if (logs.length === 0) {
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="6" class="p-8 text-center text-on-surface-variant font-semibold">
+                        No social records yet. Submit a record to begin.
+                    </td>
+                </tr>
+            `;
+            return;
+        }
+
+        logs.forEach(log => {
+            const tr = document.createElement('tr');
+            tr.className = 'hover:bg-surface-container-low/50 transition-colors border-b border-outline-variant/30';
+
+            const isPending = log.status === 'Pending';
+            const badgeClass = isPending ? 'bg-amber-100 text-amber-800' : 'bg-green-100 text-green-800';
+
+            let catIcon = 'diversity_3';
+            let catColor = 'text-purple-600 bg-purple-50';
+            if (log.category === 'Training & Development') { catIcon = 'school'; catColor = 'text-amber-600 bg-amber-50'; }
+            else if (log.category === 'Safety Audit') { catIcon = 'health_and_safety'; catColor = 'text-red-600 bg-red-50'; }
+            else if (log.category === 'Volunteer Program') { catIcon = 'volunteer_activism'; catColor = 'text-green-600 bg-green-50'; }
+            else if (log.category === 'Community Outreach') { catIcon = 'groups'; catColor = 'text-teal-600 bg-teal-50'; }
+
+            tr.innerHTML = `
+                <td class="px-5 py-4 font-medium text-xs">${formatDisplayDate(log.date)}</td>
+                <td class="px-5 py-4">
+                    <div class="flex items-center gap-2">
+                        <div class="w-6 h-6 rounded flex items-center justify-center ${catColor}">
+                            <span class="material-symbols-outlined text-sm">${catIcon}</span>
+                        </div>
+                        <span class="font-bold text-on-surface text-xs">${log.category}</span>
+                    </div>
+                </td>
+                <td class="px-5 py-4 font-semibold text-xs">${log.value.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 1 })}</td>
+                <td class="px-5 py-4 text-on-surface-variant text-xs">${log.unit}</td>
+                <td class="px-5 py-4">
+                    <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${badgeClass}">${log.status}</span>
+                </td>
+                <td class="px-5 py-4 text-right">
+                    <div class="flex justify-end gap-2">
+                        <button class="text-on-surface-variant hover:text-primary transition-colors" title="Edit">
+                            <span class="material-symbols-outlined text-base">edit</span>
+                        </button>
+                        <button class="text-on-surface-variant hover:text-error transition-colors" title="Delete">
+                            <span class="material-symbols-outlined text-base">delete</span>
+                        </button>
+                    </div>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+        const countText = document.getElementById('social-logs-count-text');
+        if (countText) countText.textContent = `Showing ${logs.length} of ${logs.length} records`;
+    }
+
     // Render initial states on load
     renderFacilityTable();
     updateSustainabilityStats();
     renderEnvLogsTable();
+    renderSocialLogsTable();
 });
