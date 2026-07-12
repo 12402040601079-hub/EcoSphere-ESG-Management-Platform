@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>EcoSphere ESG Platform - Interactive Sitemap</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter & Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+    <!-- Mermaid.js ESM Load -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            securityLevel: 'loose',
+            fontFamily: 'Inter, sans-serif'
+        });
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #090d16;
+            background-image: radial-gradient(circle at 10% 20%, rgba(0, 107, 44, 0.08) 0%, transparent 40%),
+                              radial-gradient(circle at 90% 80%, rgba(109, 245, 225, 0.06) 0%, transparent 40%);
+        }
+
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen text-slate-100 flex flex-col antialiased">
+
+    <!-- Header -->
+    <header class="w-full py-5 px-8 glass-panel sticky top-0 z-50 flex items-center justify-between shadow-md">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white shadow-lg shadow-emerald-600/30">
+                <span class="material-symbols-outlined text-white text-2xl font-bold">eco</span>
+            </div>
+            <div>
+                <h1 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+                    EcoSphere <span class="text-sm font-semibold text-emerald-400 bg-emerald-950/60 px-2.5 py-0.5 rounded-full border border-emerald-800">Sitemap Visualizer</span>
+                </h1>
+                <p class="text-[10px] text-slate-400 uppercase tracking-widest font-medium">Enterprise ESG Management Platform Map</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <span class="text-xs text-slate-400 bg-slate-800/80 py-1.5 px-3 rounded-lg border border-slate-700/60 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                v1.2.0 (Stable Layout)
+            </span>
+        </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="flex-1 w-full max-w-[1720px] mx-auto p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
+        
+        <!-- Sidebar: Component Details -->
+        <aside class="col-span-1 flex flex-col gap-6">
+            <div class="glass-panel p-6 rounded-2xl flex flex-col gap-4">
+                <h2 class="text-lg font-bold text-white flex items-center gap-2 border-b border-slate-800 pb-3">
+                    <span class="material-symbols-outlined text-emerald-400 text-lg">info</span>
+                    Sitemap Details
+                </h2>
+                
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    This interactive sitemap displays the navigation links, dashboard view components, forms, and database update triggers in the application.
+                </p>
+
+                <div class="space-y-4 mt-2">
+                    <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                        <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider block mb-1">A. Authentication</span>
+                        <p class="text-xs text-slate-400">Default landing is the login screen. Validating form transitions immediately into the main dashboard tab.</p>
+                    </div>
+
+                    <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                        <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider block mb-1">B. Layout Canvas</span>
+                        <p class="text-xs text-slate-400">Top Header and Sidebar are locked fixed components. The view tabs load dynamically inside the scrollable content canvas.</p>
+                    </div>
+
+                    <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                        <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider block mb-1">C. Telemetry Engine</span>
+                        <p class="text-xs text-slate-400">Submitting the "Add ESG Data" modal recalculates telemetry indexes (Scopes, KPIs, progress meters) across all views instantly.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visual Legend -->
+            <div class="glass-panel p-6 rounded-2xl flex flex-col gap-4">
+                <h3 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-3">Legend</h3>
+                <div class="grid grid-cols-2 gap-3 text-xs">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3.5 h-3.5 rounded bg-emerald-600 border border-emerald-500"></span>
+                        <span class="text-slate-300">Core Page / View</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-3.5 h-3.5 rounded bg-slate-800 border border-slate-700"></span>
+                        <span class="text-slate-300">Shell Layout</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-3.5 h-3.5 rounded bg-emerald-950 border border-emerald-800"></span>
+                        <span class="text-slate-300">Tab Sections</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-3.5 h-3.5 rounded bg-rose-700 border border-rose-600"></span>
+                        <span class="text-slate-300">Actions / Triggers</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Sitemap Diagram Window -->
+        <section class="col-span-1 lg:col-span-3 glass-panel p-6 lg:p-8 rounded-2xl flex flex-col gap-6 shadow-xl relative overflow-hidden">
+            <div class="flex justify-between items-center border-b border-slate-800 pb-4">
+                <div>
+                    <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                        <span class="material-symbols-outlined text-emerald-400">account_tree</span>
+                        Flowchart Sitemap Map
+                    </h2>
+                    <p class="text-xs text-slate-400 mt-1">Rendered dynamically via Mermaid.js vector graphs</p>
+                </div>
+                <button onclick="window.print()" class="px-4 py-2 bg-slate-800 border border-slate-700/80 text-xs font-semibold rounded-xl hover:bg-slate-700 hover:text-white transition-all flex items-center gap-2 shadow-sm">
+                    <span class="material-symbols-outlined text-sm">print</span>
+                    Print / Save PDF
+                </button>
+            </div>
+
+            <!-- Scrollable Flowchart Box -->
+            <div class="flex-1 overflow-auto rounded-xl bg-slate-950/80 p-4 border border-slate-900 min-h-[500px] flex items-center justify-center custom-scrollbar">
+                <div class="mermaid w-full text-center">
+                    graph TD
+                        %% Base entry points
+                        Start([App Entry]) --> Login[Login View #login-view]
+                        Login -->|Authenticate| AppShell[Enterprise App Shell #app-shell]
+                        
+                        %% Shell Layout
+                        subgraph App Shell Architecture
+                            AppShell --> Sidebar[Side Navigation Bar]
+                            AppShell --> Header[Top App Header]
+                            AppShell --> MainContent[Main Content Canvas]
+                        end
+
+                        %% Sidebar Links & Actions
+                        subgraph Navigation & Actions
+                            Sidebar --> NavDashboard[Dashboard tab]
+                            Sidebar --> NavSust[Sustainability Monitoring tab]
+                            Sidebar --> NavCompliance[Compliance Reports tab]
+                            Sidebar --> NavScoring[ESG Scoring tab]
+                            Sidebar --> NavSettings[Settings tab]
+                            Sidebar --> ActionGenReport[Generate Report action]
+                            Sidebar --> ActionLogout[Logout action]
+                        end
+
+                        %% Header Tools
+                        subgraph Global Header Tools
+                            Header --> ActionAddData[Add ESG Data button]
+                            Header --> ActionNotifications[Notifications Bell]
+                            Header --> ActionProfile[Alex River Profile widget]
+                            Header --> ActionSearch[Global Search input]
+                        end
+
+                        %% Views & Tabs
+                        subgraph Tab A: Executive ESG Dashboard
+                            NavDashboard --> DashPerf[Executive ESG Performance Card]
+                            NavDashboard --> DashRoadmap[Net Zero 2030 Roadmap Progress]
+                            NavDashboard --> DashKPIs[Live KPI Grid: Carbon, Water, Energy, Waste]
+                            NavDashboard --> DashTrends[Sustainability Impact Trends Bar Chart]
+                            NavDashboard --> DashPillars[Sustainability Pillars E/S/G Rings]
+                            NavDashboard --> DashScopes[Emissions by Scope progress bars]
+                            NavDashboard --> DashActivity[Recent Activity Log list]
+                        end
+
+                        subgraph Tab B: Sustainability Monitoring
+                            NavSust --> SustBento[Bento KPI Grid: Total Emissions, Water, Waste]
+                            NavSust --> SustTrends[Environmental Impact Trends Monthly/Quarterly]
+                            NavSust --> SustHealth[Overall ESG Health donut and Rank/Status badges]
+                            NavSust --> SustTable[Facility Location Breakdown table]
+                            SustTable --> TableFilter[Filter locations input]
+                            SustTable --> TableDensity[Toggle Table Density action]
+                            SustTable --> TableDetails[View details action]
+                        end
+
+                        subgraph Tab C: Compliance Reports
+                            NavCompliance --> CompNew[Generate New Report button]
+                            NavCompliance --> CompUpload[Bulk Upload button]
+                            NavCompliance --> CompCards[Framework cards: BRSR, GRI, TCFD]
+                            NavCompliance --> CompList[Generated Reports list]
+                            NavCompliance --> CompPeriod[Reporting Period radio filters]
+                            NavCompliance --> CompChecklist[Standards checkboxes]
+                        end
+
+                        subgraph Tab D: ESG Scoring Breakdown
+                            NavScoring --> ScoreE[Environmental - E card - 88%]
+                            NavScoring --> ScoreS[Social - S card - 72%]
+                            NavScoring --> ScoreG[Governance - G card - 94%]
+                        end
+
+                        subgraph Tab E: Platform Settings
+                            NavSettings --> SettingsForm[Configuration Form: Company, Target Year, Baseline]
+                        end
+
+                        %% Overlays & Toast notifications
+                        subgraph Overlays & Telemetry
+                            ActionAddData --> ModalAdd[Add ESG Data Modal]
+                            ActionGenReport --> CompProgress[Processing Data... Progress simulation]
+                            ModalAdd -->|Submit| TableUpdate[Add to Facility Location table]
+                            TableUpdate -->|Recalculate| TelemetryUpdate[Update all Dashboard & Sustainability KPIs]
+                            TableUpdate -->|Trigger Toast| Toast[Toast Notification alerts]
+                            ActionLogout -->|Return| Login
+                        end
+
+                        %% Styling
+                        classDef main fill:#059669,stroke:#047857,stroke-width:2px,color:#fff;
+                        classDef layout fill:#1e293b,stroke:#334155,stroke-width:2px,color:#fff;
+                        classDef section fill:#022c22,stroke:#064e3b,stroke-width:1px,color:#a7f3d0;
+                        classDef action fill:#9f1239,stroke:#881337,stroke-width:1px,color:#fff;
+                        
+                        class Start,Login,AppShell main;
+                        class Sidebar,Header,MainContent layout;
+                        class NavDashboard,NavSust,NavCompliance,NavScoring,NavSettings section;
+                        class ActionAddData,ActionGenReport,ActionLogout,ModalAdd,TableUpdate,TelemetryUpdate,Toast action;
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-auto py-6 px-8 border-t border-slate-900 text-center text-xs text-slate-500 bg-slate-950/20">
+        <p>© 2026 EcoSphere ESG Management Platform • Generated dynamically for repository documentation review.</p>
+    </footer>
+
+</body>
+
+</html>
