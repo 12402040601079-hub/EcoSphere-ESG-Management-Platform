@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | EcoSphere ESG Management</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#ffd9de",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#c74668",
+                    "on-primary-container": "#f7fff2",
+                    "surface-tint": "#006e2d",
+                    "outline-variant": "#bdcaba",
+                    "outline": "#6e7b6c",
+                    "secondary": "#006b5f",
+                    "tertiary-fixed-dim": "#ffb2bf",
+                    "surface-container-low": "#eff6ea",
+                    "on-primary-fixed": "#002109",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#7ffc97",
+                    "on-secondary": "#ffffff",
+                    "on-surface": "#171d16",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#ecf3e7",
+                    "on-secondary-container": "#006f64",
+                    "surface": "#f4fcf0",
+                    "surface-bright": "#f4fcf0",
+                    "on-secondary-fixed": "#00201c",
+                    "primary-container": "#00873a",
+                    "on-primary-fixed-variant": "#005320",
+                    "surface-container-highest": "#dde5d9",
+                    "on-tertiary-fixed-variant": "#8a143c",
+                    "on-tertiary-fixed": "#3f0016",
+                    "on-error": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#e9f0e5",
+                    "on-background": "#171d16",
+                    "on-tertiary-container": "#fffbff",
+                    "surface-container-high": "#e3eadf",
+                    "primary-fixed-dim": "#62df7d",
+                    "surface-variant": "#dde5d9",
+                    "on-secondary-fixed-variant": "#005048",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#62df7d",
+                    "error-container": "#ffdad6",
+                    "on-surface-variant": "#3e4a3d",
+                    "secondary-fixed": "#71f8e4",
+                    "surface-dim": "#d5dcd1",
+                    "inverse-surface": "#2b322b",
+                    "primary": "#006b2c",
+                    "secondary-container": "#6df5e1",
+                    "background": "#f4fcf0",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "tertiary": "#a72d51"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "1rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "32px",
+                    "lg": "24px",
+                    "xl": "32px",
+                    "2xl": "48px",
+                    "margin-mobile": "16px",
+                    "xs": "4px",
+                    "gutter": "24px",
+                    "md": "16px",
+                    "base": "8px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "title-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "title-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4fcf0; /* background */
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+        }
+        .floating-anim {
+            animation: floating 6s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 md:p-0 overflow-hidden">
+<main class="w-full max-w-[1440px] h-full md:h-[90vh] grid grid-cols-1 md:grid-cols-2 bg-surface-container-lowest rounded-2xl overflow-hidden shadow-2xl">
+<!-- Left Side: Login Form -->
+<section class="flex flex-col justify-center px-margin-mobile md:px-2xl py-xl bg-surface-container-lowest">
+<!-- Logo Section -->
+<div class="mb-12">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">eco</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">EcoSphere</h1>
+</div>
+</div>
+<!-- Header Section -->
+<div class="mb-10">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Welcome Back</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">The future of corporate governance. Monitor and manage your enterprise ESG goals with precision.</p>
+</div>
+<!-- Login Form -->
+<form class="space-y-6 max-w-md" onsubmit="event.preventDefault();">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2 ml-1" for="email">Email Address</label>
+<input class="w-full px-4 py-3.5 rounded-2xl border border-outline-variant bg-surface-bright focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-md text-body-md" id="email" name="email" placeholder="name@company.com" type="email"/>
+</div>
+<div>
+<div class="flex justify-between mb-2 ml-1">
+<label class="block font-label-md text-label-md text-on-surface-variant" for="password">Password</label>
+</div>
+<div class="relative">
+<input class="w-full px-4 py-3.5 rounded-2xl border border-outline-variant bg-surface-bright focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-md text-body-md" id="password" name="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="w-5 h-5 rounded-md border-outline-variant text-primary focus:ring-primary cursor-pointer" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-primary transition-colors">Remember Me</span>
+</label>
+<a class="font-label-md text-label-md text-primary font-semibold hover:underline" href="#">Forgot Password?</a>
+</div>
+<button class="w-full bg-primary-container hover:bg-opacity-90 text-on-primary-container font-title-md text-title-md py-4 rounded-2xl shadow-lg transition-all active:scale-[0.98] mt-4 flex items-center justify-center gap-2" type="submit">
+                    Log In
+                    <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</form>
+<div class="mt-12 flex items-center gap-6">
+<p class="font-label-md text-label-md text-on-surface-variant">Don't have an account? <a class="text-primary font-bold hover:underline" href="#">Request Access</a></p>
+</div>
+</section>
+<!-- Right Side: Visual Area -->
+<section class="hidden md:block p-4">
+<div class="relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-surface via-[#E2E8F0] to-surface-container-high flex items-center justify-center">
+<!-- Atmospheric Background Elements -->
+<div class="absolute inset-0 opacity-40">
+<div class="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-primary/10 blur-[100px]"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-secondary/10 blur-[100px]"></div>
+</div>
+<!-- Main Visual Asset -->
+<div class="relative z-10 w-4/5 h-4/5 flex items-center justify-center">
+<img alt="Sustainability Planet" class="max-w-full max-h-full object-contain floating-anim drop-shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVZ1efqchaHg9uOtv36bihOw2n2IjNfschbk4hT7AtqwxyH7HapWh9I0IVDbUI7_eKNhLnwjaKJ9Q1X6N3k1rrKdNmf4X6RBAB_03KJ2L19uk7A0t6lk5D8K0hkds399bq-7vaz--qXL2N4nUh7fpVSyX-572mpEA7qnHBa_CdvAgrwacT8TEFAKANgJ7RRwAjKtZZuCJFNVsxGgVAy475zv_Gm8BsxaTOrkxg9OqkEjzLrv2-3Vey"/>
+<!-- Floating Metric: ESG Score -->
+<div class="absolute top-10 right-4 glass-card p-4 rounded-xl flex flex-col gap-1 w-40 transform hover:scale-105 transition-transform cursor-default">
+<div class="flex justify-between items-start">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">ESG Score</span>
+<span class="material-symbols-outlined text-[#FACC15]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="font-display-lg text-4xl text-on-surface">84</span>
+<div class="h-1.5 w-full bg-outline-variant rounded-full mt-1 overflow-hidden">
+<div class="h-full bg-primary w-[84%] rounded-full"></div>
+</div>
+</div>
+<!-- Floating Metric: Emissions -->
+<div class="absolute bottom-1/4 -left-12 glass-card p-4 rounded-xl flex flex-col gap-1 w-44 transform hover:scale-105 transition-transform cursor-default">
+<div class="flex justify-between items-start">
+<div>
+<span class="font-headline-md text-headline-md block">1,248</span>
+<span class="font-label-md text-label-md text-on-surface-variant">tCO2e</span>
+</div>
+<div class="bg-error-container/20 p-1 rounded-md">
+<span class="material-symbols-outlined text-error text-xl">trending_down</span>
+</div>
+</div>
+</div>
+<!-- Floating Metric: Compliance -->
+<div class="absolute bottom-10 right-10 glass-card p-4 rounded-xl flex items-center gap-3 w-48 transform hover:scale-105 transition-transform cursor-default">
+<div class="bg-primary/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div>
+<span class="font-headline-md text-headline-md block leading-none">98%</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Compliance</span>
+</div>
+</div>
+</div>
+<!-- Footer-like small text for Right Side -->
+<div class="absolute bottom-8 left-0 right-0 text-center">
+<p class="font-label-sm text-label-sm text-outline-variant uppercase tracking-[0.2em]">Empowering Net-Zero Transitions</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Information (Global Shell Requirement) -->
+<footer class="fixed bottom-0 left-0 w-full md:w-1/2 flex justify-start gap-lg px-margin-desktop py-base z-10 pointer-events-none">
+<div class="flex gap-4 pointer-events-auto">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all" href="#">Privacy Policy</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all" href="#">Terms of Service</a>
+<span class="font-label-md text-label-md text-outline-variant">© 2024 EcoSphere ESG</span>
+</div>
+</footer>
+<script>
+        // Simple Interaction: Mouse move parallax effect on the visual side
+        const visualArea = document.querySelector('section:last-child');
+        const floatingItems = document.querySelectorAll('.glass-card');
+        
+        if(visualArea) {
+            visualArea.addEventListener('mousemove', (e) => {
+                const { clientX, clientY } = e;
+                const centerX = visualArea.clientWidth / 2;
+                const centerY = visualArea.clientHeight / 2;
+                
+                const moveX = (clientX - centerX) / 30;
+                const moveY = (clientY - centerY) / 30;
+
+                floatingItems.forEach((item, index) => {
+                    const factor = (index + 1) * 0.5;
+                    item.style.transform = `translate(${moveX * factor}px, ${moveY * factor}px) scale(1.05)`;
+                });
+            });
+
+            visualArea.addEventListener('mouseleave', () => {
+                floatingItems.forEach(item => {
+                    item.style.transform = `translate(0, 0) scale(1)`;
+                });
+            });
+        }
+
+        // Form Focus Visual Improvements
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.querySelector('label')?.classList.add('text-primary');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.querySelector('label')?.classList.remove('text-primary');
+            });
+        });
+    </script>
+</body></html>
