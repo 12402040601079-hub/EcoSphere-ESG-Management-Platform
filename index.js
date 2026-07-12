@@ -490,8 +490,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p class="text-label-sm text-on-surface-variant">${dateStr}</p>
             </div>
         `;
-        // Insert at top of log below indicator line
-        activityLogContainer.insertBefore(node, activityLogContainer.childNodes[2]);
+        // Insert right below the absolute line overlay
+        if (activityLogContainer.children.length > 1) {
+            activityLogContainer.insertBefore(node, activityLogContainer.children[1]);
+        } else {
+            activityLogContainer.appendChild(node);
+        }
     }
 
 
