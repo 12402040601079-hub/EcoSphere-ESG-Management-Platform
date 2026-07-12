@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. Global Application State ---
     const appState = {
-        loggedIn: false,
+        loggedIn: true,
         activeTab: 'dashboard',
         sidebarCollapsed: false,
         tableDensityCompact: false,
@@ -623,6 +623,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card.addEventListener('mouseleave', () => {
             card.style.transform = 'translateY(0px)';
         });
-    });
-
+    // Render initial states on load
+    renderFacilityTable();
+    updateSustainabilityStats();
 });
