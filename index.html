@@ -467,14 +467,44 @@
                     <button class="p-2 text-on-surface-variant hover:text-primary transition-colors relative"
                         id="notifications-bell">
                         <span class="material-symbols-outlined">notifications</span>
-                        <span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+                        <span id="notif-badge" class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
                     </button>
+
+                    <!-- Notifications Dropdown Panel -->
+                    <div id="notifications-panel"
+                        class="hidden absolute top-14 right-36 w-80 bg-white rounded-xl shadow-2xl border border-outline-variant z-50 overflow-hidden">
+                        <div class="p-4 border-b border-outline-variant flex justify-between items-center">
+                            <h4 class="font-bold text-on-surface text-sm">Notifications</h4>
+                            <button id="notif-clear-all" class="text-xs text-primary font-semibold hover:underline">Clear all</button>
+                        </div>
+                        <div class="divide-y divide-outline-variant/40" id="notif-list">
+                            <div class="p-4 flex gap-3 hover:bg-surface-container-low/50 transition-colors">
+                                <div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center text-amber-600 shrink-0"><span class="material-symbols-outlined text-sm">warning</span></div>
+                                <div><p class="text-xs font-bold text-on-surface">Audit Due — Texas Operations</p><p class="text-[10px] text-on-surface-variant mt-0.5">2 hours ago</p></div>
+                            </div>
+                            <div class="p-4 flex gap-3 hover:bg-surface-container-low/50 transition-colors">
+                                <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600 shrink-0"><span class="material-symbols-outlined text-sm">check_circle</span></div>
+                                <div><p class="text-xs font-bold text-on-surface">GRI Report compiled successfully</p><p class="text-[10px] text-on-surface-variant mt-0.5">Yesterday</p></div>
+                            </div>
+                            <div class="p-4 flex gap-3 hover:bg-surface-container-low/50 transition-colors">
+                                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 shrink-0"><span class="material-symbols-outlined text-sm">info</span></div>
+                                <div><p class="text-xs font-bold text-on-surface">Dubai Logistics Hub data updated</p><p class="text-[10px] text-on-surface-variant mt-0.5">2 days ago</p></div>
+                            </div>
+                            <div class="p-4 flex gap-3 hover:bg-surface-container-low/50 transition-colors">
+                                <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center text-red-600 shrink-0"><span class="material-symbols-outlined text-sm">policy</span></div>
+                                <div><p class="text-xs font-bold text-on-surface">Policy attestation deadline in 3 days</p><p class="text-[10px] text-on-surface-variant mt-0.5">3 days ago</p></div>
+                            </div>
+                        </div>
+                        <div class="p-3 border-t border-outline-variant text-center">
+                            <button class="text-xs text-primary font-semibold hover:underline">View all notifications</button>
+                        </div>
+                    </div>
 
                     <div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
 
                     <!-- Avatar Profile Widget -->
-                    <div
-                        class="flex items-center gap-3 cursor-pointer hover:bg-surface-container-low p-1 rounded-lg transition-colors group">
+                    <div id="profile-widget"
+                        class="relative flex items-center gap-3 cursor-pointer hover:bg-surface-container-low p-1 rounded-lg transition-colors group">
                         <div class="text-right hidden sm:block">
                             <p class="text-label-md font-bold text-on-surface">Alex River</p>
                             <p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Compliance Officer
@@ -484,12 +514,52 @@
                             <img class="w-full h-full object-cover" alt="Alex River profile image"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6iAJFsCLqTJDIyEoFqr7HyMfU7qAqlRTBInzsHivOyRMxR-YMNRFGCTfGysdcdPGjTzwfeW2w4iERwu9YYxcnPd88-j552N6v7uv8WR7jaO5NK6eqOyQdJksF_JXy_AdHhYbcmfD5gFH80HvvbT_m9YIOnn3tXD_6RhH--_i581lWAZBmEhXFELZ7annyJgLHfav3rbO0FA9p0h3rkyjOAPRjJR2H6ccaYhcKjvbmxpWAfCMEWD0I" />
                         </div>
+                        <!-- Profile Dropdown -->
+                        <div id="profile-dropdown"
+                            class="hidden absolute top-12 right-0 w-52 bg-white rounded-xl shadow-2xl border border-outline-variant z-50 overflow-hidden">
+                            <div class="p-4 border-b border-outline-variant/40 bg-surface-container-low/30">
+                                <p class="font-bold text-on-surface text-sm">Alex River</p>
+                                <p class="text-[10px] text-on-surface-variant">alex.river@ecosphere.io</p>
+                            </div>
+                            <div class="py-1">
+                                <button class="w-full text-left px-4 py-2.5 text-xs font-semibold text-on-surface hover:bg-surface-container-low flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-sm">person</span> My Profile
+                                </button>
+                                <button class="w-full text-left px-4 py-2.5 text-xs font-semibold text-on-surface hover:bg-surface-container-low flex items-center gap-2" onclick="document.querySelector('[data-tab=settings]').click()">
+                                    <span class="material-symbols-outlined text-sm">settings</span> Account Settings
+                                </button>
+                                <button class="w-full text-left px-4 py-2.5 text-xs font-semibold text-on-surface hover:bg-surface-container-low flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-sm">help</span> Help &amp; Support
+                                </button>
+                            </div>
+                            <div class="border-t border-outline-variant/40 py-1">
+                                <button id="profile-logout-btn" class="w-full text-left px-4 py-2.5 text-xs font-semibold text-red-600 hover:bg-red-50 flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-sm">logout</span> Sign Out
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </header>
 
             <!-- WORKSPACE TABS CONTAINER -->
             <div id="views-wrapper" class="p-8 space-y-8 flex-1 overflow-y-auto custom-scrollbar">
+
+                <!-- ==========================================
+                     SEARCH RESULTS OVERLAY
+                     ========================================== -->
+                <div id="search-results-panel" class="hidden fixed top-16 left-[280px] right-0 z-30 px-8 pt-4">
+                    <div class="bg-white rounded-xl shadow-2xl border border-outline-variant overflow-hidden max-w-2xl">
+                        <div class="px-5 py-3 border-b border-outline-variant flex justify-between items-center">
+                            <span class="text-sm font-bold text-on-surface" id="search-results-label">Results</span>
+                            <button id="close-search-btn" class="text-on-surface-variant hover:text-primary">
+                                <span class="material-symbols-outlined text-base">close</span>
+                            </button>
+                        </div>
+                        <div id="search-results-list" class="divide-y divide-outline-variant/40 max-h-72 overflow-y-auto">
+                        </div>
+                    </div>
+                </div>
 
                 <!-- ==========================================
                      TAB A: EXECUTIVE ESG DASHBOARD
@@ -514,12 +584,12 @@
                                     currently in the <span class="text-primary font-semibold">92nd percentile</span> of
                                     your industry peer group.</p>
                                 <div class="flex gap-3 pt-2">
-                                    <button
+                                    <button id="dash-view-esg-btn"
                                         class="px-6 py-2.5 bg-primary text-white rounded-lg font-title-md hover:brightness-110 transition-all shadow-sm flex items-center gap-2">
                                         <span>View ESG Breakdown</span>
                                         <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
                                     </button>
-                                    <button
+                                    <button id="dash-historical-btn"
                                         class="px-6 py-2.5 border border-outline-variant text-on-surface rounded-lg font-title-md hover:bg-surface-container-low transition-all">Historical
                                         Records</button>
                                 </div>
@@ -2268,6 +2338,68 @@
 
             </div>
         </main>
+    </div>
+
+    <!-- ==========================================
+         HISTORICAL RECORDS MODAL
+         ========================================== -->
+    <div id="historical-modal"
+        class="fixed inset-0 z-[100] flex items-center justify-center pointer-events-none opacity-0 transition-opacity duration-300">
+        <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" id="historical-modal-backdrop"></div>
+        <div id="historical-modal-panel"
+            class="relative z-10 bg-white rounded-2xl shadow-2xl w-full max-w-4xl mx-6 max-h-[85vh] flex flex-col scale-95 transition-transform duration-300">
+            <div class="flex items-center justify-between p-6 border-b border-outline-variant">
+                <div>
+                    <h3 class="text-lg font-bold text-on-surface">Historical ESG Records</h3>
+                    <p class="text-xs text-on-surface-variant mt-0.5">Full audit trail of all ESG data submissions across facilities.</p>
+                </div>
+                <button id="close-historical-modal-btn" class="p-2 rounded-lg hover:bg-surface-container-low text-on-surface-variant hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <!-- Stats Summary Row -->
+            <div class="grid grid-cols-4 divide-x divide-outline-variant/40 border-b border-outline-variant bg-surface-container-low/30">
+                <div class="p-4 text-center">
+                    <span class="text-xl font-bold text-primary block">6</span>
+                    <span class="text-[10px] text-on-surface-variant uppercase tracking-wider font-bold">Facilities</span>
+                </div>
+                <div class="p-4 text-center">
+                    <span class="text-xl font-bold text-primary block">3,057</span>
+                    <span class="text-[10px] text-on-surface-variant uppercase tracking-wider font-bold">Total tCO2e</span>
+                </div>
+                <div class="p-4 text-center">
+                    <span class="text-xl font-bold text-primary block">53,650</span>
+                    <span class="text-[10px] text-on-surface-variant uppercase tracking-wider font-bold">MWh Energy</span>
+                </div>
+                <div class="p-4 text-center">
+                    <span class="text-xl font-bold text-primary block">4 / 6</span>
+                    <span class="text-[10px] text-on-surface-variant uppercase tracking-wider font-bold">Compliant</span>
+                </div>
+            </div>
+            <div class="overflow-auto flex-1">
+                <table class="w-full text-left text-sm">
+                    <thead class="sticky top-0 bg-surface-container/80 backdrop-blur-sm">
+                        <tr class="text-[10px] font-bold uppercase text-on-surface-variant border-b border-outline-variant/60">
+                            <th class="px-6 py-3">Facility</th>
+                            <th class="px-6 py-3">Region</th>
+                            <th class="px-6 py-3">Scope 1</th>
+                            <th class="px-6 py-3">Scope 2</th>
+                            <th class="px-6 py-3">Scope 3</th>
+                            <th class="px-6 py-3">Energy (MWh)</th>
+                            <th class="px-6 py-3">Water (m³)</th>
+                            <th class="px-6 py-3">Waste %</th>
+                            <th class="px-6 py-3">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-outline-variant/30" id="historical-table-body">
+                    </tbody>
+                </table>
+            </div>
+            <div class="p-4 border-t border-outline-variant flex justify-between items-center">
+                <span class="text-xs text-on-surface-variant">Showing all 6 facility records — Q4 2023</span>
+                <button id="close-historical-modal-footer-btn" class="px-5 py-2 bg-primary text-white rounded-lg text-xs font-bold hover:brightness-110 transition-all">Close</button>
+            </div>
+        </div>
     </div>
 
     <!-- ==========================================

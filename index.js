@@ -11,7 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {
         activeTab: 'dashboard',
         sidebarCollapsed: false,
         tableDensityCompact: false,
-        facilityData: [],
+        facilityData: [
+            { id: 'fac_seed1', name: 'Singapore HQ', region: 'Asia-Pacific', scope1: 320.4, scope2: 185.6, scope3: 490.0, energy: 8450, water: 32000, waste: 82, compliance: 'Compliant' },
+            { id: 'fac_seed2', name: 'Berlin Manufacturing', region: 'Europe', scope1: 540.2, scope2: 310.1, scope3: 720.3, energy: 14200, water: 68500, waste: 74, compliance: 'Compliant' },
+            { id: 'fac_seed3', name: 'Texas Operations', region: 'North America', scope1: 410.8, scope2: 228.4, scope3: 610.5, energy: 11800, water: 54200, waste: 68, compliance: 'Audit Due' },
+            { id: 'fac_seed4', name: 'Mumbai Data Centre', region: 'South Asia', scope1: 195.0, scope2: 142.5, scope3: 380.2, energy: 6900, water: 28100, waste: 91, compliance: 'Compliant' },
+            { id: 'fac_seed5', name: 'Sydney Office', region: 'Oceania', scope1: 88.6, scope2: 64.2, scope3: 198.4, energy: 3200, water: 12400, waste: 88, compliance: 'Compliant' },
+            { id: 'fac_seed6', name: 'Dubai Logistics Hub', region: 'Middle East', scope1: 274.1, scope2: 196.3, scope3: 443.7, energy: 9100, water: 41800, waste: 76, compliance: 'Audit Due' }
+        ],
         reportsCount: 0,
         envLogs: [
             { id: 'env_1', date: '2023-10-24', category: 'Electricity', value: 1450.00, unit: 'kWh', status: 'Verified' },
@@ -1108,4 +1115,207 @@ document.addEventListener('DOMContentLoaded', () => {
             logActivity(`Created governance audit: ${name}`);
         });
     }
+
+    // --- 16. Dashboard Interactivity ---
+
+    // 16a. "View ESG Breakdown" → navigate to scoring tab
+    const dashViewEsgBtn = document.getElementById('dash-view-esg-btn');
+    if (dashViewEsgBtn) {
+        dashViewEsgBtn.addEventListener('click', () => {
+            switchTab('scoring');
+            showToast('Navigated to ESG Scoring Breakdown', 'info');
+        });
+    }
+
+    // 16b. Historical Records modal
+    const historicalModal = document.getElementById('historical-modal');
+    const historicalModalPanel = document.getElementById('historical-modal-panel');
+    const historicalTableBody = document.getElementById('historical-table-body');
+    const closeHistoricalModalBtn = document.getElementById('close-historical-modal-btn');
+    const closeHistoricalFooterBtn = document.getElementById('close-historical-modal-footer-btn');
+    const historicalModalBackdrop = document.getElementById('historical-modal-backdrop');
+
+    function openHistoricalModal() {
+        if (!historicalModal) return;
+        // Populate table from facilityData
+        if (historicalTableBody) {
+            historicalTableBody.innerHTML = '';
+            appState.facilityData.forEach(item => {
+                const total = item.scope1 + item.scope2 + item.scope3;
+                const isAudit = item.compliance === 'Audit Due';
+                const badge = isAudit
+                    ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800">Audit Due</span>'
+                    : '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-green-100 text-green-800">Compliant</span>';
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-surface-container-low/40 transition-colors';
+                tr.innerHTML = `
+                    <td class="px-6 py-3 font-bold text-on-surface text-xs whitespace-nowrap">${item.name}</td>
+                    <td class="px-6 py-3 text-on-surface-variant text-xs">${item.region}</td>
+                    <td class="px-6 py-3 text-xs font-semibold">${item.scope1.toFixed(1)}</td>
+                    <td class="px-6 py-3 text-xs font-semibold">${item.scope2.toFixed(1)}</td>
+                    <td class="px-6 py-3 text-xs font-semibold">${item.scope3.toFixed(1)}</td>
+                    <td class="px-6 py-3 text-xs font-semibold">${item.energy.toLocaleString()}</td>
+                    <td class="px-6 py-3 text-xs font-semibold">${item.water.toLocaleString()}</td>
+                    <td class="px-6 py-3 text-xs font-semibold">${item.waste}%</td>
+                    <td class="px-6 py-3">${badge}</td>
+                `;
+                historicalTableBody.appendChild(tr);
+            });
+        }
+        historicalModal.classList.remove('pointer-events-none', 'opacity-0');
+        historicalModal.classList.add('pointer-events-auto');
+        if (historicalModalPanel) {
+            historicalModalPanel.classList.remove('scale-95');
+            historicalModalPanel.classList.add('scale-100');
+        }
+    }
+
+    function closeHistoricalModal() {
+        if (!historicalModal) return;
+        historicalModal.classList.add('pointer-events-none', 'opacity-0');
+        historicalModal.classList.remove('pointer-events-auto');
+        if (historicalModalPanel) {
+            historicalModalPanel.classList.remove('scale-100');
+            historicalModalPanel.classList.add('scale-95');
+        }
+    }
+
+    const dashHistoricalBtn = document.getElementById('dash-historical-btn');
+    if (dashHistoricalBtn) dashHistoricalBtn.addEventListener('click', openHistoricalModal);
+    if (closeHistoricalModalBtn) closeHistoricalModalBtn.addEventListener('click', closeHistoricalModal);
+    if (closeHistoricalFooterBtn) closeHistoricalFooterBtn.addEventListener('click', closeHistoricalModal);
+    if (historicalModalBackdrop) historicalModalBackdrop.addEventListener('click', closeHistoricalModal);
+
+    // 16c. Notifications bell toggle
+    const notifBell = document.getElementById('notifications-bell');
+    const notifPanel = document.getElementById('notifications-panel');
+    const notifBadge = document.getElementById('notif-badge');
+    const notifClearAll = document.getElementById('notif-clear-all');
+
+    if (notifBell && notifPanel) {
+        notifBell.addEventListener('click', (e) => {
+            e.stopPropagation();
+            notifPanel.classList.toggle('hidden');
+            // Remove red badge when opened
+            if (!notifPanel.classList.contains('hidden') && notifBadge) {
+                notifBadge.classList.add('hidden');
+            }
+        });
+    }
+    if (notifClearAll) {
+        notifClearAll.addEventListener('click', () => {
+            const notifList = document.getElementById('notif-list');
+            if (notifList) {
+                notifList.innerHTML = `<div class="p-8 text-center text-xs text-on-surface-variant font-semibold">No new notifications</div>`;
+            }
+            showToast('All notifications cleared', 'info');
+        });
+    }
+
+    // 16d. Profile dropdown toggle
+    const profileWidget = document.getElementById('profile-widget');
+    const profileDropdown = document.getElementById('profile-dropdown');
+    const profileLogoutBtn = document.getElementById('profile-logout-btn');
+
+    if (profileWidget && profileDropdown) {
+        profileWidget.addEventListener('click', (e) => {
+            e.stopPropagation();
+            profileDropdown.classList.toggle('hidden');
+        });
+    }
+    if (profileLogoutBtn) {
+        profileLogoutBtn.addEventListener('click', () => {
+            profileDropdown && profileDropdown.classList.add('hidden');
+            logoutBtn && logoutBtn.click();
+        });
+    }
+
+    // 16e. Global search
+    const globalSearch = document.getElementById('global-search');
+    const searchPanel = document.getElementById('search-results-panel');
+    const searchResultsList = document.getElementById('search-results-list');
+    const searchResultsLabel = document.getElementById('search-results-label');
+    const closeSearchBtn = document.getElementById('close-search-btn');
+
+    // Searchable data index — tabs + facilities
+    const searchIndex = [
+        { label: 'Executive Dashboard', icon: 'dashboard', tab: 'dashboard', type: 'Page' },
+        { label: 'Sustainability Monitoring', icon: 'eco', tab: 'sustainability', type: 'Page' },
+        { label: 'Environment Module', icon: 'thermostat', tab: 'environment', type: 'Page' },
+        { label: 'Social Module', icon: 'diversity_3', tab: 'social', type: 'Page' },
+        { label: 'Governance Module', icon: 'gavel', tab: 'governance', type: 'Page' },
+        { label: 'Compliance Reports', icon: 'assignment', tab: 'compliance', type: 'Page' },
+        { label: 'ESG Scoring', icon: 'analytics', tab: 'scoring', type: 'Page' },
+        { label: 'Platform Settings', icon: 'settings', tab: 'settings', type: 'Page' },
+        ...appState.facilityData.map(f => ({ label: f.name, icon: 'factory', tab: 'sustainability', type: 'Facility', sub: f.region }))
+    ];
+
+    function renderSearchResults(query) {
+        if (!query || query.length < 2) {
+            searchPanel && searchPanel.classList.add('hidden');
+            return;
+        }
+        const q = query.toLowerCase();
+        const results = searchIndex.filter(item => item.label.toLowerCase().includes(q) || (item.sub || '').toLowerCase().includes(q));
+        if (!searchResultsList || !searchPanel) return;
+
+        searchPanel.classList.remove('hidden');
+        if (searchResultsLabel) searchResultsLabel.textContent = `${results.length} result${results.length !== 1 ? 's' : ''} for "${query}"`;
+
+        if (results.length === 0) {
+            searchResultsList.innerHTML = `<div class="p-6 text-center text-xs text-on-surface-variant font-semibold">No results found</div>`;
+            return;
+        }
+
+        searchResultsList.innerHTML = '';
+        results.slice(0, 8).forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'flex items-center gap-3 px-5 py-3 hover:bg-surface-container-low/60 cursor-pointer transition-colors';
+            div.innerHTML = `
+                <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                    <span class="material-symbols-outlined text-sm">${item.icon}</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm font-bold text-on-surface truncate">${item.label}</p>
+                    <p class="text-[10px] text-on-surface-variant">${item.type}${item.sub ? ' · ' + item.sub : ''}</p>
+                </div>
+                <span class="material-symbols-outlined text-outline text-sm">arrow_forward</span>
+            `;
+            div.addEventListener('click', () => {
+                switchTab(item.tab);
+                searchPanel.classList.add('hidden');
+                globalSearch.value = '';
+            });
+            searchResultsList.appendChild(div);
+        });
+    }
+
+    if (globalSearch) {
+        globalSearch.addEventListener('input', (e) => renderSearchResults(e.target.value));
+        globalSearch.addEventListener('focus', (e) => { if (e.target.value.length >= 2) renderSearchResults(e.target.value); });
+    }
+    if (closeSearchBtn) {
+        closeSearchBtn.addEventListener('click', () => {
+            searchPanel && searchPanel.classList.add('hidden');
+            if (globalSearch) globalSearch.value = '';
+        });
+    }
+
+    // 16f. Close dropdowns when clicking outside
+    document.addEventListener('click', (e) => {
+        if (notifPanel && !notifBell?.contains(e.target)) notifPanel.classList.add('hidden');
+        if (profileDropdown && !profileWidget?.contains(e.target)) profileDropdown.classList.add('hidden');
+        if (searchPanel && !globalSearch?.contains(e.target) && !searchPanel.contains(e.target)) searchPanel.classList.add('hidden');
+    });
+
+    // 16g. Escape key closes all panels
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            notifPanel && notifPanel.classList.add('hidden');
+            profileDropdown && profileDropdown.classList.add('hidden');
+            searchPanel && searchPanel.classList.add('hidden');
+            closeHistoricalModal();
+        }
+    });
+
 });
