@@ -243,7 +243,7 @@
     <div id="app-shell" class="min-h-screen flex bg-[#F8FAFC]">
         
         <!-- SIDE NAVIGATION BAR -->
-        <aside id="sidebar" class="sidebar-transition fixed left-0 top-0 h-full w-[280px] bg-[#0F172A] shadow-md flex flex-col py-6 z-50">
+        <aside id="sidebar" class="sidebar-transition fixed left-0 top-0 h-screen w-[280px] bg-[#0F172A] shadow-md flex flex-col py-6 z-50 overflow-y-auto custom-scrollbar">
             <!-- Logo Header -->
             <div class="px-6 mb-8 flex items-center justify-between sidebar-logo-container">
                 <div class="flex items-center gap-3">
@@ -363,16 +363,12 @@
                         <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
                         <input id="global-search" class="w-full bg-surface-container-low/50 border-none rounded-lg pl-10 pr-4 py-2 text-body-md focus:ring-2 focus:ring-primary" placeholder="Search facilities, metrics, or logs..." type="text"/>
                     </div>
-                    <nav id="header-breadcrumbs" class="hidden lg:flex gap-6 ml-8">
-                        <span id="breadcrumb-parent" class="text-on-surface-variant font-body-md uppercase tracking-wider text-label-sm">Home /</span>
-                        <span id="breadcrumb-active" class="text-primary font-title-md border-b-2 border-primary pb-1">Dashboard</span>
-                    </nav>
                 </div>
                 
                 <!-- Quick tools and profile -->
                 <div class="flex items-center gap-4">
-                    <button id="add-data-header-btn" class="bg-[#16A34A] text-white px-4 py-2 rounded-lg font-title-md flex items-center gap-2 hover:brightness-110 transition-all shadow-sm">
-                        <span class="material-symbols-outlined text-base">add</span>
+                    <button id="add-data-header-btn" class="bg-[#16A34A] text-white px-3 py-1.5 rounded-lg text-sm font-semibold flex items-center gap-1.5 hover:brightness-110 transition-all shadow-sm">
+                        <span class="material-symbols-outlined text-sm">add</span>
                         <span>Add ESG Data</span>
                     </button>
                     
@@ -403,6 +399,14 @@
                      TAB A: EXECUTIVE ESG DASHBOARD
                      ========================================== -->
                 <section id="dashboard-view" class="tab-content active space-y-8">
+                    <!-- Page Header -->
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <h2 class="text-headline-lg font-headline-lg text-on-surface font-bold">Executive Dashboard</h2>
+                            <p class="text-body-lg text-on-surface-variant mt-1">Overview of corporate sustainability trends, ESG scores, and telemetry.</p>
+                        </div>
+                    </div>
+
                     <!-- KPI Score and Goal Card -->
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         <div class="lg:col-span-2 bg-white/90 backdrop-blur-sm rounded-xl p-8 custom-shadow flex flex-col md:flex-row items-center gap-10 border border-outline-variant/35">
@@ -639,6 +643,14 @@
                      TAB B: SUSTAINABILITY MONITORING
                      ========================================== -->
                 <section id="sustainability-view" class="tab-content space-y-8 hidden">
+                    <!-- Page Header -->
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <h2 class="text-headline-lg font-headline-lg text-on-surface font-bold">Sustainability Monitoring</h2>
+                            <p class="text-body-lg text-on-surface-variant mt-1">Active tracking and telemetry logs for environmental resource usage.</p>
+                        </div>
+                    </div>
+
                     <!-- Bento Metrics Grid -->
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                         <!-- Total emissions bento card -->
