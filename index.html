@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="en">
 
 <head>
@@ -357,54 +357,85 @@
                 <!-- Sidebar Widgets (Gamification & Top Contributors) -->
                 <div class="px-3 mb-6 space-y-6 sidebar-text">
                     <!-- XP Level Card -->
-                    <div class="bg-[#1E293B] rounded-xl p-4 border border-slate-800">
+                    <div class="bg-[#1E293B] rounded-xl p-4 border border-slate-800 hover:border-slate-700 transition-all duration-300 group">
                         <div class="flex items-center gap-3 mb-3">
-                            <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                                <span class="material-symbols-outlined text-primary"
+                            <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                <span class="material-symbols-outlined text-primary text-xl"
                                     style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
                             </div>
                             <div>
-                                <p class="text-base font-bold text-white tracking-wide">Eco-Champion</p>
-                                <p class="text-xs text-slate-400">2,450 XP</p>
+                                <p class="text-sm font-bold text-white tracking-wide">Eco-Champion</p>
+                                <p class="text-[11px] text-slate-400 font-medium">2,450 XP (Level 12)</p>
                             </div>
                         </div>
-                        <div class="space-y-1.5">
-                            <div class="flex justify-between text-[10px] text-slate-400 uppercase font-bold">
-                                <span>Level 12</span>
-                                <span class="text-primary">Rank: #42</span>
-                                <span>80%</span>
+                        <div class="space-y-1.5 mb-3">
+                            <div class="flex justify-between text-[10px] text-slate-400 uppercase font-bold tracking-wider">
+                                <span>Level Progress</span>
+                                <span class="text-primary font-bold">80%</span>
                             </div>
                             <div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
-                                <div class="h-full bg-primary w-[80%] rounded-full"></div>
+                                <div class="h-full bg-primary w-[80%] rounded-full shadow-[0_0_8px_rgba(4,120,87,0.5)]"></div>
                             </div>
+                        </div>
+                        <div class="flex justify-between items-center text-[11px] font-bold text-slate-400 border-t border-slate-800 pt-2.5">
+                            <span>Global Rank: <span class="text-white font-extrabold">#42</span></span>
+                            <button id="sidebar-open-leaderboard-btn" class="text-primary hover:text-white flex items-center gap-0.5 transition-colors">
+                                Leaderboard <span class="material-symbols-outlined text-[10px] font-bold">arrow_forward</span>
+                            </button>
                         </div>
                     </div>
 
                     <!-- Top Contributors -->
                     <div class="space-y-3">
                         <div class="flex justify-between items-center mb-1">
-                            <h4 class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Top Contributors
-                            </h4>
-                            <span class="material-symbols-outlined text-slate-400 text-sm">leaderboard</span>
+                            <h4 class="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest">Top Contributors</h4>
+                            <button id="leaderboard-icon-btn" class="text-slate-400 hover:text-white transition-colors" title="Open Leaderboard">
+                                <span class="material-symbols-outlined text-base">leaderboard</span>
+                            </button>
                         </div>
-                        <div class="space-y-3">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center gap-2">
-                                    <div
-                                        class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center text-[10px] font-bold text-blue-700">
-                                        Sarah J.</div>
-                                    <span class="text-xs text-white">Sarah J.</span>
+                        <div class="space-y-2">
+                            <!-- 1. Sarah J -->
+                            <div class="flex items-center justify-between p-1.5 rounded-lg hover:bg-slate-800/40 transition-colors">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-[10px] font-bold border border-amber-500/30">1</div>
+                                    <span class="text-xs font-semibold text-white">Sarah Jenkins</span>
                                 </div>
-                                <span class="text-[10px] font-bold text-primary">3,120 XP</span>
+                                <span class="text-[10px] font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded-full">3,120 XP</span>
                             </div>
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center gap-2">
-                                    <div
-                                        class="w-6 h-6 rounded-full bg-slate-700 overflow-hidden flex items-center justify-center text-[10px] font-bold text-white">
-                                        Marcus K.</div>
-                                    <span class="text-xs text-white">Marcus K.</span>
+                            <!-- 2. Marcus K -->
+                            <div class="flex items-center justify-between p-1.5 rounded-lg hover:bg-slate-800/40 transition-colors">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-6 h-6 rounded-full bg-slate-400/20 text-slate-300 flex items-center justify-center text-[10px] font-bold border border-slate-400/30">2</div>
+                                    <span class="text-xs font-semibold text-white">Marcus Kim</span>
                                 </div>
-                                <span class="text-[10px] font-bold text-primary">2,890 XP</span>
+                                <span class="text-[10px] font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded-full">2,890 XP</span>
+                            </div>
+                            <!-- 3. Priya D -->
+                            <div class="flex items-center justify-between p-1.5 rounded-lg hover:bg-slate-800/40 transition-colors">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-6 h-6 rounded-full bg-amber-700/20 text-amber-600 flex items-center justify-center text-[10px] font-bold border border-amber-700/30">3</div>
+                                    <span class="text-xs font-semibold text-white">Priya Desai</span>
+                                </div>
+                                <span class="text-[10px] font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded-full">2,750 XP</span>
+                            </div>
+                            <!-- 4. Janice D -->
+                            <div class="flex items-center justify-between p-1.5 rounded-lg hover:bg-slate-800/40 transition-colors">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-6 h-6 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-[10px] font-bold">4</div>
+                                    <span class="text-xs font-semibold text-slate-300">Janice Doe</span>
+                                </div>
+                                <span class="text-[10px] font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded-full">2,600 XP</span>
+                            </div>
+                            <!-- 5. Alex R (You) -->
+                            <div class="flex items-center justify-between p-1.5 rounded-lg bg-primary/5 border border-primary/20 rounded-lg">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center text-[10px] font-extrabold border border-primary/30">5</div>
+                                    <span class="text-xs font-bold text-white flex items-center gap-1">
+                                        Alex River
+                                        <span class="text-[8px] bg-primary text-white px-1 rounded">You</span>
+                                    </span>
+                                </div>
+                                <span class="text-[10px] font-bold text-white bg-primary px-1.5 py-0.5 rounded-full">2,450 XP</span>
                             </div>
                         </div>
                     </div>
@@ -2574,45 +2605,454 @@
                 <!-- ==========================================
                      TAB E: SETTINGS
                      ========================================== -->
-                <section id="settings-view" class="tab-content space-y-8 hidden">
-                    <div class="flex flex-col items-center text-center">
-                        <h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">Platform Settings</h2>
-                        <p class="text-body-lg text-on-surface-variant mt-1">Configure reporting thresholds, alert
-                            parameters, and general account attributes.</p>
+                <section id="settings-view" class="tab-content hidden">
+                    <!-- Breadcrumb -->
+                    <div class="flex items-center gap-2 text-xs text-on-surface-variant mb-1 font-semibold">
+                        <span>Platform</span>
+                        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+                        <span class="text-on-surface font-bold">Settings</span>
                     </div>
-                    <div class="bg-white rounded-xl shadow-sm border border-outline-variant p-8 max-w-3xl">
-                        <form id="settings-form" class="space-y-6">
-                            <div>
-                                <label class="block text-title-md font-bold text-on-surface mb-2">Reporting Company
-                                    Name</label>
-                                <input
-                                    class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:ring-2 focus:ring-primary focus:border-primary"
-                                    type="text" value="EcoSphere Solutions Corp." />
+                    <h2 class="text-xl font-bold text-on-surface mb-6">Platform Settings</h2>
+
+                    <!-- Two Column Layout: Sub-nav + Content -->
+                    <div class="flex gap-6 items-start">
+
+                        <!-- Left Sub-nav -->
+                        <div class="w-56 shrink-0 bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+                            <nav id="settings-subnav" class="divide-y divide-outline-variant/30">
+                                <button data-settings-panel="general" class="settings-nav-btn w-full flex items-center gap-3 px-4 py-3 text-sm font-semibold text-primary bg-primary/5 border-l-4 border-primary hover:bg-primary/10 transition-colors text-left">
+                                    <span class="material-symbols-outlined text-[18px]" style="font-variation-settings:'FILL' 1;">settings</span> General
+                                </button>
+                                <button data-settings-panel="theme" class="settings-nav-btn w-full flex items-center gap-3 px-4 py-3 text-sm font-semibold text-on-surface-variant border-l-4 border-transparent hover:bg-surface-container-low hover:text-on-surface transition-colors text-left">
+                                    <span class="material-symbols-outlined text-[18px]">palette</span> Theme
+                                </button>
+                                <button data-settings-panel="notifications" class="settings-nav-btn w-full flex items-center gap-3 px-4 py-3 text-sm font-semibold text-on-surface-variant border-l-4 border-transparent hover:bg-surface-container-low hover:text-on-surface transition-colors text-left">
+                                    <span class="material-symbols-outlined text-[18px]">notifications</span> Notifications
+                                </button>
+                                <button data-settings-panel="language" class="settings-nav-btn w-full flex items-center gap-3 px-4 py-3 text-sm font-semibold text-on-surface-variant border-l-4 border-transparent hover:bg-surface-container-low hover:text-on-surface transition-colors text-left">
+                                    <span class="material-symbols-outlined text-[18px]">translate</span> Language
+                                </button>
+                                <button data-settings-panel="security" class="settings-nav-btn w-full flex items-center gap-3 px-4 py-3 text-sm font-semibold text-on-surface-variant border-l-4 border-transparent hover:bg-surface-container-low hover:text-on-surface transition-colors text-left">
+                                    <span class="material-symbols-outlined text-[18px]">shield</span> Security
+                                </button>
+                                <button data-settings-panel="apikeys" class="settings-nav-btn w-full flex items-center gap-3 px-4 py-3 text-sm font-semibold text-on-surface-variant border-l-4 border-transparent hover:bg-surface-container-low hover:text-on-surface transition-colors text-left">
+                                    <span class="material-symbols-outlined text-[18px]">vpn_key</span> API Keys
+                                </button>
+                                <button data-settings-panel="backup" class="settings-nav-btn w-full flex items-center gap-3 px-4 py-3 text-sm font-semibold text-on-surface-variant border-l-4 border-transparent hover:bg-surface-container-low hover:text-on-surface transition-colors text-left">
+                                    <span class="material-symbols-outlined text-[18px]">backup</span> Backup
+                                </button>
+                            </nav>
+                        </div>
+
+                        <!-- Right Content Panels -->
+                        <div class="flex-1 min-w-0">
+
+                            <!-- GENERAL PANEL -->
+                            <div id="settings-panel-general" class="settings-panel bg-white rounded-xl border border-outline-variant shadow-sm p-8">
+                                <h3 class="text-base font-bold text-on-surface">General Settings</h3>
+                                <p class="text-xs text-on-surface-variant mt-0.5 mb-6">Manage your organization's global identity and regional preferences.</p>
+                                <form id="settings-general-form" class="space-y-5">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                        <div>
+                                            <label class="block text-[10px] font-extrabold text-on-surface-variant uppercase tracking-widest mb-2">Company Name</label>
+                                            <input type="text" value="EcoSphere Solutions Corp."
+                                                class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none transition-all" />
+                                        </div>
+                                        <div>
+                                            <label class="block text-[10px] font-extrabold text-on-surface-variant uppercase tracking-widest mb-2">Timezone</label>
+                                            <select class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:outline-none">
+                                                <option selected>(GMT-08:00) Pacific Time</option>
+                                                <option>(GMT-05:00) Eastern Time</option>
+                                                <option>(GMT+00:00) UTC</option>
+                                                <option>(GMT+05:30) India Standard Time</option>
+                                                <option>(GMT+08:00) Singapore Time</option>
+                                                <option>(GMT+09:00) Japan Standard Time</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                        <div>
+                                            <label class="block text-[10px] font-extrabold text-on-surface-variant uppercase tracking-widest mb-2">Primary Currency</label>
+                                            <select class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:outline-none">
+                                                <option selected>USD - US Dollar</option>
+                                                <option>EUR - Euro</option>
+                                                <option>GBP - British Pound</option>
+                                                <option>INR - Indian Rupee</option>
+                                                <option>SGD - Singapore Dollar</option>
+                                                <option>JPY - Japanese Yen</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label class="block text-[10px] font-extrabold text-on-surface-variant uppercase tracking-widest mb-2">Primary Language</label>
+                                            <select class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:outline-none">
+                                                <option selected>English (US)</option>
+                                                <option>English (UK)</option>
+                                                <option>French</option>
+                                                <option>German</option>
+                                                <option>Spanish</option>
+                                                <option>Hindi</option>
+                                                <option>Japanese</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                        <div>
+                                            <label class="block text-[10px] font-extrabold text-on-surface-variant uppercase tracking-widest mb-2">Net Zero Target Year</label>
+                                            <input type="number" value="2030"
+                                                class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:outline-none" />
+                                        </div>
+                                        <div>
+                                            <label class="block text-[10px] font-extrabold text-on-surface-variant uppercase tracking-widest mb-2">Baseline GHG Emissions (tCO₂e)</label>
+                                            <input type="number" value="52000"
+                                                class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:outline-none" />
+                                        </div>
+                                    </div>
+                                    <div class="pt-2 flex justify-end">
+                                        <button type="submit" class="px-6 py-2.5 bg-primary text-white rounded-lg text-sm font-bold hover:brightness-110 transition-all shadow-sm">
+                                            Save General Settings
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label class="block text-title-md font-bold text-on-surface mb-2">Net Zero Target
-                                        Year</label>
-                                    <input
-                                        class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:ring-2 focus:ring-primary"
-                                        type="number" value="2030" />
+
+                            <!-- THEME PANEL -->
+                            <div id="settings-panel-theme" class="settings-panel hidden bg-white rounded-xl border border-outline-variant shadow-sm p-8">
+                                <h3 class="text-base font-bold text-on-surface">Theme & Appearance</h3>
+                                <p class="text-xs text-on-surface-variant mt-0.5 mb-6">Customize the visual experience of your EcoSphere dashboard.</p>
+                                <div class="space-y-6">
+                                    <div>
+                                        <label class="block text-[10px] font-extrabold text-on-surface-variant uppercase tracking-widest mb-3">Color Mode</label>
+                                        <div class="flex gap-4">
+                                            <label class="flex flex-col items-center gap-2 cursor-pointer group">
+                                                <div class="w-20 h-14 rounded-xl bg-white border-2 border-primary shadow-sm flex items-center justify-center">
+                                                    <span class="material-symbols-outlined text-slate-800">light_mode</span>
+                                                </div>
+                                                <div class="flex items-center gap-1.5">
+                                                    <input type="radio" name="theme-mode" value="light" checked class="text-primary focus:ring-primary h-3.5 w-3.5" />
+                                                    <span class="text-xs font-semibold">Light</span>
+                                                </div>
+                                            </label>
+                                            <label class="flex flex-col items-center gap-2 cursor-pointer group">
+                                                <div class="w-20 h-14 rounded-xl bg-slate-800 border-2 border-transparent shadow-sm flex items-center justify-center">
+                                                    <span class="material-symbols-outlined text-white">dark_mode</span>
+                                                </div>
+                                                <div class="flex items-center gap-1.5">
+                                                    <input type="radio" name="theme-mode" value="dark" class="text-primary focus:ring-primary h-3.5 w-3.5" />
+                                                    <span class="text-xs font-semibold">Dark</span>
+                                                </div>
+                                            </label>
+                                            <label class="flex flex-col items-center gap-2 cursor-pointer group">
+                                                <div class="w-20 h-14 rounded-xl bg-gradient-to-br from-white to-slate-700 border-2 border-transparent shadow-sm flex items-center justify-center">
+                                                    <span class="material-symbols-outlined text-slate-500">contrast</span>
+                                                </div>
+                                                <div class="flex items-center gap-1.5">
+                                                    <input type="radio" name="theme-mode" value="system" class="text-primary focus:ring-primary h-3.5 w-3.5" />
+                                                    <span class="text-xs font-semibold">System</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-extrabold text-on-surface-variant uppercase tracking-widest mb-3">Accent Color</label>
+                                        <div class="flex gap-3">
+                                            <button class="w-8 h-8 rounded-full bg-[#047857] ring-2 ring-offset-2 ring-[#047857] transition-transform hover:scale-110" title="EcoGreen"></button>
+                                            <button class="w-8 h-8 rounded-full bg-[#1d4ed8] transition-transform hover:scale-110" title="Blue"></button>
+                                            <button class="w-8 h-8 rounded-full bg-[#7c3aed] transition-transform hover:scale-110" title="Violet"></button>
+                                            <button class="w-8 h-8 rounded-full bg-[#be185d] transition-transform hover:scale-110" title="Rose"></button>
+                                            <button class="w-8 h-8 rounded-full bg-[#b45309] transition-transform hover:scale-110" title="Amber"></button>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-extrabold text-on-surface-variant uppercase tracking-widest mb-3">Sidebar Density</label>
+                                        <select class="w-56 bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:outline-none">
+                                            <option>Comfortable (Default)</option>
+                                            <option>Compact</option>
+                                            <option>Spacious</option>
+                                        </select>
+                                    </div>
+                                    <div class="pt-2 flex justify-end">
+                                        <button type="button" id="save-theme-btn" class="px-6 py-2.5 bg-primary text-white rounded-lg text-sm font-bold hover:brightness-110 transition-all shadow-sm">
+                                            Save Theme Settings
+                                        </button>
+                                    </div>
                                 </div>
-                                <div>
-                                    <label class="block text-title-md font-bold text-on-surface mb-2">Baseline GHG
-                                        emissions (tCO2e)</label>
-                                    <input
-                                        class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:ring-2 focus:ring-primary"
-                                        type="number" value="52000" />
+                            </div>
+
+                            <!-- NOTIFICATIONS PANEL -->
+                            <div id="settings-panel-notifications" class="settings-panel hidden bg-white rounded-xl border border-outline-variant shadow-sm p-8">
+                                <h3 class="text-base font-bold text-on-surface">Notification Preferences</h3>
+                                <p class="text-xs text-on-surface-variant mt-0.5 mb-6">Control which alerts and reports get delivered to you and how.</p>
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between py-3 border-b border-outline-variant/40">
+                                        <div>
+                                            <p class="text-sm font-semibold text-on-surface">ESG Score Updates</p>
+                                            <p class="text-xs text-on-surface-variant">When your organization's score changes by ±5 points</p>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" checked class="sr-only peer" />
+                                            <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                        </label>
+                                    </div>
+                                    <div class="flex items-center justify-between py-3 border-b border-outline-variant/40">
+                                        <div>
+                                            <p class="text-sm font-semibold text-on-surface">Compliance Deadline Reminders</p>
+                                            <p class="text-xs text-on-surface-variant">7 days and 1 day before submission deadlines</p>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" checked class="sr-only peer" />
+                                            <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                        </label>
+                                    </div>
+                                    <div class="flex items-center justify-between py-3 border-b border-outline-variant/40">
+                                        <div>
+                                            <p class="text-sm font-semibold text-on-surface">Report Generation Complete</p>
+                                            <p class="text-xs text-on-surface-variant">When a PDF or XLSX report finishes processing</p>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" checked class="sr-only peer" />
+                                            <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                        </label>
+                                    </div>
+                                    <div class="flex items-center justify-between py-3 border-b border-outline-variant/40">
+                                        <div>
+                                            <p class="text-sm font-semibold text-on-surface">Gamification Milestones</p>
+                                            <p class="text-xs text-on-surface-variant">When you or your team earns a new badge</p>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" class="sr-only peer" />
+                                            <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                        </label>
+                                    </div>
+                                    <div class="flex items-center justify-between py-3">
+                                        <div>
+                                            <p class="text-sm font-semibold text-on-surface">Weekly ESG Summary Email</p>
+                                            <p class="text-xs text-on-surface-variant">Digest of key metrics delivered every Monday</p>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" checked class="sr-only peer" />
+                                            <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                        </label>
+                                    </div>
+                                    <div class="pt-2 flex justify-end">
+                                        <button type="button" id="save-notif-btn" class="px-6 py-2.5 bg-primary text-white rounded-lg text-sm font-bold hover:brightness-110 transition-all shadow-sm">
+                                            Save Notification Preferences
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="pt-4">
-                                <button type="submit"
-                                    class="px-6 py-3 bg-primary text-white rounded-lg font-title-md hover:brightness-110 transition-all shadow-sm font-bold">Save
-                                    Configuration</button>
+
+                            <!-- LANGUAGE PANEL -->
+                            <div id="settings-panel-language" class="settings-panel hidden bg-white rounded-xl border border-outline-variant shadow-sm p-8">
+                                <h3 class="text-base font-bold text-on-surface">Language & Region</h3>
+                                <p class="text-xs text-on-surface-variant mt-0.5 mb-6">Set display language, date formats, and regional number formats.</p>
+                                <div class="space-y-5">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                        <div>
+                                            <label class="block text-[10px] font-extrabold text-on-surface-variant uppercase tracking-widest mb-2">Display Language</label>
+                                            <select class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:outline-none">
+                                                <option selected>English (US)</option>
+                                                <option>English (UK)</option>
+                                                <option>Français</option>
+                                                <option>Deutsch</option>
+                                                <option>Español</option>
+                                                <option>हिंदी</option>
+                                                <option>日本語</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label class="block text-[10px] font-extrabold text-on-surface-variant uppercase tracking-widest mb-2">Date Format</label>
+                                            <select class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:outline-none">
+                                                <option selected>MM/DD/YYYY</option>
+                                                <option>DD/MM/YYYY</option>
+                                                <option>YYYY-MM-DD</option>
+                                                <option>DD MMM YYYY</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                        <div>
+                                            <label class="block text-[10px] font-extrabold text-on-surface-variant uppercase tracking-widest mb-2">Number Format</label>
+                                            <select class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:outline-none">
+                                                <option selected>1,000.00 (US)</option>
+                                                <option>1.000,00 (EU)</option>
+                                                <option>1 000,00 (French)</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label class="block text-[10px] font-extrabold text-on-surface-variant uppercase tracking-widest mb-2">First Day of Week</label>
+                                            <select class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:outline-none">
+                                                <option selected>Sunday</option>
+                                                <option>Monday</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="pt-2 flex justify-end">
+                                        <button type="button" id="save-lang-btn" class="px-6 py-2.5 bg-primary text-white rounded-lg text-sm font-bold hover:brightness-110 transition-all shadow-sm">
+                                            Save Language Settings
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                        </form>
+
+                            <!-- SECURITY PANEL -->
+                            <div id="settings-panel-security" class="settings-panel hidden bg-white rounded-xl border border-outline-variant shadow-sm p-8">
+                                <h3 class="text-base font-bold text-on-surface">Security Settings</h3>
+                                <p class="text-xs text-on-surface-variant mt-0.5 mb-6">Manage account access, password policies, and two-factor authentication.</p>
+                                <div class="space-y-5">
+                                    <div class="flex items-center justify-between py-3 border border-outline-variant rounded-xl px-4 bg-surface-container-low/30">
+                                        <div class="flex items-center gap-3">
+                                            <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">verified_user</span>
+                                            <div>
+                                                <p class="text-sm font-semibold text-on-surface">Two-Factor Authentication</p>
+                                                <p class="text-xs text-on-surface-variant">Add an extra layer of login security</p>
+                                            </div>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" checked class="sr-only peer" />
+                                            <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                        </label>
+                                    </div>
+                                    <div class="space-y-4">
+                                        <label class="block text-[10px] font-extrabold text-on-surface-variant uppercase tracking-widest">Change Password</label>
+                                        <input type="password" placeholder="Current password"
+                                            class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:outline-none" />
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <input type="password" placeholder="New password"
+                                                class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:outline-none" />
+                                            <input type="password" placeholder="Confirm new password"
+                                                class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:outline-none" />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-extrabold text-on-surface-variant uppercase tracking-widest mb-2">Session Timeout</label>
+                                        <select class="w-56 bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:outline-none">
+                                            <option>15 minutes</option>
+                                            <option selected>30 minutes</option>
+                                            <option>1 hour</option>
+                                            <option>4 hours</option>
+                                            <option>Never</option>
+                                        </select>
+                                    </div>
+                                    <div class="pt-2 flex justify-end gap-3">
+                                        <button type="button" class="px-5 py-2.5 border border-outline-variant rounded-lg text-sm font-semibold text-on-surface hover:bg-surface-container-low transition-colors">
+                                            View Login History
+                                        </button>
+                                        <button type="button" id="save-security-btn" class="px-6 py-2.5 bg-primary text-white rounded-lg text-sm font-bold hover:brightness-110 transition-all shadow-sm">
+                                            Save Security Settings
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- API KEYS PANEL -->
+                            <div id="settings-panel-apikeys" class="settings-panel hidden bg-white rounded-xl border border-outline-variant shadow-sm p-8">
+                                <h3 class="text-base font-bold text-on-surface">API Keys</h3>
+                                <p class="text-xs text-on-surface-variant mt-0.5 mb-6">Manage access tokens for third-party integrations and external reporting tools.</p>
+                                <div class="space-y-4">
+                                    <!-- Key 1 -->
+                                    <div class="border border-outline-variant rounded-xl p-4 bg-surface-container-low/20 flex items-center justify-between gap-4">
+                                        <div class="flex items-center gap-3 flex-1 min-w-0">
+                                            <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                                                <span class="material-symbols-outlined text-primary text-base">integration_instructions</span>
+                                            </div>
+                                            <div class="min-w-0">
+                                                <p class="text-sm font-bold text-on-surface">Production API Key</p>
+                                                <p class="text-xs text-on-surface-variant font-mono truncate">esg_live_sk_9x2r...••••••</p>
+                                            </div>
+                                        </div>
+                                        <span class="px-2 py-0.5 text-[10px] font-bold rounded-full bg-green-100 text-green-700 shrink-0">Active</span>
+                                        <div class="flex gap-2 shrink-0">
+                                            <button class="p-1.5 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors" title="Copy Key"><span class="material-symbols-outlined text-base">content_copy</span></button>
+                                            <button class="p-1.5 rounded-lg hover:bg-red-50 text-on-surface-variant hover:text-red-500 transition-colors" title="Revoke Key"><span class="material-symbols-outlined text-base">delete</span></button>
+                                        </div>
+                                    </div>
+                                    <!-- Key 2 -->
+                                    <div class="border border-outline-variant rounded-xl p-4 bg-surface-container-low/20 flex items-center justify-between gap-4">
+                                        <div class="flex items-center gap-3 flex-1 min-w-0">
+                                            <div class="w-9 h-9 rounded-lg bg-amber-100 flex items-center justify-center shrink-0">
+                                                <span class="material-symbols-outlined text-amber-600 text-base">code</span>
+                                            </div>
+                                            <div class="min-w-0">
+                                                <p class="text-sm font-bold text-on-surface">Staging API Key</p>
+                                                <p class="text-xs text-on-surface-variant font-mono truncate">esg_test_sk_4m7p...••••••</p>
+                                            </div>
+                                        </div>
+                                        <span class="px-2 py-0.5 text-[10px] font-bold rounded-full bg-amber-100 text-amber-700 shrink-0">Staging</span>
+                                        <div class="flex gap-2 shrink-0">
+                                            <button class="p-1.5 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors" title="Copy Key"><span class="material-symbols-outlined text-base">content_copy</span></button>
+                                            <button class="p-1.5 rounded-lg hover:bg-red-50 text-on-surface-variant hover:text-red-500 transition-colors" title="Revoke Key"><span class="material-symbols-outlined text-base">delete</span></button>
+                                        </div>
+                                    </div>
+                                    <!-- Generate new key -->
+                                    <button id="generate-api-key-btn" class="w-full flex items-center justify-center gap-2 py-2.5 border-2 border-dashed border-outline-variant rounded-xl text-sm font-semibold text-on-surface-variant hover:border-primary hover:text-primary transition-all">
+                                        <span class="material-symbols-outlined text-base">add_circle</span> Generate New API Key
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- BACKUP PANEL -->
+                            <div id="settings-panel-backup" class="settings-panel hidden bg-white rounded-xl border border-outline-variant shadow-sm p-8">
+                                <h3 class="text-base font-bold text-on-surface">Backup & Data Export</h3>
+                                <p class="text-xs text-on-surface-variant mt-0.5 mb-6">Export your full ESG dataset or restore from a previous backup snapshot.</p>
+                                <div class="space-y-4">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div class="border border-outline-variant rounded-xl p-5 hover:shadow-sm transition-shadow">
+                                            <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center mb-3">
+                                                <span class="material-symbols-outlined text-blue-600" style="font-variation-settings:'FILL' 1;">cloud_download</span>
+                                            </div>
+                                            <h4 class="text-sm font-bold text-on-surface mb-1">Full Data Export</h4>
+                                            <p class="text-xs text-on-surface-variant mb-4">Download all ESG records, reports, and audit logs as a JSON archive.</p>
+                                            <button class="px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-bold hover:bg-blue-700 transition-colors flex items-center gap-1">
+                                                <span class="material-symbols-outlined text-sm">download</span> Export Archive
+                                            </button>
+                                        </div>
+                                        <div class="border border-outline-variant rounded-xl p-5 hover:shadow-sm transition-shadow">
+                                            <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center mb-3">
+                                                <span class="material-symbols-outlined text-green-600" style="font-variation-settings:'FILL' 1;">backup</span>
+                                            </div>
+                                            <h4 class="text-sm font-bold text-on-surface mb-1">Auto Backup</h4>
+                                            <p class="text-xs text-on-surface-variant mb-4">Automatic daily backups to secure cloud storage. Last backup: Today 03:00 AM.</p>
+                                            <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Enabled
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="border border-outline-variant rounded-xl p-5">
+                                        <h4 class="text-sm font-bold text-on-surface mb-3">Previous Backup Snapshots</h4>
+                                        <div class="space-y-2">
+                                            <div class="flex items-center justify-between py-2 border-b border-outline-variant/40 text-xs">
+                                                <span class="text-on-surface font-medium">backup_2024-07-11_03-00.json</span>
+                                                <div class="flex items-center gap-3">
+                                                    <span class="text-on-surface-variant">48.2 MB</span>
+                                                    <button class="text-primary hover:underline font-semibold">Restore</button>
+                                                    <button class="text-primary hover:underline font-semibold">Download</button>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center justify-between py-2 border-b border-outline-variant/40 text-xs">
+                                                <span class="text-on-surface font-medium">backup_2024-07-10_03-00.json</span>
+                                                <div class="flex items-center gap-3">
+                                                    <span class="text-on-surface-variant">47.9 MB</span>
+                                                    <button class="text-primary hover:underline font-semibold">Restore</button>
+                                                    <button class="text-primary hover:underline font-semibold">Download</button>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center justify-between py-2 text-xs">
+                                                <span class="text-on-surface font-medium">backup_2024-07-09_03-00.json</span>
+                                                <div class="flex items-center gap-3">
+                                                    <span class="text-on-surface-variant">47.1 MB</span>
+                                                    <button class="text-primary hover:underline font-semibold">Restore</button>
+                                                    <button class="text-primary hover:underline font-semibold">Download</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </section>
+
 
                 <!-- ==========================================
                      TAB ABOUT: ABOUT US
@@ -3229,6 +3669,346 @@
                         Data Point</button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         GAMIFICATION LEADERBOARD & BADGES MODAL
+         ========================================== -->
+    <div id="leaderboard-modal"
+        class="fixed inset-0 z-[105] flex items-center justify-center pointer-events-none opacity-0 transition-opacity duration-300">
+        <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" id="leaderboard-modal-backdrop"></div>
+        <div id="leaderboard-modal-panel"
+            class="relative z-10 bg-white rounded-2xl shadow-2xl w-full max-w-3xl mx-6 max-h-[85vh] flex flex-col scale-95 transition-transform duration-300">
+            
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between p-6 border-b border-outline-variant">
+                <div>
+                    <h3 class="text-lg font-bold text-on-surface flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary text-xl">emoji_events</span>
+                        EcoSphere Gamification Hub
+                    </h3>
+                    <p class="text-xs text-on-surface-variant mt-0.5">Engage in corporate sustainability milestones, earn badges, and rank up.</p>
+                </div>
+                <button id="close-leaderboard-modal-btn" class="p-2 rounded-lg hover:bg-surface-container-low text-on-surface-variant hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <!-- Custom Modal Tabs -->
+            <div class="flex border-b border-outline-variant/60 bg-surface-container-low/30 px-6">
+                <button id="modal-tab-leaderboard-btn" class="px-5 py-3 border-b-2 border-primary text-primary font-bold text-xs flex items-center gap-2 focus:outline-none">
+                    <span class="material-symbols-outlined text-sm">leaderboard</span> Leaderboard
+                </button>
+                <button id="modal-tab-badges-btn" class="px-5 py-3 border-b-2 border-transparent text-on-surface-variant font-semibold text-xs flex items-center gap-2 hover:text-on-surface focus:outline-none">
+                    <span class="material-symbols-outlined text-sm">workspace_premium</span> Badges &amp; Achievements
+                </button>
+            </div>
+
+            <!-- Modal Content Area -->
+            <div class="overflow-y-auto flex-1 p-6 custom-scrollbar">
+                
+                <!-- TAB 1: LEADERBOARD CONTENT -->
+                <div id="leaderboard-tab-content" class="space-y-6">
+                    <!-- User Stats Summary -->
+                    <div class="grid grid-cols-3 divide-x divide-outline-variant/40 border border-outline-variant rounded-xl p-4 bg-primary/5">
+                        <div class="text-center">
+                            <span class="text-xs text-on-surface-variant font-bold uppercase tracking-wider block">Your Rank</span>
+                            <span class="text-2xl font-extrabold text-primary mt-1 block">#5 <span class="text-[10px] text-on-surface-variant font-normal">/ 142</span></span>
+                        </div>
+                        <div class="text-center">
+                            <span class="text-xs text-on-surface-variant font-bold uppercase tracking-wider block">Total Points</span>
+                            <span class="text-2xl font-extrabold text-on-surface mt-1 block">2,450 <span class="text-xs text-on-surface-variant font-bold">XP</span></span>
+                        </div>
+                        <div class="text-center">
+                            <span class="text-xs text-on-surface-variant font-bold uppercase tracking-wider block">Badges Earned</span>
+                            <span class="text-2xl font-extrabold text-on-surface mt-1 block flex items-center justify-center gap-1">
+                                4 <span class="material-symbols-outlined text-amber-500 text-sm" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Search Bar & Filters -->
+                    <div class="flex items-center gap-3">
+                        <div class="relative flex-1">
+                            <span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-sm">search</span>
+                            <input type="text" id="leaderboard-search-input" placeholder="Search contributors..." 
+                                class="w-full pl-9 pr-4 py-2 border border-outline-variant rounded-lg text-xs bg-surface-container-low focus:ring-2 focus:ring-primary focus:outline-none" />
+                        </div>
+                        <select id="leaderboard-filter-select" class="bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2 text-xs font-semibold focus:outline-none">
+                            <option value="all">All Departments</option>
+                            <option value="sustainability">Sustainability</option>
+                            <option value="compliance">Compliance</option>
+                            <option value="engineering">Engineering</option>
+                        </select>
+                    </div>
+
+                    <!-- Contributors List -->
+                    <div class="border border-outline-variant rounded-xl overflow-hidden divide-y divide-outline-variant/30">
+                        <!-- Headings -->
+                        <div class="grid grid-cols-12 bg-surface-container-low/40 p-3 text-[10px] font-extrabold text-on-surface-variant uppercase tracking-wider">
+                            <div class="col-span-2 text-center">Rank</div>
+                            <div class="col-span-5 pl-2">Contributor</div>
+                            <div class="col-span-2 text-center">Level</div>
+                            <div class="col-span-3 text-right pr-4">Total Score</div>
+                        </div>
+                        
+                        <!-- List Container -->
+                        <div id="leaderboard-list-container" class="divide-y divide-outline-variant/30">
+                            <!-- 1. Sarah Jenkins -->
+                            <div class="grid grid-cols-12 items-center p-3 hover:bg-surface-container-low/30 transition-colors" data-name="Sarah Jenkins" data-dept="sustainability">
+                                <div class="col-span-2 flex justify-center">
+                                    <span class="w-7 h-7 rounded-full bg-amber-150 text-amber-700 flex items-center justify-center font-bold text-xs ring-2 ring-amber-400/30">1</span>
+                                </div>
+                                <div class="col-span-5 flex items-center gap-3 pl-2">
+                                    <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center font-bold text-xs text-primary">SJ</div>
+                                    <div>
+                                        <p class="text-xs font-bold text-on-surface">Sarah Jenkins</p>
+                                        <p class="text-[9px] text-on-surface-variant">Sustainability Lead · Dublin</p>
+                                    </div>
+                                </div>
+                                <div class="col-span-2 text-center text-xs font-bold text-on-surface-variant">Lvl 15</div>
+                                <div class="col-span-3 text-right text-xs font-extrabold text-primary pr-4">3,120 XP</div>
+                            </div>
+                            
+                            <!-- 2. Marcus Kim -->
+                            <div class="grid grid-cols-12 items-center p-3 hover:bg-surface-container-low/30 transition-colors" data-name="Marcus Kim" data-dept="sustainability">
+                                <div class="col-span-2 flex justify-center">
+                                    <span class="w-7 h-7 rounded-full bg-slate-150 text-slate-700 flex items-center justify-center font-bold text-xs ring-2 ring-slate-400/30">2</span>
+                                </div>
+                                <div class="col-span-5 flex items-center gap-3 pl-2">
+                                    <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center font-bold text-xs text-blue-600">MK</div>
+                                    <div>
+                                        <p class="text-xs font-bold text-on-surface">Marcus Kim</p>
+                                        <p class="text-[9px] text-on-surface-variant">Carbon Analyst · Seoul</p>
+                                    </div>
+                                </div>
+                                <div class="col-span-2 text-center text-xs font-bold text-on-surface-variant">Lvl 14</div>
+                                <div class="col-span-3 text-right text-xs font-extrabold text-primary pr-4">2,890 XP</div>
+                            </div>
+
+                            <!-- 3. Priya Desai -->
+                            <div class="grid grid-cols-12 items-center p-3 hover:bg-surface-container-low/30 transition-colors" data-name="Priya Desai" data-dept="engineering">
+                                <div class="col-span-2 flex justify-center">
+                                    <span class="w-7 h-7 rounded-full bg-amber-100/60 text-amber-800 flex items-center justify-center font-bold text-xs ring-2 ring-amber-600/20">3</span>
+                                </div>
+                                <div class="col-span-5 flex items-center gap-3 pl-2">
+                                    <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center font-bold text-xs text-purple-600">PD</div>
+                                    <div>
+                                        <p class="text-xs font-bold text-on-surface">Priya Desai</p>
+                                        <p class="text-[9px] text-on-surface-variant">Chief Tech Officer · Mumbai</p>
+                                    </div>
+                                </div>
+                                <div class="col-span-2 text-center text-xs font-bold text-on-surface-variant">Lvl 13</div>
+                                <div class="col-span-3 text-right text-xs font-extrabold text-primary pr-4">2,750 XP</div>
+                            </div>
+
+                            <!-- 4. Janice Doe -->
+                            <div class="grid grid-cols-12 items-center p-3 hover:bg-surface-container-low/30 transition-colors" data-name="Janice Doe" data-dept="sustainability">
+                                <div class="col-span-2 flex justify-center">
+                                    <span class="w-7 h-7 rounded-full bg-slate-100 text-on-surface-variant flex items-center justify-center font-bold text-xs">4</span>
+                                </div>
+                                <div class="col-span-5 flex items-center gap-3 pl-2">
+                                    <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center font-bold text-xs text-teal-600">JD</div>
+                                    <div>
+                                        <p class="text-xs font-bold text-on-surface">Janice Doe</p>
+                                        <p class="text-[9px] text-on-surface-variant">Eco Specialist · Berlin</p>
+                                    </div>
+                                </div>
+                                <div class="col-span-2 text-center text-xs font-bold text-on-surface-variant">Lvl 13</div>
+                                <div class="col-span-3 text-right text-xs font-extrabold text-primary pr-4">2,600 XP</div>
+                            </div>
+
+                            <!-- 5. Alex River (You) -->
+                            <div class="grid grid-cols-12 items-center p-3 bg-primary/5 hover:bg-primary/10 transition-colors" data-name="Alex River" data-dept="compliance">
+                                <div class="col-span-2 flex justify-center">
+                                    <span class="w-7 h-7 rounded-full bg-primary/20 text-primary flex items-center justify-center font-extrabold text-xs border border-primary/30">5</span>
+                                </div>
+                                <div class="col-span-5 flex items-center gap-3 pl-2">
+                                    <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center font-bold text-xs text-primary border border-primary/20">AR</div>
+                                    <div>
+                                        <p class="text-xs font-bold text-on-surface flex items-center gap-1">
+                                            Alex River
+                                            <span class="text-[8px] bg-primary text-white px-1.5 py-0.5 rounded font-extrabold">You</span>
+                                        </p>
+                                        <p class="text-[9px] text-on-surface-variant">Compliance Officer · SF</p>
+                                    </div>
+                                </div>
+                                <div class="col-span-2 text-center text-xs font-bold text-on-surface-variant">Lvl 12</div>
+                                <div class="col-span-3 text-right text-xs font-extrabold text-primary pr-4">2,450 XP</div>
+                            </div>
+
+                            <!-- 6. David Chen -->
+                            <div class="grid grid-cols-12 items-center p-3 hover:bg-surface-container-low/30 transition-colors" data-name="David Chen" data-dept="engineering">
+                                <div class="col-span-2 flex justify-center">
+                                    <span class="w-7 h-7 rounded-full bg-slate-100 text-on-surface-variant flex items-center justify-center font-bold text-xs">6</span>
+                                </div>
+                                <div class="col-span-5 flex items-center gap-3 pl-2">
+                                    <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center font-bold text-xs text-slate-500">DC</div>
+                                    <div>
+                                        <p class="text-xs font-bold text-on-surface">David Chen</p>
+                                        <p class="text-[9px] text-on-surface-variant">Facilities Director · Singapore</p>
+                                    </div>
+                                </div>
+                                <div class="col-span-2 text-center text-xs font-bold text-on-surface-variant">Lvl 11</div>
+                                <div class="col-span-3 text-right text-xs font-extrabold text-primary pr-4">2,200 XP</div>
+                            </div>
+
+                            <!-- 7. Emma Watson -->
+                            <div class="grid grid-cols-12 items-center p-3 hover:bg-surface-container-low/30 transition-colors" data-name="Emma Watson" data-dept="compliance">
+                                <div class="col-span-2 flex justify-center">
+                                    <span class="w-7 h-7 rounded-full bg-slate-100 text-on-surface-variant flex items-center justify-center font-bold text-xs">7</span>
+                                </div>
+                                <div class="col-span-5 flex items-center gap-3 pl-2">
+                                    <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center font-bold text-xs text-rose-500">EW</div>
+                                    <div>
+                                        <p class="text-xs font-bold text-on-surface">Emma Watson</p>
+                                        <p class="text-[9px] text-on-surface-variant">Legal Counsel · London</p>
+                                    </div>
+                                </div>
+                                <div class="col-span-2 text-center text-xs font-bold text-on-surface-variant">Lvl 10</div>
+                                <div class="col-span-3 text-right text-xs font-extrabold text-primary pr-4">1,950 XP</div>
+                            </div>
+
+                            <!-- 8. Liam Neeson -->
+                            <div class="grid grid-cols-12 items-center p-3 hover:bg-surface-container-low/30 transition-colors" data-name="Liam Neeson" data-dept="engineering">
+                                <div class="col-span-2 flex justify-center">
+                                    <span class="w-7 h-7 rounded-full bg-slate-100 text-on-surface-variant flex items-center justify-center font-bold text-xs">8</span>
+                                </div>
+                                <div class="col-span-5 flex items-center gap-3 pl-2">
+                                    <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center font-bold text-xs text-orange-500">LN</div>
+                                    <div>
+                                        <p class="text-xs font-bold text-on-surface">Liam Neeson</p>
+                                        <p class="text-[9px] text-on-surface-variant">Logistics Manager · Texas</p>
+                                    </div>
+                                </div>
+                                <div class="col-span-2 text-center text-xs font-bold text-on-surface-variant">Lvl 9</div>
+                                <div class="col-span-3 text-right text-xs font-extrabold text-primary pr-4">1,800 XP</div>
+                            </div>
+
+                            <!-- 9. Sophia Wang -->
+                            <div class="grid grid-cols-12 items-center p-3 hover:bg-surface-container-low/30 transition-colors" data-name="Sophia Wang" data-dept="sustainability">
+                                <div class="col-span-2 flex justify-center">
+                                    <span class="w-7 h-7 rounded-full bg-slate-100 text-on-surface-variant flex items-center justify-center font-bold text-xs">9</span>
+                                </div>
+                                <div class="col-span-5 flex items-center gap-3 pl-2">
+                                    <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center font-bold text-xs text-indigo-500">SW</div>
+                                    <div>
+                                        <p class="text-xs font-bold text-on-surface">Sophia Wang</p>
+                                        <p class="text-[9px] text-on-surface-variant">Recycle Expert · Sydney</p>
+                                    </div>
+                                </div>
+                                <div class="col-span-2 text-center text-xs font-bold text-on-surface-variant">Lvl 8</div>
+                                <div class="col-span-3 text-right text-xs font-extrabold text-primary pr-4">1,650 XP</div>
+                            </div>
+
+                            <!-- 10. James Smith -->
+                            <div class="grid grid-cols-12 items-center p-3 hover:bg-surface-container-low/30 transition-colors" data-name="James Smith" data-dept="compliance">
+                                <div class="col-span-2 flex justify-center">
+                                    <span class="w-7 h-7 rounded-full bg-slate-100 text-on-surface-variant flex items-center justify-center font-bold text-xs">10</span>
+                                </div>
+                                <div class="col-span-5 flex items-center gap-3 pl-2">
+                                    <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center font-bold text-xs text-amber-600">JS</div>
+                                    <div>
+                                        <p class="text-xs font-bold text-on-surface">James Smith</p>
+                                        <p class="text-[9px] text-on-surface-variant">Data Auditor · Dubai</p>
+                                    </div>
+                                </div>
+                                <div class="col-span-2 text-center text-xs font-bold text-on-surface-variant">Lvl 7</div>
+                                <div class="col-span-3 text-right text-xs font-extrabold text-primary pr-4">1,500 XP</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: BADGES CONTENT -->
+                <div id="badges-tab-content" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Badge 1: Net-Zero Hero -->
+                    <div class="bg-white border border-outline-variant rounded-xl p-4 flex gap-4 hover:shadow-md transition-shadow relative overflow-hidden group">
+                        <div class="absolute top-2 right-2"><span class="px-2 py-0.5 bg-green-150 text-green-700 text-[9px] font-extrabold rounded-full">Unlocked</span></div>
+                        <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center shrink-0 border border-green-200">
+                            <span class="material-symbols-outlined text-green-600 text-2xl" style="font-variation-settings: 'FILL' 1;">eco</span>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-on-surface">Net-Zero Hero</h4>
+                            <p class="text-[10px] text-on-surface-variant mt-1 leading-relaxed">Achieve Net Zero status on Scope 1 emissions in at least one global facility.</p>
+                            <p class="text-[9px] text-primary font-bold mt-2 flex items-center gap-1"><span class="material-symbols-outlined text-[10px]">workspace_premium</span> Earned by Marcus K.</p>
+                        </div>
+                    </div>
+
+                    <!-- Badge 2: Audit Ace -->
+                    <div class="bg-white border border-outline-variant rounded-xl p-4 flex gap-4 hover:shadow-md transition-shadow relative overflow-hidden group">
+                        <div class="absolute top-2 right-2"><span class="px-2 py-0.5 bg-green-150 text-green-700 text-[9px] font-extrabold rounded-full">Unlocked</span></div>
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center shrink-0 border border-blue-200">
+                            <span class="material-symbols-outlined text-blue-600 text-2xl" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-on-surface">Audit Ace</h4>
+                            <p class="text-[10px] text-on-surface-variant mt-1 leading-relaxed">Submit environmental audit data early with zero compliance delays.</p>
+                            <p class="text-[9px] text-primary font-bold mt-2 flex items-center gap-1"><span class="material-symbols-outlined text-[10px]">workspace_premium</span> Earned by Sarah J.</p>
+                        </div>
+                    </div>
+
+                    <!-- Badge 3: Data Pioneer -->
+                    <div class="bg-white border border-outline-variant rounded-xl p-4 flex gap-4 hover:shadow-md transition-shadow relative overflow-hidden group">
+                        <div class="absolute top-2 right-2"><span class="px-2 py-0.5 bg-green-150 text-green-700 text-[9px] font-extrabold rounded-full">Unlocked</span></div>
+                        <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center shrink-0 border border-purple-200">
+                            <span class="material-symbols-outlined text-purple-600 text-2xl" style="font-variation-settings: 'FILL' 1;">database</span>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-on-surface">Data Pioneer</h4>
+                            <p class="text-[10px] text-on-surface-variant mt-1 leading-relaxed">Enter telemetry data for 5+ facilities across three scopes.</p>
+                            <p class="text-[9px] text-primary font-bold mt-2 flex items-center gap-1"><span class="material-symbols-outlined text-[10px]">workspace_premium</span> Earned by Janice D.</p>
+                        </div>
+                    </div>
+
+                    <!-- Badge 4: Risk Mitigator -->
+                    <div class="bg-white border border-outline-variant rounded-xl p-4 flex gap-4 hover:shadow-md transition-shadow relative overflow-hidden group">
+                        <div class="absolute top-2 right-2"><span class="px-2 py-0.5 bg-green-150 text-green-700 text-[9px] font-extrabold rounded-full">Unlocked</span></div>
+                        <div class="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center shrink-0 border border-orange-200">
+                            <span class="material-symbols-outlined text-orange-600 text-2xl" style="font-variation-settings: 'FILL' 1;">health_and_safety</span>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-on-surface">Risk Mitigator</h4>
+                            <p class="text-[10px] text-on-surface-variant mt-1 leading-relaxed">Achieve 100% compliance in ESG scoring matrices for governance.</p>
+                            <p class="text-[9px] text-primary font-bold mt-2 flex items-center gap-1"><span class="material-symbols-outlined text-[10px]">workspace_premium</span> Earned by You</p>
+                        </div>
+                    </div>
+
+                    <!-- Badge 5: Energy Saver -->
+                    <div class="bg-white border border-outline-variant rounded-xl p-4 flex gap-4 hover:shadow-md transition-shadow relative overflow-hidden group">
+                        <div class="absolute top-2 right-2"><span class="px-2 py-0.5 bg-slate-100 text-slate-500 text-[9px] font-bold rounded-full">Locked</span></div>
+                        <div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center shrink-0 border border-slate-200 opacity-60">
+                            <span class="material-symbols-outlined text-slate-500 text-2xl">bolt</span>
+                        </div>
+                        <div class="opacity-60">
+                            <h4 class="text-xs font-bold text-on-surface">Energy Saver</h4>
+                            <p class="text-[10px] text-on-surface-variant mt-1 leading-relaxed">Reduce overall facility power demand by at least 15% in Q4.</p>
+                            <p class="text-[9px] text-slate-500 mt-2">Requires Q4 review submission</p>
+                        </div>
+                    </div>
+
+                    <!-- Badge 6: Water Steward -->
+                    <div class="bg-white border border-outline-variant rounded-xl p-4 flex gap-4 hover:shadow-md transition-shadow relative overflow-hidden group">
+                        <div class="absolute top-2 right-2"><span class="px-2 py-0.5 bg-slate-100 text-slate-500 text-[9px] font-bold rounded-full">Locked</span></div>
+                        <div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center shrink-0 border border-slate-200 opacity-60">
+                            <span class="material-symbols-outlined text-slate-500 text-2xl">water_drop</span>
+                        </div>
+                        <div class="opacity-60">
+                            <h4 class="text-xs font-bold text-on-surface">Water Steward</h4>
+                            <p class="text-[10px] text-on-surface-variant mt-1 leading-relaxed">Implement circular water usage at Singapore headquarters.</p>
+                            <p class="text-[9px] text-slate-500 mt-2">Requires Water Recycling validation</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-4 border-t border-outline-variant flex justify-between items-center bg-surface-container-low/20">
+                <span class="text-xs text-on-surface-variant">Rankings update in real-time as team data updates.</span>
+                <button id="close-leaderboard-modal-footer-btn" class="px-5 py-2 bg-primary text-white rounded-lg text-xs font-bold hover:brightness-110 transition-all">Close</button>
+            </div>
         </div>
     </div>
 

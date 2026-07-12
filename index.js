@@ -408,7 +408,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const dbWater = document.getElementById('dashboard-water-value');
         if (dbWater) {
-            dbWater.innerHTML = `${Math.round(totalWater).toLocaleString()} <span class="text-body-md font-normal text-on-surface-variant">m³</span>`;
+            dbWater.innerHTML = `${Math.round(totalWater).toLocaleString()} <span class="text-body-md font-normal text-on-surface-variant">mÂ³</span>`;
         }
 
         const dbEnergy = document.getElementById('dashboard-energy-value');
@@ -604,7 +604,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h4 class="font-title-md text-on-surface font-bold">GRI Compliance Disclosure Report #${reportId}</h4>
                     <span class="px-2 py-0.5 bg-green-100 text-green-700 text-[10px] font-bold rounded uppercase">Final</span>
                 </div>
-                <p class="text-body-md text-on-surface-variant">Framework: GRI 2023 • Generated Just Now</p>
+                <p class="text-body-md text-on-surface-variant">Framework: GRI 2023 â€¢ Generated Just Now</p>
             </div>
             <div class="flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
                 <button class="p-2 text-on-surface-variant hover:text-primary transition-colors" title="Download PDF">
@@ -1119,7 +1119,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 16. Dashboard Interactivity ---
 
-    // 16a. "View ESG Breakdown" → navigate to scoring tab
+    // 16a. "View ESG Breakdown" â†’ navigate to scoring tab
     const dashViewEsgBtn = document.getElementById('dash-view-esg-btn');
     if (dashViewEsgBtn) {
         dashViewEsgBtn.addEventListener('click', () => {
@@ -1238,7 +1238,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchResultsLabel = document.getElementById('search-results-label');
     const closeSearchBtn = document.getElementById('close-search-btn');
 
-    // Searchable data index — tabs + facilities
+    // Searchable data index â€” tabs + facilities
     const searchIndex = [
         { label: 'Executive Dashboard', icon: 'dashboard', tab: 'dashboard', type: 'Page' },
         { label: 'Sustainability Monitoring', icon: 'eco', tab: 'sustainability', type: 'Page' },
@@ -1280,7 +1280,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="flex-1 min-w-0">
                     <p class="text-sm font-bold text-on-surface truncate">${item.label}</p>
-                    <p class="text-[10px] text-on-surface-variant">${item.type}${item.sub ? ' · ' + item.sub : ''}</p>
+                    <p class="text-[10px] text-on-surface-variant">${item.type}${item.sub ? ' Â· ' + item.sub : ''}</p>
                 </div>
                 <span class="material-symbols-outlined text-outline text-sm">arrow_forward</span>
             `;
@@ -1320,6 +1320,7 @@ document.addEventListener('DOMContentLoaded', () => {
             closeHistoricalModal();
             closeReportPreviewModal();
             closeCustomReportModal();
+            closeLeaderboardModal();
         }
     });
 
@@ -1333,7 +1334,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function openReportPreviewModal(reportName) {
         if (!reportPreviewModal) return;
-        if (reportPreviewTitle) reportPreviewTitle.textContent = reportName + ' — Preview';
+        if (reportPreviewTitle) reportPreviewTitle.textContent = reportName + ' â€” Preview';
         if (previewTypeEl) previewTypeEl.textContent = reportName;
         reportPreviewModal.classList.remove('pointer-events-none', 'opacity-0');
         reportPreviewModal.classList.add('pointer-events-auto', 'opacity-100');
@@ -1358,7 +1359,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('report-preview-backdrop')?.addEventListener('click', closeReportPreviewModal);
     document.getElementById('preview-download-pdf-btn')?.addEventListener('click', () => {
         closeReportPreviewModal();
-        showToast('PDF download started — check your downloads folder.', 'success');
+        showToast('PDF download started â€” check your downloads folder.', 'success');
     });
 
     // Wire Preview buttons
@@ -1371,7 +1372,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Wire PDF buttons
     document.querySelectorAll('.report-pdf-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-            showToast(`Generating ${btn.dataset.report} PDF… this may take a moment.`, 'info');
+            showToast(`Generating ${btn.dataset.report} PDFâ€¦ this may take a moment.`, 'info');
             setTimeout(() => showToast(`${btn.dataset.report}.pdf is ready for download!`, 'success'), 2200);
         });
     });
@@ -1379,7 +1380,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Wire CSV buttons
     document.querySelectorAll('.report-csv-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-            showToast(`Exporting ${btn.dataset.report} as CSV…`, 'info');
+            showToast(`Exporting ${btn.dataset.report} as CSVâ€¦`, 'info');
             setTimeout(() => showToast(`${btn.dataset.report}.csv exported successfully!`, 'success'), 1500);
         });
     });
@@ -1387,7 +1388,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Wire XLSX buttons (Gov Disclosure)
     document.querySelectorAll('.report-xlsx-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-            showToast(`Generating ${btn.dataset.report} XLSX for regulatory submission…`, 'info');
+            showToast(`Generating ${btn.dataset.report} XLSX for regulatory submissionâ€¦`, 'info');
             setTimeout(() => showToast(`${btn.dataset.report}.xlsx is ready!`, 'success'), 2000);
         });
     });
@@ -1402,7 +1403,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Export Log button
     document.getElementById('export-log-btn')?.addEventListener('click', () => {
-        showToast('Exporting generation history log as CSV…', 'info');
+        showToast('Exporting generation history log as CSVâ€¦', 'info');
         setTimeout(() => showToast('report-history-log.csv downloaded!', 'success'), 1800);
     });
 
@@ -1448,7 +1449,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const name = document.getElementById('custom-report-name')?.value.trim() || 'Custom ESG Report';
         const type = document.getElementById('custom-report-type')?.value || 'Custom';
         closeCustomReportModal();
-        showToast(`Generating "${name}" (${type}) — please wait…`, 'info');
+        showToast(`Generating "${name}" (${type}) â€” please waitâ€¦`, 'info');
         setTimeout(() => {
             showToast(`"${name}" is ready for download!`, 'success');
             logActivity(`Generated custom report: ${name}`);
@@ -1480,4 +1481,170 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- 18. Gamification & Leaderboard Interactivity ---
+
+    const leaderboardModal = document.getElementById('leaderboard-modal');
+    const leaderboardModalPanel = document.getElementById('leaderboard-modal-panel');
+    const closeLeaderboardBtn = document.getElementById('close-leaderboard-modal-btn');
+    const closeLeaderboardFooterBtn = document.getElementById('close-leaderboard-modal-footer-btn');
+    const leaderboardBackdrop = document.getElementById('leaderboard-modal-backdrop');
+
+    // Sidebar triggers
+    const sidebarOpenLeaderboardBtn = document.getElementById('sidebar-open-leaderboard-btn');
+    const leaderboardIconBtn = document.getElementById('leaderboard-icon-btn');
+
+    // Tab buttons
+    const tabLeaderboardBtn = document.getElementById('modal-tab-leaderboard-btn');
+    const tabBadgesBtn = document.getElementById('modal-tab-badges-btn');
+
+    // Tab contents
+    const tabLeaderboardContent = document.getElementById('leaderboard-tab-content');
+    const tabBadgesContent = document.getElementById('badges-tab-content');
+
+    // Search and filters
+    const leaderboardSearchInput = document.getElementById('leaderboard-search-input');
+    const leaderboardFilterSelect = document.getElementById('leaderboard-filter-select');
+    const leaderboardListRows = document.querySelectorAll('#leaderboard-list-container > div');
+
+    function openLeaderboardModal() {
+        if (!leaderboardModal) return;
+        leaderboardModal.classList.remove('pointer-events-none', 'opacity-0');
+        leaderboardModal.classList.add('pointer-events-auto', 'opacity-100');
+        if (leaderboardModalPanel) {
+            leaderboardModalPanel.classList.remove('scale-95');
+            leaderboardModalPanel.classList.add('scale-100');
+        }
+        showToast('Opened Gamification Hub', 'info');
+    }
+
+    function closeLeaderboardModal() {
+        if (!leaderboardModal) return;
+        leaderboardModal.classList.add('pointer-events-none', 'opacity-0');
+        leaderboardModal.classList.remove('pointer-events-auto', 'opacity-100');
+        if (leaderboardModalPanel) {
+            leaderboardModalPanel.classList.remove('scale-100');
+            leaderboardModalPanel.classList.add('scale-95');
+        }
+    }
+
+    // Bind open/close triggers
+    if (sidebarOpenLeaderboardBtn) sidebarOpenLeaderboardBtn.addEventListener('click', openLeaderboardModal);
+    if (leaderboardIconBtn) leaderboardIconBtn.addEventListener('click', openLeaderboardModal);
+    if (closeLeaderboardBtn) closeLeaderboardBtn.addEventListener('click', closeLeaderboardModal);
+    if (closeLeaderboardFooterBtn) closeLeaderboardFooterBtn.addEventListener('click', closeLeaderboardModal);
+    if (leaderboardBackdrop) leaderboardBackdrop.addEventListener('click', closeLeaderboardModal);
+
+    // Make global for Escape key listener
+    window.closeLeaderboardModal = closeLeaderboardModal;
+
+    // Tab switcher logic
+    if (tabLeaderboardBtn && tabBadgesBtn) {
+        tabLeaderboardBtn.addEventListener('click', () => {
+            // Activate Leaderboard Tab
+            tabLeaderboardBtn.classList.remove('border-transparent', 'text-on-surface-variant');
+            tabLeaderboardBtn.classList.add('border-primary', 'text-primary', 'font-bold');
+            tabBadgesBtn.classList.remove('border-primary', 'text-primary', 'font-bold');
+            tabBadgesBtn.classList.add('border-transparent', 'text-on-surface-variant', 'font-semibold');
+            
+            tabLeaderboardContent?.classList.remove('hidden');
+            tabBadgesContent?.classList.add('hidden');
+        });
+
+        tabBadgesBtn.addEventListener('click', () => {
+            // Activate Badges Tab
+            tabBadgesBtn.classList.remove('border-transparent', 'text-on-surface-variant');
+            tabBadgesBtn.classList.add('border-primary', 'text-primary', 'font-bold');
+            tabLeaderboardBtn.classList.remove('border-primary', 'text-primary', 'font-bold');
+            tabLeaderboardBtn.classList.add('border-transparent', 'text-on-surface-variant', 'font-semibold');
+            
+            tabBadgesContent?.classList.remove('hidden');
+            tabLeaderboardContent?.classList.add('hidden');
+        });
+    }
+
+    // Live search & department filtering
+    function filterLeaderboard() {
+        const query = leaderboardSearchInput ? leaderboardSearchInput.value.toLowerCase().trim() : '';
+        const deptFilter = leaderboardFilterSelect ? leaderboardFilterSelect.value : 'all';
+
+        leaderboardListRows.forEach(row => {
+            const name = row.dataset.name ? row.dataset.name.toLowerCase() : '';
+            const dept = row.dataset.dept ? row.dataset.dept : '';
+
+            const matchesSearch = name.includes(query);
+            const matchesDept = (deptFilter === 'all' || dept === deptFilter);
+
+            if (matchesSearch && matchesDept) {
+                row.classList.remove('hidden');
+                row.style.display = '';
+            } else {
+                row.classList.add('hidden');
+                row.style.display = 'none';
+            }
+        });
+    }
+
+    if (leaderboardSearchInput) {
+        leaderboardSearchInput.addEventListener('input', filterLeaderboard);
+    }
+    if (leaderboardFilterSelect) {
+        leaderboardFilterSelect.addEventListener('change', filterLeaderboard);
+    }
+
+    // --- 19. Settings Hub Sub-nav Switching ---
+
+    const settingsNavBtns = document.querySelectorAll('.settings-nav-btn');
+    const settingsPanels = document.querySelectorAll('.settings-panel');
+
+    function switchSettingsPanel(panelName) {
+        settingsNavBtns.forEach(btn => {
+            const isActive = btn.dataset.settingsPanel === panelName;
+            if (isActive) {
+                btn.classList.add('text-primary', 'bg-primary/5', 'border-primary');
+                btn.classList.remove('text-on-surface-variant', 'border-transparent');
+            } else {
+                btn.classList.remove('text-primary', 'bg-primary/5', 'border-primary');
+                btn.classList.add('text-on-surface-variant', 'border-transparent');
+            }
+        });
+        settingsPanels.forEach(panel => {
+            if (panel.id === `settings-panel-${panelName}`) {
+                panel.classList.remove('hidden');
+            } else {
+                panel.classList.add('hidden');
+            }
+        });
+    }
+
+    settingsNavBtns.forEach(btn => {
+        btn.addEventListener('click', () => switchSettingsPanel(btn.dataset.settingsPanel));
+    });
+
+    document.getElementById('settings-general-form')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        showToast('General settings saved successfully!', 'success');
+    });
+    document.getElementById('save-theme-btn')?.addEventListener('click', () => showToast('Theme preferences saved!', 'success'));
+    document.getElementById('save-notif-btn')?.addEventListener('click', () => showToast('Notification preferences updated!', 'success'));
+    document.getElementById('save-lang-btn')?.addEventListener('click', () => showToast('Language & region settings saved!', 'success'));
+    document.getElementById('save-security-btn')?.addEventListener('click', () => showToast('Security settings updated!', 'success'));
+    document.getElementById('generate-api-key-btn')?.addEventListener('click', () => {
+        const key = 'esg_live_sk_' + Math.random().toString(36).substring(2, 10);
+        showToast(`New API key generated: ${key}`, 'success');
+    });
+    document.querySelectorAll('#settings-panel-apikeys button[title="Copy Key"]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            navigator.clipboard?.writeText('esg_key_value_here').catch(() => {});
+            showToast('API key copied to clipboard!', 'success');
+        });
+    });
+    document.querySelectorAll('#settings-panel-apikeys button[title="Revoke Key"]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const row = btn.closest('.border');
+            if (row) { row.style.transition = 'opacity 0.3s'; row.style.opacity = '0'; setTimeout(() => row.remove(), 320); }
+            showToast('API key revoked.', 'info');
+        });
+    });
+
 });
+
